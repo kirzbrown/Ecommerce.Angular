@@ -1,0 +1,79 @@
+<div class="logo-manager-header">
+    <div fxLayout="row">
+        <div fxFlex>
+            <h4>Header Logo</h4>
+        </div>
+    </div>
+</div>
+<!---->
+<div class="logo-container">
+    <div class="col-lg-12 row">
+        <!---->
+        <div fxLayout="row wrap">
+            <div class="upload-doc-label">
+                <div style="position: relative;">
+                    <div *ngIf="headerLogo != defaultHeaderLogo" (click)="removeLogo('header')" class="material-icons pointer" style="position: absolute; right: 0;background: darkgray;color: white;border-radius: 50%;">close</div>
+                    <img class="single-image" [src]="headerLogo"/>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="align-self-center">
+            <label style="display: none;">
+                <input id="header_upload" type="file" #file (change)="onLogoUpload($event,'header')"
+                    accept=".jpg, .jpeg, .png, .gif">
+            </label>
+            <button (click)="triggerLogoUpload('header_upload')" mat-button type="button"
+                class="btn btn-change-logo btn-upload text-black">
+                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                    <img src="../../../assets/media/svg/logos/arrow-up.svg" alt="" class="image-icon">
+                    <div fxFlex><span>Change Logo</span></div>
+                </div>
+            </button>
+        </div>
+
+    </div>
+    <div class="col-lg-12 no-padding image-description-container">
+        <span class="image-description">Image Dimension: 195x50px (jpg, png, gif)</span>
+    </div>
+</div>
+
+<div class="logo-manager-header">
+    <div fxLayout="row">
+        <div fxFlex>
+            <h4>Checkout Logo</h4>
+        </div>
+    </div>
+</div>
+<!---->
+<div class="logo-container">
+    <div class="col-lg-12 row">
+        <!---->
+        <div fxLayout="row wrap">
+            <div class="upload-doc-label">
+                <div style="position: relative;">
+                    <div *ngIf="checkoutLogo != defaultCheckoutLogo" (click)="removeLogo('checkout')" class="material-icons pointer" style="position: absolute; right: 0;background: darkgray;color: white;border-radius: 50%;">close</div>
+                    <img class="single-image" [src]="checkoutLogo"/>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="align-self-center">
+            <label style="display: none;">
+                <input id="checkout_upload" type="file" #file (change)="onLogoUpload($event,'checkout')"
+                    accept=".jpg, .jpeg, .png, .gif">
+            </label>
+            <button (click)="triggerLogoUpload('checkout_upload')" mat-button type="button"
+                class="btn btn-change-logo btn-upload text-black">
+                <div fxLayouAlign="center center" fxFlex="100" fxLayout="row">
+                    <img src="../../../assets/media/svg/logos/arrow-up.svg" alt="" class="image-icon">
+                    <div fxFlex><span>Change Logo</span></div>
+                </div>
+            </button>
+        </div>
+
+    </div>
+    <div class="col-lg-12 no-padding image-description-container">
+        <span class="image-description">Image Dimension: 195x50px (jpg, png, gif)</span>
+    </div>
+</div>

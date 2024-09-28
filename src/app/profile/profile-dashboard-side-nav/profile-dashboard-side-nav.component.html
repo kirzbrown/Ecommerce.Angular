@@ -1,0 +1,102 @@
+<section class="full-width">
+    <!--head-->
+    <div style="background-image: url('./assets/media/profile-assets/profile-background-design.png');" class="pdr1">
+        <div class="pdr1-wlc">
+            <div class="profile-upper-mobile" fxLayout="row">
+               <div class="mr10">
+                    <img class="profile-icon-img" src="https://media.gettyimages.com/vectors/human-face-avatar-icon-profile-for-social-network-man-vector-vector-id1227618801"/>                           </div>
+               <div class="">
+                   <div class="Welcome-label">Welcome back,</div>
+                   <div *ngIf="username" class="username-label">{{username}}</div>
+                   <div *ngIf="!username" class="username-label">User</div>                           
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div fxLayout="row">
+                <div class="hidden" fxFlex></div>
+                <div class="icon-btn">
+                    <span class="icon-btn-ico material-icons">send</span>
+                </div>
+                <div class="icon-btn">
+                    <span class="icon-btn-ico material-icons">share</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--body-->
+    <div fxLayout="column" class="body-pdr1 p1em" fxLayoutAlign="start start">
+        <div class="body-pdr1-main">
+            <div class="h-100%">
+                <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                    <!-- This is the tree node template for leaf nodes -->
+                    <mat-tree-node *matTreeNodeDef="let node" >
+                      <!-- use a disabled button to provide padding for tree leaf -->
+                      <!-- <button mat-icon-button disabled></button> -->
+
+
+                        <a class="col-12" >
+                        <div (click)="changeNavigation(node)" class="d-flex flex-row nav-container"  [ngClass]="{'selected-pdr1-nav-list-label': selectedNavigation == node.name}"   >
+                            <div>
+                                <button mat-icon-button class="ml-3 mt-2" >                       
+
+                                    <div> <mat-icon class="mat-icon-rtl-mirror">                            
+                                            {{node.icon}}
+                                      </mat-icon>
+                                  </div>                 
+                                </button>
+                            </div>
+
+                            <div role="button" class="pdr1-nav-list-label mt-2 hidden-mobile">
+                                 {{node.name}}
+                             </div>
+
+                           
+                        </div>
+                    </a>                    
+
+                     
+                    </mat-tree-node>
+                    <!-- This is the tree node template for expandable nodes -->
+                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+                        <a class="col-12 " matTreeNodeToggle >  
+                            <div class="d-flex flex-row nav-container">
+                                <div>     
+                                    <button mat-icon-button 
+                                            [attr.aria-label]="'Toggle ' + node.name">
+                                        <mat-icon class="mat-icon-rtl-mirror">
+                                            {{node.icon}}
+                                        </mat-icon>
+    
+                                    </button>                              
+                                    
+                                </div>
+                             
+                                <div class="align-middle" type="button" style="display: grid;align-items: center;" >{{node.name}}</div>
+
+                                <div class="ml-auto mr-3">
+                                   <button mat-icon-button 
+                                            [attr.aria-label]="'Toggle ' + node.name">
+                                        <mat-icon class="mat-icon-rtl-mirror">
+                                        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                                        </mat-icon>
+    
+                                    </button> 
+                                </div>        
+                            </div>                                      
+
+                      
+                    </a>
+                    </mat-tree-node>
+                  </mat-tree>                
+                 
+        </div>
+           
+    </div>
+    <!-- <a role="button" [routerLink]="[{outlets: {second: ['m']}}]">MaintenanceSection</a> -->
+        <!---->
+        <!-- <div *ngIf="isAdmin" class="footer-body-pdr1">
+            <button class="btn btn-blue full-width" (click)="createItem()">Create a product</button>
+        </div> -->
+    </div>
+</section>

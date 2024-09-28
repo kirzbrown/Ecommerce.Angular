@@ -1,0 +1,121 @@
+<div style="padding-bottom: 9em;" class="product-view-container" #scroll>
+    <section class="product-view-details-container">
+        <div id="mainContainer" #mainContainer class="item-title-container" fxLayout="row">
+            <div (click)="goBackToCatalog()" class="mr1em pointer" fxLayoutAlign="start center">
+                <span class="back-icon material-icons">keyboard_backspace</span>
+            </div>
+
+            <div fxFlex class="pvd-title" fxLayoutAlign="start center">
+                {{item?.title}}
+            </div>
+
+            <div *ngIf="item.isPromoActive" class="promo-badge">
+                <img class="promo-badge-image" [src]="item.promoStickerImageUrl" >
+            </div>
+        </div>
+        <div class="product-deets-row" fxLayout="row">
+            <!--first row: image-->
+            <div class="pvd-row-1" style="margin-right: 1em;" fxLayout="column" fxFlex="35">
+                <div class="pvd-img-cont" fxLayoutAlign="center center">
+                    <app-product-gallery [productModel]="item?.model" [description]="item.title" [imageUrls]="item.productImages"></app-product-gallery>
+                </div>
+
+            </div>
+            <!--second row: details-->
+            <div class="pvd-row-2" fxLayout="column" fxFlex>
+
+                <div class="deets-spacing item-description-container" fxLayout="row" *ngIf="item?.stockKeepingUnit">
+                    <div fxLayout="column">
+                        <div><span class="bolder">MODEL:</span></div>
+                        <div><span class="bolder">CAPACITY:</span></div>
+                        <div><span class="bolder">ORIGIN:</span></div>
+                        <div><span class="bolder">WARRANTY:</span></div>
+                    </div>
+                    <div fxLayout="column" class="ml-5">
+                        <div>{{item?.model}}</div>
+                        <div>{{item?.capacity}}</div>
+                        <div>{{item?.origin}}</div>
+                        <div>{{item?.yearsWarranty}} YEAR</div>
+                    </div>
+                    <!-- <div>REFRIGERANT: {{item?.refrigerant}}</div> -->
+                </div>
+                <div class="deets-spacing item-subtitle-one">{{item?.subTitle}}</div>
+                <div class="deets-spacing item-subtitle-two">{{item?.description}}</div>
+
+                <!--badges and images-->
+                <div class="deets-badges-tag" *ngIf="item?.isFeatureActive">
+                    <div fxLayout="row wrap">
+                        <ng-container *ngFor="let feature of item.productFeatures">
+                            <div class="tech">
+                                <img class="tech-imgs" [src]="feature.imageUrl">
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <!---->
+                <img *ngIf="item.isMiniBannerActive" class="agains-covid-bazdge" [src]="item.miniBannerStickerImageUrl" >
+
+            </div>
+            <!--third row: bidding-->
+            <div class="pvd-row-3" fxLayout="column" fxFlex="17">
+                <div *ngIf="item?.discount == 0" class="pvd-price-label">{{item?.price | currency: 'SRP '}}</div>
+                <ng-container *ngIf="item?.discount > 0">
+                    <div class="pvd-prev-price-label">{{item?.price | currency: 'SRP '}}</div>
+                    <div class="pvd-price-label">{{item?.discountedPrice | currency: 'SRP '}}</div>
+                </ng-container>
+
+                <div *ngIf="item.discount" class="discount-badge mb-3">Less {{item?.discount}}% Discount</div>
+
+                <div class="input-group mb-3">
+                    <div (click)="addItemQuantity(true)" class="input-group-prepend appendIcon cursor-pointer">
+                    <span class="input-group-text">+</span>
+                    </div>
+                    <input style="text-align: center;" id="itemQuantity" min="1" disabled placeholder="###" [(ngModel)]="quantity" [ngModelOptions]="{standalone: true}" type="number" name="itemQuantity"  class="form-control left-bot-radius" required>
+                    <div (click)="addItemQuantity(false)" class="input-group-append appendIcon cursor-pointer">
+                        <span class="input-group-text">-</span>
+                    </div>
+                </div>
+
+                <button (click)="addToCart(item)" *ngIf="!isLoggedIn || (isLoggedIn && item.userId != userId)"  class="btn btn-cart" [ngClass]="{'spinner spinner-white spinner-right': adding}">
+                    <div fxLayout="row">
+                        <div class="cart-icon material-icons ml-3">shopping_cart</div>
+                        <div class="cart-lbl">Add to Cart</div>
+                    </div>
+                </button>
+
+                <button (click)="buyItem(item)" *ngIf="!isLoggedIn || (isLoggedIn && item.userId != userId)"  class="btn btn-buy">
+                    <div fxLayout="row">
+                        <div fxFlex class="cart-lbl">Buy Now</div>
+                    </div>
+                </button>
+
+                <!--years of warranty image -->
+                <img *ngIf="item.isWarrantyActive" class="warranty-image" [src]="item.warrantyStickerImageUrl">
+
+            </div>
+        </div>
+        <div fxLayout="row">
+            <mat-tab-group (selectedTabChange)="filterByProductTypeView($event)">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="item-category" style="border: none;">Technology</span>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="item-category" style="border: none;">Features</span>
+                    </ng-template>
+                </mat-tab>        <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="item-category" style="border: none;">Specifications</span>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </section>
+
+    <!--html content-->
+    <div class="html-content-view" [innerHtml]="sanatizeHtml(item?.technologyHtmlContent)"></div>
+    <div class="html-content-view" [innerHtml]="sanatizeHtml(item?.featureHtmlContent)"></div>
+    <div class="html-content-view" [innerHtml]="sanatizeHtml(item?.specificationHtmlContent)"></div>
+</div>

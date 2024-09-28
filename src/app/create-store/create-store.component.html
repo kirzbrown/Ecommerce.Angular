@@ -1,0 +1,110 @@
+<section class="store-container full-width">
+    <!--header-->
+    <div fxLayoutAlign="center center" fxLayout="column" class="full-width">
+        <div class="icon-cont">
+            <mat-icon class="store-icon">storefront</mat-icon>
+        </div>
+        <div class="title-header">Create a store</div>
+        <div class="description-header">To start selling your items, you need a store to put these Items. so create a store and add your items to list for sale</div>
+    </div>
+    
+    <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
+        <div class="stepper-cont">
+            <div class="stepper-title">Basic Information</div>
+            <!--inputs-->
+            <div class="form-main-container mb-input">
+                <div class="text-label">Store title</div>
+                <mat-form-field appearance="outline" class="full-width">
+                    <input matInput placeholder="Enter a title for your store" required formControlName="title">
+                    <ng-container *ngIf="title.invalid && (title.dirty || title.touched)">
+                        <mat-error *ngIf="title.errors?.required" class="error-lbl">
+                            Store title is required.
+                        </mat-error>
+                        <mat-error *ngIf="title.errors?.minlength" class="error-lbl">
+                            Store title should contain at least 3 characters.
+                        </mat-error>
+                    </ng-container>
+                </mat-form-field>
+            </div>
+        
+            <!--inputs-->
+            <div class="form-main-container mb-input">
+                <div class="text-label">Store sub-title</div>
+                <mat-form-field appearance="outline" class="full-width">
+                    <input matInput placeholder="Enter a subtitle for your store" formControlName="subTitle">
+                    <ng-container *ngIf="subTitle.invalid && (subTitle.dirty || subTitle.touched)">
+                        <mat-error *ngIf="subTitle.errors?.required" class="error-lbl">
+                            Store sub is required.
+                        </mat-error>
+                        <mat-error *ngIf="subTitle.errors?.minlength" class="error-lbl">
+                            Store sub title should contain at least 3 characters.
+                        </mat-error>
+                    </ng-container>
+                </mat-form-field>
+            </div>
+        
+            <!--inputs-->
+            <div class="form-main-container mb-input">
+                <div class="text-label">Store tags</div>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-chip-list #chipList aria-label="Tags selection" formArrayName="storeTags">
+                        <mat-chip *ngFor="let tag of storeTagsData.controls; let i = index" [selectable]="selectable" [removable]="removable"
+                            (removed)="remove(storeForm, i)">
+                            {{tag.value.name}}
+                            <mat-icon matChipRemove *ngIf="removable">close</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Enter a tag for your store" [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                    <mat-error class="error-lbl">Please enter atleast 1 tag for your store.</mat-error>
+                </mat-form-field>
+            </div>
+        
+            <div class="info-deets mt-13">
+                <div fxLayout="row">
+                    <mat-icon class="info-icon">info</mat-icon>
+                    <div class="info-lbl">Tags to help your items become more searchable. Kindly, separate your tag with
+                        'comma'.</div>
+                </div>
+            </div>
+        
+            <!--upload-->
+            <div class="upload-deets upload-mg">
+                <div class="text-label mb-5">Upload image</div>
+                <div class="info-deets">
+                    <div fxLayout="row">
+                        <mat-icon class="info-icon">info</mat-icon>
+                        <span class="info-lbl">Upload preview image for your store</span>
+                    </div>
+                </div>
+                <div class="uplaoder">
+                    <label class="file">
+                        <input type="file" id="file" accept="image/*" class="img-upload" (change)="selectImageFile($event)">
+                        <img class="file-custom row" [src]="imageUrl" *ngIf="imageUrl">
+                    </label>
+                </div>
+                <ng-container *ngIf="imgUrl.invalid && (imgUrl.dirty || imgUrl.touched)">
+                    <div *ngIf="imgUrl.errors?.required" class="error-lbl">Please select an image.</div>
+                </ng-container>
+            </div>
+        
+            <div class="form-main-container mb-input">
+                <div class="text-label">Store description</div>
+                <mat-form-field appearance="outline" class="full-width">
+                    <textarea matInput placeholder="Enter a description for your store" formControlName="description"></textarea>
+                    <ng-container *ngIf="description.invalid && (description.dirty || description.touched)">
+                        <mat-error *ngIf="description.errors?.required" class="error-lbl">
+                            Store description is required.
+                        </mat-error>
+                    </ng-container>
+                </mat-form-field>
+            </div>
+        </div>
+        
+        <div class="stepper-footer">
+            <button mat-button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+    
+</section>

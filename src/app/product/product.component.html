@@ -1,0 +1,136 @@
+<!--str:: category header-->
+<app-product-category-tab [categoryList]="categoryList"  [sortList]="sortList" [priceList]="priceList" (updateView)="updateView($event)" (updateData)="updateData($event)"></app-product-category-tab>
+<!--end:: category header-->
+
+<section #scroll class="main-product-catalog-container">
+    <section class="product-container" fxLayout="column">
+        
+        
+        <section *ngIf="layoutType != 'details'" class="background-img-container">
+                <ngb-carousel [interval]="5000" [pauseOnHover]="true" [pauseOnFocus]="true" style="max-height: 600px; height: 100%;">
+                    
+                    <ng-template *ngFor="let carousel of carouselList" ngbSlide>
+                        <a *ngIf="carousel.bannerUrlImage.split('.').pop() != 'mp4'" class="picsum-img-wrapper" (click)="redirect(carousel.bannerLinkUrl)" target="_blank" [ngClass]="{'disabled': carousel.bannerLinkUrl == null}">
+                            <img [src]="carousel.bannerUrlImage" class="background-img" style="width: 100%; object-fit:fill; cursor: pointer;"/>
+                        </a>
+                        <video *ngIf="carousel.bannerUrlImage.split('.').pop() == 'mp4'" controls 
+                                disablepictureinpicture 
+                                controlslist="nodownload noplaybackrate nosettings" 
+                                autoplay 
+                                loop 
+                                [muted]="'muted'" 
+                                style="width: 100%; max-height: 600px; padding: 0 14%;">  <!-- object-fit: fill;-->
+                            <source [src]="carousel.bannerUrlImage" type="video/mp4">
+                        </video>
+                    </ng-template>
+                </ngb-carousel>
+        </section>
+
+        
+        <div class="main-catalog" fxLayout="row">
+            <div *ngIf="layoutType != 'details'" [fxFlex]="isFilterVisible ? 18 : 5" class="filter-width" [ngClass]="{'filter-width-mobile': isFilterVisible}">
+                <div class="hidden-filter-cont">
+                    <button class="product-view-type" mat-button (click)="isFilterVisible = !isFilterVisible">
+                        <span *ngIf="!isFilterVisible" class="material-icons-outlined fs16">filter_alt</span>
+                        <span *ngIf="isFilterVisible" class="material-icons-outlined fs16">filter_alt_off</span>
+                        <span class="fs12" style="margin-left: 5px;">{{isFilterVisible ? 'Hide ' : 'Show '}} Filter</span>
+                    </button>
+                </div>
+                <ng-container *ngIf="isFilterVisible">
+                    <!---->
+                    <div class="search-container">
+                        <div class="input-group">
+                            <input type="text" [(ngModel)]="searchKeyForProduct" (ngModelChange)="clearSearch($event)" class="form-control search-bar" placeholder="Search for product...">
+                            <div (click)="searchProduct()" class="input-group-append" style="cursor: pointer;">
+                                <span class="input-group-text"><span class="material-icons fs18">search</span></span>
+                            </div>
+            
+                        </div>
+                    </div>
+                    <!---->
+                    <!--str::  side nav-->
+                    <app-product-category-nav [navigationList]="navigationList" [sortList]="sortList" [priceList]="priceList" [filterQuery]="filterQuery" (updateSortData)="updateSortData($event)"></app-product-category-nav>
+                    <!--end::  side nav-->
+                </ng-container>
+            </div>
+            
+            <div fxFlex fxLayoutAlign="center center">
+                <div *ngIf="layoutType != 'details'" fxLayout="column" >
+                    <section class="category-container product-category-container">
+                        <div fxFlex fxLayout="column wrap" fxLayoutAlign="center center" >
+                            <ng-container *ngIf="selectedCategory?.imageUrl">
+                                <img class="product-category-img" [src]="selectedCategory?.imageUrl">
+                            </ng-container>
+                            <ng-container *ngIf="!selectedCategory?.imageUrl">
+                                <div class="category-lbl">{{selectedCategory?.name}}</div>
+                            </ng-container>
+                            <div *ngIf="selectedCategory?.description" class="description-lbl">{{selectedCategory?.description}}</div>
+                        </div>
+                    </section>
+
+                    <!--str:: grid/list-->
+                    <section fxLayoutAlign="center" style="padding: 0 26px;padding-right: 36px; margin-top: 5em; max-width: 981px;">
+                        <div fxFlex="100" fxLayout="row">
+                            <div class="category-product-lineup">Product Line Up</div>
+                            <div fxFlex></div>
+                            <button class="product-view-type" [ngClass]="{'selected-product-view': layoutType == 'list'}" mat-button (click)="changeLayout('list')">
+                                <span class="material-icons fs16" style="margin-right: 5px;">reorder</span>
+                                <span class="fs12">List View</span>
+                            </button>
+                            <button class="product-view-type" [ngClass]="{'selected-product-view': layoutType == 'grid'}" mat-button (click)="changeLayout('grid')">
+                                <span class="material-icons fs16">widgets</span>
+                                <span class="fs12">Grid View</span>
+                            </button>
+                        </div>
+                    </section>
+                    <!--end::  grid/list-->
+                    
+                    <!--str::  row list-->
+                    <div fxFlex fxLayout="column">               
+                        <section class="catalog-container">
+                            <ng-container *ngIf="layoutType == 'grid'">
+                                <app-product-grid [viewType]="layoutType" [productList]="productList" (productOnChanges)="productOnChanges($event)"></app-product-grid>
+                            </ng-container>
+                            <ng-container *ngIf="layoutType == 'list'">
+                                <app-product-list [viewType]="layoutType" [productList]="productList" (productOnChanges)="productOnChanges($event)" ></app-product-list>
+                            </ng-container>
+                            <ng-container *ngIf="productList && productList.length == 0">
+                                <div class="no-data-found">No record found.</div>
+                            </ng-container>
+        
+                            <div *ngIf="layoutType == 'grid' || layoutType == 'list'" fxLayout="row" class="paginator-container">
+                                <div fxLayout="column">
+                                    <mat-paginator class="paginator" [pageSize]="pageSize" [pageIndex]="pageIndex" [pageSizeOptions]="pageSizeOptions" [length]="dataCount" (page)="onPaginatorClicked($event)"> </mat-paginator>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <!--end::  row list-->
+                </div>
+                <!--str::  row details-->
+                <div *ngIf="layoutType == 'details'" fxFlex fxLayout="column">
+                    <!--str:: grid-->
+                    <section class="full-width ptb1" style="padding: 2em;">
+                        <div fxFlex="100" fxLayout="row">
+                            <div fxLayoutAlign="start center" class="product-list-title"> <span class="text-highligted">Home</span> >  <span class="text-highligted ml-2 cursor-pointer" (click)="goBackToListView()">{{currentCategoryName}}</span> > {{product.title}}</div>
+                            <div fxFlex></div>
+                        </div>
+                    </section>
+                    <!--end:: grid-->
+                    <app-product-view-details [item]="product" [viewType]="layoutType" (productOnChanges)="productOnChanges($event)"></app-product-view-details>
+                </div>
+                <!--end::  row details-->
+                <section *ngIf="layoutType == 'grid'">
+                    <div [innerHtml]="categoryHtmlContent"></div>
+                </section>
+            </div>
+        </div>
+        
+        <section class="product-content" *ngIf="layoutType != 'details'" class="html-content">
+            <!--html content-->
+            <div [innerHtml]="sanatizeHtml(selectedCategory?.htmlContent)"></div>
+        </section>
+
+    </section>
+</section>
+

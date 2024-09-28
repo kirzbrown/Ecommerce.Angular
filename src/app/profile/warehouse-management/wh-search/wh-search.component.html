@@ -1,0 +1,60 @@
+<div class="input-group bg-blue">
+  <div class="input-group-prepend">
+    <button matSuffix mat-icon-button aria-label="Add" (click)="openWizard(true)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <!-- <input type="text"  placeholder="Recipient's username" aria-label="Recipient's username with two button addons" aria-describedby="button-addon4"> -->
+  <input matInput class="form-control" [formControl]="searchControl$" 
+   placeholder="Warehouse..."  > 
+  
+  
+  <div class="input-group-append" id="button-addon4">
+    
+                <button matSuffix mat-icon-button aria-label="Clear">
+                  <mat-icon>search</mat-icon>
+                </button>
+   
+  </div>
+</div>
+
+<div> 
+  <mat-table [dataSource]="dataSource"  
+                
+             class="mat-elevation-z8">
+       <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+
+      <mat-cell  (click)="selectRow($event, element)"      
+      *matCellDef="let element">   
+      <div class="d-flex flex-column">
+        <div class="pl-0 btn btn-link ml-0 text-left text-dark w-100"> 
+         <h4>{{element.name}} </h4>
+        
+        </div>
+        <div class="p-0">
+          <div class="d-flex flex-row">
+            <div class="col-8 figure-caption">#Province: <br> {{getTotalProvince(element)}}</div>
+            <div class="figure-caption">#Entries: <br> {{getTotalCity(element)}}</div>
+          </div>
+        </div>
+      
+      </div>
+      
+         
+
+     
+      
+      </mat-cell>
+    </ng-container> 
+   
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+    <mat-row *matRowDef="let row; columns: displayedColumns;" 
+    [ngClass]="{'selected-row': selectedRowIndex === row.id}">
+    </mat-row>
+  </mat-table>
+
+</div>

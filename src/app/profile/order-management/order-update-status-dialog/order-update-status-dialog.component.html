@@ -1,0 +1,36 @@
+<div class="order-update-details-container">
+    <div class="order-update-header">
+        <div fxLayout="row">
+            <div fxFlex class="order-update-title">Update Order Status</div>
+            <div (click)="closeDialog()" class="header-close-icon pointer">
+                <div class="material-icons close-icon">close</div>
+            </div>
+        </div>
+    </div>
+        <div class="order-update-container">
+            <div [formGroup]="orderUpdateFormGroup" class="form-cont">
+                <!--fields-->
+                <div class="order-update-form-field-outline">
+                    <div class="form-column-container-label">Status</div>
+                    <div class="mat-select-container" fxLayout="column" fxLayoutAlign="center center">
+                        <mat-select formControlName="status">
+                            <mat-option *ngFor="let status of statuses" [value]="status">
+                                {{status.name}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-update-footer">
+            <div fxLayout="row">
+                <div fxFlex></div>
+                <button (click)="closeDialog()" mat-button class="btn btn-light-primary fs12 mr-1">
+                   Cancel
+                </button>
+                <button (click)="save()" [disabled]="orderUpdateFormGroup.invalid" mat-button class="btn btn-primary fs12">
+                   Save
+                </button>
+            </div>
+        </div>
+</div>

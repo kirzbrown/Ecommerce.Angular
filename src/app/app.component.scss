@@ -1,0 +1,38 @@
+:host {
+	height: 100%;
+	margin: 0;
+	background: white;
+}
+
+.body-main-container {
+	margin-top: 64px;
+    height: 100vh;
+    overflow: auto;
+}
+
+//responsesive ------------------------------------
+//portrait --
+// @media (max-width: 385px) and (orientation : portrait)  {
+// 	.body-main-container {
+// 		width: fit-content;
+// 		overflow: hidden;
+// 		margin-top: 37px;
+// 	}
+// }
+
+// //medium screen
+// @media (max-width: 613px) and (orientation : portrait)  {
+// 	.body-main-container {
+// 		width: fit-content;
+// 		overflow: hidden;
+// 		margin-top: 37px;
+// 	}
+// }
+
+//landscape --
+
+//small screen
+@media (max-width: 667px) and (orientation : landscape)  {
+    section.category-list-container {zoom: 73%;}
+	.body-main-container {margin-top: 44px;}
+}

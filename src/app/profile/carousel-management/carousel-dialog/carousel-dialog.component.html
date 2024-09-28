@@ -1,0 +1,120 @@
+<div class="carousel-details-container">
+    <div class="carousel-header">
+        <div fxLayout="row">
+            <div fxFlex class="carousel-title">{{data.isAdd ? 'Add' : 'Edit'}} Carousel Banner</div>
+            <div (click)="closeDialog()" class="header-close-icon pointer" fxLayoutAlign="center center">
+                <div class="material-icons close-icon">close</div>
+            </div>
+        </div>
+    </div>
+    <div [formGroup]="categoryFormGroup" class="carousel-container">
+
+        <div class="upload-container">
+            <span class="header-text absolute-container">Banner Image</span>
+            <div class="row flex-1" fxLayoutAlign="center center">
+                <!---->
+                <div *ngIf="bannerImage || selectedMp4" class="col-lg-12" fxLayoutAlign="center center">
+                    <div *ngIf="!selectedMp4" style="position: relative;">
+                        <img class="single-image" [src]="bannerImage" />
+                    </div>
+                    <div *ngIf="selectedMp4" style="position: relative;">
+                        <video controls autoplay *ngIf="selectedMp4" width="100%" height="auto">
+
+                            <source  [src]="selectedMp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                         
+                        </video>
+                    </div>
+                   
+                </div>
+                <!---->
+                <label style="display: none;">
+                    <input id="header_upload" type="file" #file (change)="onBannerUpload($event)"
+                        accept=".jpg, .jpeg, .png, .gif,.mp4">
+                </label>
+                <!---->
+                <button *ngIf="!bannerImage" (click)="triggerLogoUpload('header_upload')" mat-button
+                    class="btn btn-upload text-black">
+                    <div fxLayouAlign="center center" fxFlex="100" fxLayout="row">
+                        <img src="../../../../assets/media/svg/logos/arrow-up.svg" alt="" class="mr-3">
+                        <div fxFlex><span>Upload Banner</span></div>
+                    </div>
+                </button>
+                <!---->
+                <div class="col-lg-12 no-padding image-description-container" fxLayoutAlign="center center">
+                    <span class="image-description">Image Dimension must be less than: 4096x2160px (jpg, png, gif, mp4)</span>
+                </div>
+                <!---->
+                <button *ngIf="bannerImage" (click)="triggerLogoUpload('header_upload')" mat-button
+                    class="btn btn-change text-black">
+                    <div fxLayouAlign="center center" fxFlex="100" fxLayout="row">
+                        <div fxFlex><span>Change Banner</span></div>
+                    </div>
+                    <!---->
+                </button>
+            </div>
+        </div>
+        <div>
+            <!--fields-->
+            <div class="flex pt-3 pb-3">
+                <span class="header-text mr-3 pt-1">Category</span>
+                <div class="flex-1">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <mat-select formControlName="category">
+                            <mat-option *ngFor="let category of categories" [value]="category.name">
+                                {{category.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error *ngIf="categoryFormGroup.get('category').touched && 
+                                        categoryFormGroup.controls.category.invalid &&
+                                        categoryFormGroup.controls.category.hasError('required')"
+                        class="ecommerce-errror-lbl">
+                        Category is required</mat-error>
+                </div>
+            </div>
+            <!---->
+            <div fxLayoutAlign="start center" class="pb-3">
+                <span class="header-text mr-3 pt-1">Link</span>
+                <div class="flex-1">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <input type="url" formControlName="bannerLinkUrl" matInput placeholder="Link">
+                    </mat-form-field>
+                    <mat-error *ngIf="categoryFormGroup.controls.bannerLinkUrl.errors?.pattern" class="ecommerce-errror-lbl">
+                        Invalid url link</mat-error>
+                </div>
+            </div>
+            <!---->
+            <!--fields-->
+            <!-- <div fxLayoutAlign="start center" class="pt-3 pb-3">
+                <div class="header-text col-lg-2">Category</div>
+                <mat-form-field appearance="outline" class="flex full-width ecommerce-custom-field">
+                    <mat-select formControlName="category">
+                        <mat-option *ngFor="let category of categories" [value]="category.name">
+                            {{category.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div> -->
+            <!---->
+            <!-- <div fxLayoutAlign="start center" class="pb-3">
+                <div class="header-text col-lg-2">Link</div>
+                <mat-form-field appearance="outline" class="flex full-width ecommerce-custom-field">
+                    <input formControlName="bannerLinkUrl" matInput placeholder="Link">
+                </mat-form-field>
+            </div> -->
+            <!---->
+        </div>
+    </div>
+    <hr>
+    <div class="carousel-footer">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <button (click)="closeDialog()" mat-button class="btn btn-light-primary fs12 mr-1">
+                Cancel
+            </button>
+            <button [disabled]="categoryFormGroup.invalid" (click)="save()" mat-button class="btn btn-success fs12">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

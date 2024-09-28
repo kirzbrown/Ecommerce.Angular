@@ -1,0 +1,85 @@
+.nav-container {
+    padding: 2.5em;
+    padding-top: 2em;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.nav-cont-title {
+    font-weight: normal;
+    margin-bottom: 9px;
+    border-bottom: 1px solid #1E1E2D;
+    margin-bottom: 1em;
+    padding-bottom: 6px;
+    color: #464E5F;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.fs12 { font-size: 12px;}
+
+.info-icon {
+    font-size: 18px;
+    color: #6693FF;
+}
+
+.btn-filter {
+    font-family: Poppins, Helvetica, "sans-serif" !important; 
+    width: 64%;
+    padding: 5px 31px;
+}
+
+.filter-icon {
+    font-size: 20px !important;
+    margin-right: 7px;
+}
+
+.filter-lbl {
+    font-size: 15px;
+}
+
+.font-poppins {font-family: Poppins, Helvetica, "sans-serif" !important;}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+    background-color: #6693FF !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #6693FF !important;
+}
+
+.lbl-clear {
+    color: #4A7DFF;
+    font-size: 12px;
+    text-decoration: underline;
+    padding: 11px;
+}
+
+.btn-apply:hover { opacity: 0.8;}
+.btn-apply {
+    color: white;
+    font-size: 12px;
+    background-color: #8950FC;
+}
+
+.fs12 {
+    font-size: 12px;
+}
+
+.star-icon {
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-right: 1px;
+    color: #FFA800;
+}
+
+.star-disable { color: #F3F6F9 !important;}
+
+.ml4 { 
+    margin-left: 9px;
+    font-size: 12px !important;
+    color: #464E5F;
+}

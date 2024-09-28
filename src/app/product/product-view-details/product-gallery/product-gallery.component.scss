@@ -1,0 +1,36 @@
+::ng-deep.ngx-gallery-layout { width: 88% !important; }
+::ng-deep .zoom-deep-class {
+    cursor: zoom-in;
+  }
+
+.btn-enlarge {
+    font-family: 'Poppins';
+    .icon-enlarge { margin: auto; }
+    .text-enlarge {margin-left: 10px; font-size: 12px;}
+}
+
+//disable preview 
+::ng-deep ngx-gallery-preview { display: none !important;}
+
+::ng-deep .ngx-gallery-image.ngx-gallery-active {
+  z-index: 300 !important;
+}
+// :ng-deep.ngx-gallery-thumbnails{
+//   background-size: contain !important;
+// }
+
+// :ng-deep.ngx-gallery-thumbnail-size-cover{
+//   background-size: contain !important;
+// }
+
+// ::ng-deep.ngx-gallery-active{
+//   background-size: contain !important;
+// }
+
+// ::ng-deep.ngx-gallery-thumbnail-size-cover .ngx-gallery-thumbnails.ngx-gallery-thumbnail {
+//   background-size: contain !important;
+// }
+
+// ::ng-deep.ngx-gallery-thumbnail-size-cover, ::ng-deep.ngx-gallery-thumbnails, ::ng-deep.ngx-gallery-thumbnail {
+//   background-size: contain !important;
+// }

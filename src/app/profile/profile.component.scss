@@ -1,0 +1,104 @@
+.profile-dashboard-container { 
+    background: #FBF6F0;
+    height: auto;
+    widows: 100%;
+}
+
+.profile-dashboard-main {
+    width: 90%;
+    padding: 1em;
+    margin: auto;
+    font-family: Poppins, Helvetica, "sans-serif" !important;
+}
+
+.profile-dashboard-row-1 {
+    background: white;
+    /* height: 97vh; */
+    padding-bottom: 2em;
+    overflow: auto;
+    border-radius: 24px;
+    margin-right: 12px;
+}
+
+.mt4 {margin-top:10px}
+.full-width { width: 100%}
+
+.nav-container { 
+    margin-bottom: 5px;
+    cursor: default;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick { opacity: 1 !important;}
+
+/**/
+
+section.pd-card {
+    background: white;
+    padding: 2em;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.pdr2 {
+    height: 97vh;
+    margin-right: 10px;
+}
+
+.pdr3 {
+    height: 97vh;
+}
+
+@media only screen and (max-width: 1600px) {
+    .Welcome-label{
+        font-size: 13px;
+    }
+}
+
+
+ 
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+
+::ng-deep {
+    @media (max-width: 385px) and (orientation : portrait)  {
+        .profile-dashboard-main {
+            padding: 0 !important;
+            margin: 13px !important;
+        }
+    
+        .profile-dashboard-row-1 {zoom: 61%;border-radius: 6px !important; max-width: 95px !important; width: 95px !important;}
+        .profile-dashboard-row-2 {zoom: 61%;}
+    }
+    
+    //medium screen
+    @media (max-width: 613px) and (orientation : portrait)  {
+        .profile-dashboard-main {
+            padding: 0 !important;
+            margin: 13px !important;
+        }
+    
+        .profile-dashboard-row-1 {zoom: 61%;border-radius: 6px !important; max-width: 95px !important; width: 95px !important;}
+        // .profile-dashboard-row-2 {zoom: 61%;}
+       
+    }
+}
+
+
+//landscape --
+
+::ng-deep {
+    
+    @media (max-height: 536px) and (orientation : landscape)  {
+        .profile-dashboard-main {
+            padding: 0 !important;
+            margin: 13px !important;
+        }
+    
+        .profile-dashboard-row-1 {zoom: 61%;border-radius: 6px !important; max-width: 95px !important; width: 95px !important;}
+        .profile-dashboard-row-2 {zoom: 61%;}
+    }
+
+}

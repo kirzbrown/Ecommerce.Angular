@@ -1,0 +1,69 @@
+<div class="branch-selector-container">
+    <div>
+        <div fxFlex fxLayoutAlign="end center">
+            <button class="btn" (click)="close()">
+                <div class="material-icons">close</div>
+            </button>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" class="select-delivery-area">
+        <img class="polygon-img" src="../../assets/media/area-selector/polygon.svg">
+        <div fxLayout="column">
+            <div class="text-primary-label">Service Disclaimer</div>
+            <div class="text-secondary-label">We can only serve delivery to listed locations below.</div>
+        </div>
+    </div>    
+    <div  fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex>
+            <div class="mt-5 text-secondary-label">Please Select Your Area</div>
+            <div fxLayout="row" class="mt-2" [formGroup]="areaSelectorFormGroup">
+                <mat-form-field fxFlex="49" appearance="outline" [ngClass]="{'has-value': provinces.length > 0}">
+                    <mat-select formControlName="province" placeholder="Select Province">
+                        <mat-option *ngFor="let province of provinces" (onSelectionChange)="getCities($event, province.name)" [value]="province.name">
+                            {{province.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div fxFlex></div>
+                <mat-form-field fxFlex="49" appearance="outline" [ngClass]="{'has-value': provinces.length > 0}">
+                    <mat-select formControlName="city" placeholder="Select City">
+                        <mat-option *ngFor="let city of cities" [value]="city">
+                            {{city}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div  fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex>
+            <div class="mt-5 text-primary-label">Is your area not on the list? Contact us or click the find dealer button!
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5" fxLayout="column" fxLayoutAlign="start center">
+        <div fxLayout="row wrap" fxFlex>
+            <div fxFlex fxLayout="row" fxLayoutAlign="start center" onClick="window.open('https://www.facebook.com/EcommercePhilippines/','_newtab');">
+                <img class="mess-icon-img" src="../../assets/media/area-selector/messenger-icon.svg">
+                <div class="ml-2 text-secondary-label">facebook.com/EcommercePhillipines</div>
+            </div>
+            <div fxFlex class="ml-3" fxLayout="row" fxLayoutAlign="start center" onClick="window.open('mailto:customercare@Ecommerce.com.ph','_newtab');">
+                <img class="mess-icon-img" src="../../assets/media/area-selector/email-icon.svg">
+                <div class="ml-2 text-secondary-label">customercare@Ecommerce.com.ph</div>
+            </div>
+            <div  fxFlex class="ml-3" fxLayout="row" fxLayoutAlign="start center">
+                <button fxFlex class="btn btn-find-dealer" onClick="window.open('https://www.Ecommerce.com.ph/dealers/','_newtab');">
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <div>Find Dealer</div>
+                        <span class="material-icons ml-1">search</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="mt-10" fxLayoutAlign="center center">
+        <button class="btn btn-proceed" [disabled]="!province.value || !city.value" (click)="proceed()">Proceed</button>
+    </div>
+</div>

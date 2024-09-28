@@ -1,0 +1,233 @@
+<section class="cart-container">
+
+    <section class="cart-schematic">
+        <!---->
+        <div class="cart-schematic-header">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <div class="cart-schematic-header-title">My Cart</div>
+                <div fxFlex></div>
+                <div>
+                    <button [disabled]="isDisabled" (click)="removeAll()" class="btn btn-danger">Clear Cart</button>
+                </div>
+                
+                
+            </div>
+        </div>
+        <!--order and shipping details-->
+        <div class="cart-schematic-shipping">
+            <div fxLayout="row">
+                <div fxLayout="column" fxFlex>
+                    
+                    <ng-container *ngIf="!isMobileView">
+                        <!--start:: card-->
+                        <div class="csc-card">
+                            <!---->
+                            <div class="csc-card-header">
+                                <div fxLayout="row">
+                                    <div fxFlex class="ssc-card-header-title text-uppercase">Item Summary</div>
+                                    <div *ngIf="!isChangeItem" (click)="isDisabled ? $event.stopPropagation() : (isChangeItem = true)" class="c-scs-label">EDIT</div>
+                                    <div *ngIf="isChangeItem" (click)="isDisabled ? $event.stopPropagation() : (saveItems())" class="c-scs-label">SAVE</div>
+                                </div>
+                            </div>
+                            <!--list of checkout items-->
+                            <div class="cart-schematic-list">
+                                <!--start:: item-->
+                                <div class="c-sc-header-item">
+                                    <!---->
+                                    <div class="">
+                                        <div fxLayout="row">
+                                            <!---->
+                                            <div fxFlex class="csc-header-label">Product Description</div>
+                                            <!---->
+                                            <div fxFlex="15" class="csc-header-label text-center">Quantity</div>
+                                            <!---->
+                                            <div fxFlex="15" class="csc-header-label text-center">Unit Price</div>
+                                            <!---->
+                                            <div fxFlex="15" class="csc-header-label text-center">Sub Total</div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                </div>
+                                <!--end:: item-->
+                                <ng-container *ngFor="let checkoutItem of checkoutItems; let i = index">
+                                    <!--start:: item-->
+                                    <div class="c-sc-item">
+                                        <!---->
+                                        <div class="">
+                                            <div fxLayout="row">
+                                                <!---->
+                                                <img class="c-sc-item-image" [src]="checkoutItem.catalog.productImages[0]?.imageUrl">
+                                                <!---->
+                                                <div fxFlex class="c-sc-item-deets">
+                                                    <div fxLayout="column">
+                                                        <div class="c-sc-item-deets-title">{{checkoutItem.catalog.title}}</div>
+                                                        <div class="c-sc-item-deets-sub-title" style="margin-bottom: 10px;">Model: {{checkoutItem.catalog.model}}</div>
+                                                        <div class="c-sc-item-deets-sub-title" style="margin-bottom: 10px;">Capacity: {{checkoutItem.catalog.capacity}}</div>
+                                                        <!-- <div class="c-sc-item-deets-sub-title">Availability: <span class="text-danger">{{checkoutItem.catalog}} left</span></div> -->
+                                                    </div>
+                                                </div>
+                                                <!---->
+                                                <div fxFlex="15" class="text-center">
+                                                    <ng-container *ngIf="isChangeItem">
+                                                        <!---->
+                                                        <div class="input-group mb-3">
+                                                            <div (click)="addItemQuantity(false, i)" class="input-group-append appendIcon">
+                                                                <span class="input-group-text">-</span>
+                                                            </div>
+                                                            <input id="itemQuantity" placeholder="###" (input)="setItemCount()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="checkoutItem.quantity" [ngModelOptions]="{standalone: true}" name="itemQuantity"  class="form-control left-bot-radius" required>
+                                                            <div (click)="addItemQuantity(true, i)" class="input-group-prepend appendIcon">
+                                                                <span class="input-group-text">+</span>
+                                                            </div>
+                                                        </div>
+                                                        <!---->
+                                                    </ng-container>
+                                                    <!---->
+                                                    <div class="qty-label-container text-center" *ngIf="!isChangeItem">
+                                                        <span class="qty-amount">{{checkoutItem.quantity}}</span>
+                                                    </div>
+                                                </div>
+                                                <div fxFlex="15" class="c-sc-item-amt amt-subtotal text-center">{{checkoutItem.catalog.price | currency:"PHP ":"symbol"}}</div>
+                                                <div fxFlex="15" class="c-sc-item-amt text-center">{{checkoutItem.catalog.price * checkoutItem.quantity | currency:"PHP ":"symbol"}}</div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="isChangeItem" class="c-sc-footer-labels">
+                                            <div fxLayout="row">
+                                                <!---->
+                                                <div (click)="removeItem(checkoutItem)" class="c-sc-footer-lbl">
+                                                    <div fxLayout="row">
+                                                        <div class="c-sc-footer-icon material-icons">delete_outline</div>
+                                                        <div class="hover-lbl">Remove item</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                    </div>
+                                    <!--end:: item-->
+                                </ng-container>
+                            </div>
+                        </div>
+                        <!--end:: card-->
+                    </ng-container>
+                    <ng-container *ngIf="isMobileView">
+                        <!---->
+                        <div class="csc-card-header-mobile">
+                            <div fxLayout="row">
+                                <div fxFlex class="ssc-card-header-title text-uppercase">Item Summary</div>
+                                <div *ngIf="!isChangeItem" (click)="isDisabled ? $event.stopPropagation() : (isChangeItem = true)" class="c-scs-label">EDIT</div>
+                                <div *ngIf="isChangeItem" (click)="isDisabled ? $event.stopPropagation() : (saveItems())" class="c-scs-label">SAVE</div>
+                            </div>
+                        </div>
+                        <ng-container *ngFor="let checkoutItem of checkoutItems; let i = index">
+                            <div class="checkout-cart-mobile-ver">
+                                <div class="cart-mobile-body">
+                                    <div fxLayout="row">
+                                        <div fxLayout="row">
+                                            <!---->
+                                            <img class="c-sc-item-image-mobile-view" [src]="checkoutItem.catalog.imageUrl">
+                                            <!---->f
+                                            <div fxFlex class="c-sc-item-deets">
+                                                <div fxLayout="column">
+                                                    <div class="c-sc-item-deets-title" style="font-weight: bold;font-size: 13px;">{{checkoutItem.catalog.title}}</div>
+                                                    <div class="c-sc-item-deets-sub-title">Model: {{checkoutItem.catalog.model}}</div>
+                                                    <div class="c-sc-item-deets-sub-title">Capacity: {{checkoutItem.catalog.capacity}}</div>
+                                                    <ng-container *ngIf="isChangeItem">
+                                                        <!---->
+                                                        <div class="input-group mb-3">
+                                                            <div (click)="addItemQuantity(false, i)" class="input-group-append appendIcon">
+                                                                <span class="input-group-text">-</span>
+                                                            </div>
+                                                            <input id="itemQuantity" placeholder="###" (input)="setItemCount()" [(ngModel)]="checkoutItem.quantity" [ngModelOptions]="{standalone: true}" name="itemQuantity"  class="form-control left-bot-radius" required>
+                                                            <div (click)="addItemQuantity(true, i)" class="input-group-prepend appendIcon">
+                                                                <span class="input-group-text">+</span>
+                                                            </div>
+                                                        </div>
+                                                        <!---->
+                                                    </ng-container>
+                                                    <div *ngIf="!isChangeItem" class="c-sc-item-amt">Quantity: {{checkoutItem.quantity}}</div>
+                                                    <div class="c-sc-item-amt">Unit Price: {{checkoutItem.catalog.price | currency:"PHP ":"symbol"}}</div>
+                                                    <div class="c-sc-item-amt">Subtotal: {{checkoutItem.catalog.price * checkoutItem.quantity | currency:"PHP ":"symbol"}}</div>
+                                                    <div *ngIf="isChangeItem" class="c-sc-footer-labels">
+                                                        <div fxLayout="row">
+                                                            <!---->
+                                                            <div (click)="removeItem(checkoutItem)" class="c-sc-footer-lbl">
+                                                                <div fxLayout="row">
+                                                                    <div class="c-sc-footer-icon material-icons">delete_outline</div>
+                                                                    <div class="hover-lbl">Remove item</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+    
+                    <div fxLayout="column">   
+                        <!-- <div fxLayout="column" fxFlex> -->
+                            <!--start:: card-->
+                        <div fxFlex class="csc-card">
+                            <!---->
+                            <div class="csc-card-header">
+                                <div fxLayout="row">
+                                    <div fxFlex class="ssc-card-header-title text-uppercase">Order Summary</div>
+                                    <!-- <span class="c-sc-help-icon material-icons">help_outline</span> -->
+                                </div>
+                            </div>
+                            <!---->
+                            <div class="csc-card-body">
+                                <div class="order-summary">
+                                    <div fxLayout="column">
+                                        <div fxFlex="50" fxLayout="column" class="breakdown-container">
+                                            <!---->
+                                            <div class="order-summary-row">
+                                                <div fxLayout="row">
+                                                    <div fxFlex class="order-summary-row-label">Subtotal ({{itemCount}} items)</div>
+                                                    <div class="order-summary-row-amount semi-bold">{{subTotal | currency:"PHP ":"symbol"}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="order-summary-line"></div>
+                                            <!---->
+                                            <div class="order-summary-row">
+                                                <div fxLayout="row">
+                                                    <div fxFlex class="order-summary-row-label bold">Total</div>
+                                                    <div class="order-summary-row-amount bold">{{setTotal() | currency:"PHP ":"symbol"}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <!--end:: card-->
+                        <!-- </div> -->
+
+                        <div class="csc-card" fxLayout="row" fxLayoutAlign="end end">
+                            <!---->
+                            <div fxLayout="row">
+                                <div fxFlex></div>
+                                <button (click)="continueShopping()" mat-button class="mt-5 btn btn-transparent" class="cont-shop">Continue Shopping</button>
+                                <div fxFlex></div>
+                            </div>
+                            <div fxLayout="row" class="checkout-btn">
+                                <div fxFlex></div>
+                                <button (click)="placeOrder()" [disabled]="isDisabled" mat-button class="mt-5 btn btn-success">
+                                    <div fxLayout="row" fxLayoutAlign="center center">
+                                        <div class="material-icons">payments</div>
+                                        <div class="fs15 ml-5">Checkout</div>
+                                    </div>
+                                </button>
+                                <div fxFlex></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</section>

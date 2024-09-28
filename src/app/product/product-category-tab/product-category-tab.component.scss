@@ -1,0 +1,125 @@
+.item-category {
+    width: 110px;
+    text-align: center;
+    padding: 10px;
+    background: white;
+    min-width: 156px;
+    border: 1px solid #f7f7f7;
+}
+
+.item-category:hover {
+    background: whitesmoke;
+}
+
+.selected-category {
+    background: #f7f7f7;
+    font-weight: bold;
+}
+
+.category-list-container {
+    background: white;
+    width: 35vw;
+    position: fixed;
+    z-index: 500;
+}
+
+.img-category {
+    height: 32px;
+}
+
+.category-title {
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+.item-category {
+    width: 110px;
+    text-align: center;
+    padding: 10px;
+    background: white;
+    min-width: 156px;
+    border: 1px solid #f7f7f7;
+}
+
+.item-category:hover {
+    background: whitesmoke;
+}
+
+.selected-category {
+    background: #f7f7f7;
+    font-weight: bold;
+}
+
+.category-list-container {
+    background: white;
+    width: 100%;
+}
+
+.img-category {
+    height: 32px;
+}
+
+.category-title {
+    font-size: 13px;
+    margin-top: 5px;
+    font-weight: 600;
+    color: #6693FF !important;
+}
+
+.arrow-category {
+    width: 75px;
+    text-align: center;
+    padding: 10px;
+    background: white;
+    min-width: 75px;
+    border: 1px solid #f7f7f7;
+}
+
+.disabled-arrow { 
+    opacity: 0.3;
+}
+
+
+::ng-deep.mat-tab-label {
+    opacity: 1 !important;    
+    height: 68px !important;
+    color: #6693FF !important;
+    font-family: Poppins, Helvetica, "sans-serif" !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* Styles for the ink bar */
+:host ::ng-deep .mat-ink-bar {
+    display: none !important;
+}
+
+:host ::ng-deep.mat-tab-body-content {
+    height: 0;
+    display: none;
+}
+
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+    section.category-list-container {zoom: 66%;}
+  
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+    section.category-list-container {zoom: 66%;}
+  
+}
+
+   
+//landscape --
+
+//small screen
+@media (max-width: 667px) and (orientation : landscape)  {
+    section.category-list-container {zoom: 73%;}
+   
+}

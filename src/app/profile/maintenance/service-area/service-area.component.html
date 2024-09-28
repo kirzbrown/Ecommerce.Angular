@@ -1,0 +1,102 @@
+<div class="card-store">
+
+  <div class="store-manager-header">
+      <div fxLayout="row">
+          <div class="mr-5" fxLayoutAlign="start center">
+            <div (click)="openWizard(true)" class="white-text btn btn-primary btn-sm font-size-sm cursor-pointer"> 
+              <div fxLayout="row">
+                <div class="material-icons" style="font-size: 15px !important;margin-right: 4px;">add_circle</div>
+                <div>Create New Service Area</div>
+              </div>
+            </div>
+          </div>
+          <div fxFlex></div>
+          <div class="search-container">
+            <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+              <input matInput [(ngModel)]="searchKey" (ngModelChange)="clearSearch($event)" placeholder="Search by Store Name" > 
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="search()">
+                <mat-icon>search</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+      </div>
+  </div>
+    
+  <!--table mapping-->
+  <!-- <div class="store-container-table" style="height: 600px; overflow-y: auto;"> -->
+    <div class="store-container-table">
+      <table mat-table [dataSource]="dataSource" class="sct full-width" matSort #sort>
+
+          
+        <!-- Province Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Province</th>
+            
+          <td mat-cell *matCellDef="let element" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:5vw;"> 
+            {{element.name}} </td>
+        </ng-container>
+    
+        <!-- Entry Column -->
+        <ng-container matColumnDef="entry">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="cityCount" style="padding-left: 1em;padding-right: 1em;"> #Entry </th>
+          <td mat-cell *matCellDef="let element" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:5vw; padding-left: 1em;padding-right: 1em;">
+             {{element.cityCount}} </td>
+        </ng-container>
+
+         <!-- Entry Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="isActive" style="padding-left: 1em;padding-right: 1em;"> Status </th>
+          <td mat-cell *matCellDef="let element" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:5vw; padding-left: 1em;padding-right: 1em;">
+            <div>
+              
+
+              <div *ngIf="element.isActive; else other_content"  class="bg-success rounded text-center text-white p-1">
+                Active
+              </div>
+              <ng-template #other_content>
+                <div class="bg-secondary rounded text-center p-1" > 
+                 Inactive
+                </div>                 
+              </ng-template>
+            </div>   
+           
+            </td>
+        </ng-container>
+    
+    
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element;let i = index">
+            <a (click)="openWizard(false, element)" class="white-text btn btn-sm btn-warning font-size-sm cursor-pointer mr-3"> 
+              <div fxLayout="row">
+                <div class="material-icons" style="font-size: 15px !important;margin-right: 4px;">edit</div>
+                <div class="mobile-version-label">Edit</div>
+              </div>
+            </a>   
+
+            <a (click)="deleteDialog(element.name,i)" class="white-text btn btn-sm btn-danger font-size-sm cursor-pointer"> 
+              <div fxLayout="row">
+                <div class="material-icons" style="font-size: 16px !important;margin-right: 4px;">delete</div>
+                <div class="mobile-version-label">Delete</div>
+              </div>
+            </a>
+        
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[1, 5, 10, 20, 100]"
+      [pageSize]="pageSize"
+      [length]="pageLength"
+      (page)="getList($event)"
+      showFirstLastButtons 
+      aria-label="Select page">
+</mat-paginator>
+    
+
+
+  </div>
+</div>

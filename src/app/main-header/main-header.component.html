@@ -1,0 +1,116 @@
+<section class="main-header-container" [style.backgroundColor]="headerColor">
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="5"></div>
+        <div class="mr4 mr10px cursor-pointer">
+            <img class="logo" [src]="headerLogo" (click)="homepage()" />
+        </div>
+        
+        <div fxFlex></div>
+
+        <ng-container *ngIf="!isMenu">
+            <button class="btn btn-track mr1em" (click)="trackMyOrder()">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div class="btn-cart-lbl">Track My Order</div>
+                </div>
+            </button>
+            
+            <button class="btn btn-cart mr1em" (click)="myCart()">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div class="material-icons">shopping_cart</div>
+                    <div class="btn-cart-lbl">My Cart</div>
+                    <div *ngIf="cartItemCount > 0" class="cart-counter">{{cartItemCount}}</div>
+                </div>
+            </button>
+            <button class="btn btn-cart mr1em" (click)="logout()" *ngIf="isLoggedIn() && isGuest()">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div class="btn-cart-lbl">Logout As Guest</div>
+                </div>
+            </button>
+            <button class="btn btn-account" [matMenuTriggerFor]="accountMenu" *ngIf="isLoggedIn()  && !isGuest()">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div class="btn-account-lbl">My Account</div>
+                    <div class="material-icons">expand_more</div>
+                </div>
+            </button>
+
+            <button class="btn btn-sell mr1em" *ngIf="!isLoggedIn()" (click)="login()" style="width: 73px;">
+                Login
+            </button>
+        
+            <button class="btn btn-account" *ngIf="!isLoggedIn()" (click)="createAccount()">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div class="btn-account-lbl">Create Account</div>
+                </div>
+            </button>
+    
+            <mat-menu #accountMenu="matMenu">
+                <button mat-menu-item (click)="myProfile()">
+                    <span>Profile</span>
+                </button>
+                <button mat-menu-item (click)="mySettings()">
+                    <span>Settings</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <span>Sign Out</span>
+                </button>
+            </mat-menu>
+
+        </ng-container>
+
+        <ng-container *ngIf="isMenu">
+            <button class="btn btn-account" [matMenuTriggerFor]="menuMobile">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div class="material-icons">menu</div>
+                </div>
+            </button>
+            <mat-menu #menuMobile="matMenu">
+                <div class="menu-mobile-cont">
+                    <button mat-menu-item class="btn-menu-generic" (click)="trackMyOrder()">
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <div class="">Track My Order</div>
+                        </div>
+                    </button>
+                    <button mat-menu-item class="btn-menu-generic" (click)="myCart()">
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <div class="">My Cart</div>
+                        </div>
+                    </button>
+                    <button mat-menu-item class="btn-menu-generic" [matMenuTriggerFor]="accountMenu" *ngIf="isLoggedIn() && !isGuest()">
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <div class="btn-account-lbl">My Account</div>
+                        </div>
+                    </button>
+        
+                    <button mat-menu-item class="btn-menu-generic" *ngIf="!isLoggedIn()" (click)="login()">
+                        Login
+                    </button>
+                
+                    <button mat-menu-item class="btn-menu-generic" *ngIf="!isLoggedIn()" (click)="createAccount()">
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <div class="">Create Account</div>
+                        </div>
+                    </button>
+            
+                    <mat-menu #accountMenu="matMenu">
+                        <div class="menu-mobile-cont">
+                            <button mat-menu-item (click)="myProfile()">
+                                <span>Profile</span>
+                            </button>
+                            <button mat-menu-item (click)="mySettings()">
+                                <span>Settings</span>
+                            </button>
+                            <button mat-menu-item (click)="logout()">
+                                <span>Sign Out</span>
+                            </button> 
+                        </div>
+                    </mat-menu>
+
+                </div>
+            </mat-menu>
+        </ng-container>
+
+       
+
+        <div fxFlex="5"></div>
+    </div>
+</section>

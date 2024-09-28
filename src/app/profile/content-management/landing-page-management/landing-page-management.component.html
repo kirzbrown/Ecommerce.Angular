@@ -1,0 +1,63 @@
+<div class="landing-manager-header">
+    <div fxLayout="row">
+        <div fxFlex>
+            <h4>Landing Page Section</h4>
+        </div>
+    </div>
+</div>
+<!---->
+<div class="landing-container">
+    <div class="col-lg-5 col-md-6 p-0">
+        <div fxLayout="row">
+            <div class="col-lg-9">
+                <div fxLayout="row">
+                    <div class="col-lg-6 table-header p-0">
+                        Header
+                    </div>
+                    <div class="col-lg-6 table-header p-0">
+                        Footer
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 table-header p-0">
+                Action
+            </div>
+        </div>
+        <hr>
+        <div fxLayout="row">
+            <div class="col-lg-9">
+                <div fxLayout="row">
+                    <div class="col-lg-6 pl-0 color-picker-container">
+                        <input [(colorPicker)]="headerColor" [style.background]="headerColor" class="color-picker-input"
+                            readonly [disabled]="!isEdit" />
+                    </div>
+                    <div class="col-lg-6 pl-0 color-picker-container">
+                        <input [(colorPicker)]="footerColor" [style.background]="footerColor" class="color-picker-input"
+                            readonly [disabled]="!isEdit" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="row" *ngIf="!isEdit">
+                    <button class="white-text btn btn-sm btn-warning font-size-sm mr-3" (click)="isEdit = !isEdit">
+                        <div class="material-icons">edit</div>
+                    </button>
+                    <button mat-button class="white-text btn btn-sm font-size-sm btn-reset" (click)="onClickReset()">
+                        <div class="material-icons-round"
+                            style="transform: rotate(180deg); -webkit-text-stroke-width: 0px;">refresh</div>
+                    </button>
+                </div>
+                <div class="row" *ngIf="isEdit">
+                    <button class="white-text btn btn-sm btn-primary font-size-sm mr-3" (click)="onClickSave()">
+                        <div class="material-icons">check</div>
+                    </button>
+                    <button mat-button class="white-text btn btn-sm font-size-sm btn-cancel" (click)="onClickCancel()">
+                        <div class="material-icons-round">do_disturb_alt</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex">
+    </div>
+</div>

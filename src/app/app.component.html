@@ -1,0 +1,9 @@
+<app-splash-screen></app-splash-screen>
+<!--main header-->
+<app-main-header [headerColor]="headerColor" [headerLogo]="spaSettings?.homeLogoImageUrl"></app-main-header>
+<!--modules/compoents-->
+<div class="body-main-container" #scroll>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+    <!--main footer-->
+    <app-main-footer [footerColor]="footerColor"></app-main-footer>
+</div>

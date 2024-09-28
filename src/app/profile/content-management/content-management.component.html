@@ -1,0 +1,16 @@
+<div class="content-header">Content Management</div>
+<!---->
+<div class="card-content">
+    <!---->
+    <div>
+        <app-logo-management [headerLogo]="spaSettings?.homeLogoImageUrl" [checkoutLogo]="spaSettings?.checkoutLogoImageUrl"></app-logo-management>
+    </div>
+    <!---->
+    <div>
+        <app-landing-page-management [headerColor]="spaSettings?.landingPageHeaderColor" [footerColor]="spaSettings?.landingPageFooterColor" ></app-landing-page-management>
+    </div>
+    <!---->
+    <div>
+        <app-inside-page-management [headerColor]="spaSettings?.adminPageHeaderColor" [footerColor]="spaSettings?.adminPageFooterColor"></app-inside-page-management>
+    </div>
+</div>

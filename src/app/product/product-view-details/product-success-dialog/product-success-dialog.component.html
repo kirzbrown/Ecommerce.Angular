@@ -1,0 +1,18 @@
+<mat-card class="success-dialog-container">
+    <mat-card-header class="row success-dialog-info">
+        <div class="col success-dialog-header">Payment Successful</div>
+    </mat-card-header>
+    <mat-card-content class="success-dialog-content-info">
+        <div class="row">
+            <div class="col">
+                <div class="success-dialog-msg text-center">
+                    Congratulations you bought <span class="text-bold">{{data}}</span>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions align="center">
+        <button mat-button class="fs12 btn btn-primary mr-3 sd-btn" type="button" (click)="goToProfile()">Go to
+            Profile</button>
+    </mat-card-actions>
+</mat-card>

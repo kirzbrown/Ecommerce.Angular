@@ -1,0 +1,92 @@
+<div class="category-details-container">
+    <div class="category-header">
+        <div fxLayout="row">
+            <div fxFlex class="category-title">{{data.isAdd ? 'Add' : 'Edit'}} Category</div>
+            <div (click)="closeDialog()" class="header-close-icon pointer">
+                <div class="material-icons close-icon">close</div>
+            </div>
+        </div>
+    </div>
+        <div class="category-container">
+            <div [formGroup]="categoryFormGroup" class="form-cont">
+                 <!--fields-->
+                 <div class="showroom-form-field">
+                    <div class="form-column-container-label">Name</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="name" matInput placeholder="Name" > 
+                    </mat-form-field>
+                    <mat-error *ngIf="categoryFormGroup.get('name').touched && 
+                                      categoryFormGroup.controls.name.invalid &&
+                                      categoryFormGroup.controls.name.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                     Name is required</mat-error>
+                </div>
+                <!--fields-->
+                <!--fields-->
+                <div class="showroom-form-field">
+                    <div class="form-column-container-label">Description</div>
+                            <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                                <textarea formControlName="description" placeholder="Description" matInput></textarea>
+                            </mat-form-field>
+                            <mat-error *ngIf="categoryFormGroup.get('description').touched && 
+                                            categoryFormGroup.controls.description.invalid &&
+                                            categoryFormGroup.controls.description.hasError('required')"  
+                                            class="ecommerce-errror-lbl">
+                                            Description is required</mat-error>
+                </div>
+
+                <!--fields-->
+                <div class="showroom-form-field">
+                    <div class="form-column-container-label">Image Url</div>
+                     <!--file upload-->
+                    <section class="uploading-container">
+                        <!--file upload-->
+                        <label style="display: none;">
+                            <input id="upload_file_1st" type="file" #file (change)="onFileUpload($event)" accept=".jpg, .jpeg, .png, .gif">
+                        </label>
+                        <button (click)="triggerUpload('upload_file_1st')" mat-button type="button" class="btn btn-light btn-upload text-black fs13">
+                            <div fxLayouAlign="center center" fxFlex="100" fxLayout="row">
+                                <div class="material-icons mr-2 file-icon" style="margin-top: 9px;">attach_file</div>
+                                <div fxFlex>Upload File</div>
+                            </div>
+                        </button>
+                        <!---->
+                        <div *ngIf="categoryImage?.imageUrl" fxLayout="row wrap">
+                            <div class="upload-doc-label">
+                                <div style="position: relative;">
+                                    <div (click)="removeFile(categoryImage)" class="material-icons pointer" style="position: absolute; right: 0;background: darkgray;color: white;border-radius: 50%;">close</div>
+                                    <img class="single-image" [src]="categoryImage.imageUrl"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--file upload-->
+                </div>
+
+                <!--fields-->
+                <div class="showroom-form-field">
+                    <div class="form-column-container-label">HTML Content</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <textarea formControlName="htmlContent" placeholder="HTML Content" matInput></textarea>
+                    </mat-form-field>
+                    <mat-error *ngIf="categoryFormGroup.get('htmlContent').touched && 
+                                      categoryFormGroup.controls.htmlContent.invalid &&
+                                      categoryFormGroup.controls.htmlContent.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                      HTML Content is required</mat-error>
+                </div>
+                <!--fields-->
+            </div>
+        </div>
+        <div class="category-footer">
+            <div fxLayout="row">
+                <div fxFlex></div>
+                <button (click)="closeDialog()" mat-button class="btn btn-light-primary fs12 mr-1">
+                    Cancel
+                </button>
+                <button (click)="save()" [disabled]="categoryFormGroup.invalid" mat-button class="btn btn-primary fs12">
+                   Save
+                </button>
+            </div>
+        </div>
+</div>

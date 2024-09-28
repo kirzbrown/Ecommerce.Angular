@@ -1,0 +1,33 @@
+
+  <div class="flex p-1">
+    <div class="d-flex justify-content-between align-items-center" role="header">
+      <div> <h3>Warehouse And Shipping Fees</h3></div> 
+      <div class="d-flex justify-content-end pr-10  align-items-center">
+        <div>Shipping Fee:</div>
+             <div>
+              <!-- <mat-form-field appearance="outline" class=""> -->
+                  <input [formControl] ="shippingFeeForm" 
+                   class="form-control w-90px m-3 text-right" placeholder="0.00" currencyMask>
+              <!-- </mat-form-field> -->
+            
+            </div>
+             <div>  <mat-slide-toggle [(ngModel)]="isApplyToAll"  #toggle>Apply to all</mat-slide-toggle>    </div>
+      </div>
+    </div>
+
+  </div>
+<div class="card-category">
+
+
+  
+   <div class="d-flex flex-row" role="body">
+      <div class="col-4 panel border border-1" role="side-nav">               
+            <app-wh-search></app-wh-search>       
+      </div>
+      <div class="col-8">
+        <app-wh-select></app-wh-select>
+        
+      </div>
+    </div>
+
+</div>

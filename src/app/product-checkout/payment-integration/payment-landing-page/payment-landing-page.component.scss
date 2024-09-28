@@ -1,0 +1,46 @@
+.payment-lading-page-container {
+    width: 522px;
+    background: white;
+    margin: auto;
+    border: 1px solid #E9ECF0;
+    border-radius: 8px;
+    padding: 1% 2%;
+
+    .plpc-header {
+        border-bottom: 1px solid #E9ECF0;
+        margin-bottom: 5%;
+        padding-bottom: 3%;
+        text-align: center;
+
+        .title-plpc {
+            margin-top: 3%;
+            font-weight: 500;
+            font-size: 19px;
+        }
+
+        .color-success { color: #4CAF50; }
+        .color-danger { color: #CA4949; }
+
+        .subtitle-plpc {
+            color: #464E5F;
+            font-size: 12px;
+            padding: 0 9%;
+            margin-top: 3%;
+        }
+    }
+
+    .plpc-deets {
+        width: 100%;
+
+        .plc-deets-row {
+            padding-bottom: 5%;
+        }
+    }
+}
+
+.plc-main {
+    height: 69vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

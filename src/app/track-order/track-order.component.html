@@ -1,0 +1,169 @@
+<section class="track-container">
+
+    <section class="track-schematic">
+        <!---->
+        <div class="track-schematic-header">
+            <div fxLayout="row">
+                <div fxFlex fxLayout="column" class="mr-5">
+                    <input [(ngModel)]="orderNumber" placeholder="Enter Order Number" class="form-control"
+                        (keyup.enter)="track()"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+                <div>
+                    <button (click)="track()" class="btn btn-primary">Track</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-content mb-3">
+            <div *ngIf="invalidOrder" fxLayout="row" fxLayoutAlign="center center">
+                No Order found.
+            </div>
+            <div *ngIf="order" fxLayout="row" fxLayoutAlign="center center" class="track-order-content">
+                <div class="card">
+                    <div class="tracking">
+                        <div class="title">Tracking Order</div>
+                    </div>
+                    <div class="progress-track">
+                        
+                        <div *ngIf="order.status == 4" class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div  *ngIf="order.status == 5" class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div  *ngIf="order.status == 6" class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div  *ngIf="order.status == 7" class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div  *ngIf="order.status == 8" class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div fxLayout="row">
+                            <div fxFlex [ngClass]="{'active': order.status == 4}"><span>Placed Order</span></div>
+                            <div fxFlex [ngClass]="{'active': order.status == 5}"><span>For Packing</span></div>
+                            <div fxFlex fxLayoutAlign="center" [ngClass]="{'active': order.status == 6}"><span>For Dispatch</span></div>
+                            <div fxFlex fxLayoutAlign="end" [ngClass]="{'active': order.status == 7}"><span>Out For Delivery</span></div>
+                            <div fxFlex fxLayoutAlign="end" [ngClass]="{'active': order.status == 8}"><span>Successfully Delivered</span></div>
+                            <!-- <ul id="progressstatustitle">
+                                <li class="step0 active">
+                                    <div><span>Placed Order</span></div>
+                                </li>
+                                <li [ngClass]="{'step0': order.status < 5, 'step0 active': order.status >= 5}">
+                                    <div class="statustitle1"><span>Shipped</span></div>
+                                </li>
+                                <li [ngClass]="{'step0': order.status < 5, 'step0 active': order.status >= 5}">
+                                    <div class="statustitle2"><span>On the way</span></div>
+                                </li>
+                                <li [ngClass]="{'step0': order.status < 6, 'step0 active': order.status >= 6}">
+                                    <div class="statustitle3"><span>Delivered</span></div>
+                                </li>
+                            </ul> -->
+                        </div>
+                        
+                    </div>
+                    <div class="title">Order Details</div>
+                    <div class="info">
+                        <div class="row">
+                            <div class="col-7">
+                                <span id="heading">Date</span><br>
+                                <span id="details">{{order?.orderDate | date:'MMMM d, y'}}</span>
+                            </div>
+                            <div class="col-5 pull-right">
+                                <span id="heading">Order No.</span><br>
+                                <span id="details">{{order?.orderNumber}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="items-container price-breakdown">
+                        <div class="pricing" *ngFor="let item of order?.orderItems">
+                            <div fxLayout="row">
+                                <div class="order-image-container" fxLayoutAlign="center">
+                                    <img class="order-confirmed-item-image" [src]="item.imageUrl">
+                                </div>
+                                <div fxFlex="40" class="ml-5">
+                                    <span id="name">{{item?.name}}</span>
+                                </div>
+                                <div fxFlex="20" fxLayoutAlign="end">
+                                    <span id="price">{{item?.quantity}}</span>
+                                </div>
+                                <div fxFlex fxLayoutAlign="end">
+                                    <span id="price">{{(item?.discountedPrice > 0 ? item?.discountedPrice : item?.Price) | currency: 'PHP '}}</span>
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-9">
+                                    <span id="name">Shipping</span>
+                                </div>
+                                <div class="col-3">
+                                    <span id="price">&pound;33.00</span>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="pricing price-total" fxLayout="row">
+                        <div fxFlex fxLayout="row" fxLayoutAlign="end center" class="mr-5">Shipping Fee</div>
+                        <div>{{order?.shippingFee | currency: 'PHP '}}</div>
+                    </div>
+                    <div class="pricing price-total" fxLayout="row">
+                        <div fxFlex fxLayout="row" fxLayoutAlign="end center" class="total-lbl mr-5">Total</div>
+                        <div class="total">{{order?.totalPrice | currency: 'PHP '}}</div>
+                    </div>
+
+                    <!-- <div fxLayout="row" class="title">
+                        <div fxFlex="65">Shipping Details</div>
+                        <div fxFlex class="ml-5">Special Notes</div>
+                    </div> -->
+
+                    <div class="shiping-details shipping-deets-mobile-view" fxLayout="row">
+                        <div fxFlex="65" class="mt-5" fxLayout="column">
+                            <div class="title title-ship">Shipping Details</div>
+                            <div fxLayout="column">
+                                <div class="ship-item-mobile-view" fxLayout="row">
+                                    <div class="order-shipping-header-label">Receiver Name</div>
+                                    <div class="ship-value-mobile-view" fxFlex fxLayoutAlign="end center">
+                                        {{order?.address?.receiverName}}</div>
+                                </div>
+                                <div class="ship-item-mobile-view" fxLayout="row">
+                                    <div class="order-shipping-header-label">Receiver Email</div>
+                                    <div class="ship-value-mobile-view" fxFlex fxLayoutAlign="end center">
+                                        {{order?.address?.receiverEmail}}</div>
+                                </div>
+                                <div class="ship-item-mobile-view" fxLayout="row">
+                                    <div class="order-shipping-header-label">Receiver Contact Info</div>
+                                    <div class="ship-value-mobile-view" fxFlex fxLayoutAlign="end center">
+                                        {{order?.address?.receiverContactNumber}}</div>
+                                </div>
+                                <div class="ship-item-mobile-view" fxLayout="row">
+                                    <div class="order-shipping-header-label">Street Name, Building, House No.</div>
+                                    <div class="ship-value-mobile-view" fxFlex fxLayoutAlign="end center">
+                                        {{order?.address?.streetBldgHouseNo}}</div>
+                                </div>
+                                <div class="ship-item-mobile-view" fxLayout="row">
+                                    <div class="order-shipping-header-label">Address</div>
+                                    <div class="ship-value-mobile-view" fxFlex fxLayoutAlign="end center">
+                                        {{order?.address?.region}}, {{order?.address?.province}},
+                                        {{order?.address?.city}}, {{order?.address?.barangay}}</div>
+                                </div>
+                                <div class="ship-item-mobile-view" fxLayout="row">
+                                    <div class="order-shipping-header-label">Zip Code</div>
+                                    <div class="ship-value-mobile-view" fxFlex fxLayoutAlign="end center">
+                                        {{order?.address?.zipCode}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div fxFlex class="ml-5 mt-5 special-note-mobile-view" fxLayout="column">
+                            <div class="title title-ship">Special Notes</div>
+                            <textarea class="form-control" style="resize: none; background: #EEF1F5; height: 100%;"
+                                placeholder="No instructions" readonly>{{order?.notes}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>

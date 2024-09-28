@@ -1,0 +1,8 @@
+<div class="topbar-item">
+  <div [matMenuTriggerFor]="menu" class="btn btn-icon btn-clean btn-lg mr-1" style="width: 100px;" id="kt_quick_search_toggle">
+    <span>Hi, {{user}}</span>            
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logoutUser()">Logout</button>
+  </mat-menu>
+</div>

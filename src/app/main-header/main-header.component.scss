@@ -1,0 +1,129 @@
+.main-header-container {
+    background: #0099CC;
+    padding: 1em;
+    color : white;
+    font-family: Poppins, Helvetica, "sans-serif" !important;
+    position: fixed;
+    z-index: 500;
+    width: 100%;
+    z-index: 500;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.mr4 {margin-right: 6em;}
+
+img.logo {
+    height: 34px !important;
+}
+
+.fs18 {font-size: 18px;}
+
+.btn-sell {
+    font-size: 12px;
+    color: #8950FC;
+    background: white;
+}
+
+.btn-sell:hover, .btn-type:hover, .btn-account:hover { opacity: 0.8;}
+
+
+.btn-type{
+    background: #1BC5BD;
+    color: white;
+    font-size: 12px;
+}
+
+.btn-account {
+    color: white;
+    font-size: 12px;
+    border: 1px solid white;
+}
+
+.btn-account-lbl {
+    /* margin-top: 4px; */
+    margin-right: 19px;
+}
+
+.mr1em {margin-right: 2em;}
+
+.btn.btn-create-acc {
+    background: #763EF0;
+    color: white;
+}
+
+.btn-cart-lbl {
+    margin-left: 6px;
+}
+
+.btn-cart {
+    font-size: 12px;
+    color: #4A7DFF;
+    background: white;
+}
+
+.btn-track {
+    font-size: 12px;
+    color: white;
+    background: #1BC5BD;
+}
+
+.cart-counter{
+    display:inline-block;
+    width:20px;
+    // opacity:0;
+    color: #4A7DFF;
+    background:#7e829954;
+    text-align:center;
+    border-radius:50%;
+    margin-left: 5px;
+}
+
+.btn.btn.btn-create-acc:hover{opacity: 0.8;}
+.menu-mobile-cont {zoom: 80%;}
+/* Navbar css */
+
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+    .main-header-container{
+        zoom: 66%;
+        padding: 10px 0;
+
+        .mr10px {    margin-right: 13px !important;}
+
+        .logo {height: 28px !important;}
+        .menu-mobile-cont {zoom: 80%;}
+    }
+
+   
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+    .main-header-container{
+        zoom: 66%;
+        padding: 10px 0;
+
+        .mr10px {    margin-right: 13px !important;}
+
+        .logo {height: 28px !important;}
+        .menu-mobile-cont {zoom: 80%;}
+    }
+
+}
+
+   
+
+//landscape --
+
+//small screen
+@media (max-width: 667px) and (orientation : landscape)  {
+    section.main-header-container {zoom: 73%;}
+   
+}

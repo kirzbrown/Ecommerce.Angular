@@ -1,0 +1,151 @@
+@import "../../../../assets/sass/ecommerce-global-variable.scss";
+
+// ::ng-deep.mat-dialog-container { padding: 0;}
+
+
+.order-details-container {
+    
+    .order-header {
+        padding: 1em;
+        border-bottom: 1px solid #E5EAEE;
+    }
+
+    
+    .order-title {
+        font-size: 15px;
+        font-weight: 500;
+    }
+    
+    .order-container {
+        padding: 2em;
+
+        .node-button-header {
+            margin-bottom: 2em;
+
+            .node-btn-title {
+                margin: auto;
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
+
+        img.img-floor-plan {
+            width: 100%;
+        }
+    }
+
+    .order-footer {
+        padding: 1em;
+    }
+
+    .order-subtitle {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .order-label {
+        font-size: 11px;
+        color: #959CB6;
+        margin-bottom: 1.5em;
+    }
+
+    .btn-reset {
+        min-width: 0;
+        padding: 7px;
+        line-height: 0;
+    }
+
+}
+
+.btn-gray {background: #979797; color: white;}
+.btn-graY:hover { opacity: 0.8;}
+.pointer { cursor: pointer;}
+.btn {font-family: 'Poppins';}
+.mr-3 { margin-right: 3px;}
+.ml-3 { margin-left: 3px;}
+.mr-1 { margin-right: 1em;}
+.margin-auto { margin: auto}
+.mt-2em {margin-top: 2em}
+.full-width { width: 100%}
+.order-form-field {margin-bottom: 1em;}
+
+//---- 360 CSS
+::ng-deep.psv-panel--open {z-index: 100;}
+::ng-deep.psv-panel-resizer{display: none !important;}
+::ng-deep.psv-panel-close-button {
+    top: 0;
+    right: 22px;
+    left: auto;
+}
+::ng-deep.psv-panel.psv-panel--open {
+    background: rgba(255, 255, 255, 0.9);
+    color: black !important;
+    left: 5%;
+    height: 69%;
+    bottom: 40px;
+    width: 40%;
+    border-radius: 3% 3% 0 0;
+}
+
+::ng-deep.psv-panel-content {
+    color: black;
+}
+
+//order - css manipulation
+
+::ng-deep.psv-order {
+    background-position-y: bottom;
+    background-position-x: center;
+}
+
+::ng-deep.psv-order:hover {
+    border: 4px solid rgba(37, 183, 211, 0.5);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.order-item-image-container {
+    height: 6vh;
+    width: 6vh;
+}
+
+.order-item-container {
+    margin-bottom: 7px;
+    margin-top: 7px;
+}
+
+.order-confirmed-item-title {
+    font-size: 16px;
+}
+
+.order-divider {
+    border-bottom: 1px solid #E5EAEE;
+}
+
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+
+::ng-deep {
+    @media (max-width: 385px) and (orientation : portrait)  {
+      .mat-dialog-container {zoom: 63%;}
+    }
+    
+    //medium screen
+    @media (max-width: 613px) and (orientation : portrait)  {
+        .mat-dialog-container {zoom: 63%;}
+    }
+}
+
+
+//landscape --
+
+::ng-deep {
+    
+    @media (max-height: 536px) and (orientation : landscape)  {
+        .mat-dialog-container {zoom: 63%;}
+    }
+
+}

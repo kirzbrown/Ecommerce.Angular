@@ -1,0 +1,165 @@
+<div class="overlay-container">
+<div class="category-details-container m1">
+    <div class="category-header">
+        <div fxLayout="row">
+            <div fxFlex class="category-title">{{fromDialog.isAdd ? 'Add' : 'Edit'}} Warehouse</div>
+            <div (click)="closeDialog()" class="header-close-icon pointer">
+                <div class="material-icons close-icon">close</div>
+            </div>
+        </div>
+    </div>
+
+    <!--BODY-------------->
+    <mat-dialog-content class="mat-typography">
+
+        <!--HEADER-------------->
+        <div class="category-container">
+
+            <div  class="form-cont">
+
+                <div class=" d-flex justify-content-start">
+
+                    <!--warhouse name-->
+                    <div class="showroom-form-field col-4">
+                        <div class="form-column-container-label">Name</div>
+                        <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+
+                            <input [formControl]="headerForm" matInput placeholder="province">
+
+                        </mat-form-field>
+                        <mat-error *ngIf="headerForm.touched && 
+                                  headerForm.invalid" class="ecommerce-errror-lbl">
+                            Name is required</mat-error>
+                    </div>
+                    <!--user-->
+                    <div class="showroom-form-field col-4 ml-3">
+                        <div class="form-column-container-label">Admin User</div>
+                   
+                        <mat-form-field appearance="outline" floatLabel="never"
+                        class="full-width ecommerce-custom-field">
+                            <!-- <mat-label>Admin User</mat-label> -->
+                            <mat-select                                                 
+                            [formControl]="headerUserForm">
+                              <mat-option *ngFor="let user of modelVM.adminList" [value]="user.id">
+                                {{user.username}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <!-- <mat-error *ngIf="modelVM.formDialog.get('headerUser').touched && 
+                          modelVM.formDialog.controls.headerUser.invalid &&
+                          modelVM.formDialog.controls.headerUser.hasError('required')" class="ecommerce-errror-lbl">
+                      User is required</mat-error> -->
+                      
+                    </div>
+                </div>
+
+
+            </div>
+            <div>
+                <div class="mat-elevation-z8">
+                    <!-- SEARCH --------------------------------------->
+
+
+
+                    <!--TABLE--------------------------------------------------------------------------->
+                    <div>
+
+                        <table mat-table [dataSource]="datasource">
+
+
+                            <!-- Checkbox Column -->
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                        [aria-label]="checkboxLabel()">
+                                    </mat-checkbox>
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <mat-checkbox (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="province">
+                                <th mat-header-cell *matHeaderCellDef class="m-2 col-6"> Service Area </th>
+                                <td mat-cell *matCellDef="let element"> {{element.province}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <!-- <ng-container matColumnDef="province"> -->
+                            <!-- <th mat-header-cell *matHeaderCellDef> Service Area </th> -->
+                            <!-- <td mat-cell *matCellDef="let element"> {{element.province}} </td> -->
+                            <!-- </ng-container> -->
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="assignedTo">
+                                <th mat-header-cell *matHeaderCellDef class="m-5 col-3"> Assigned To </th>
+                                <td mat-cell *matCellDef="let element"> {{formatUserText(element.userName)}} </td>
+                            </ng-container>
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                                (click)="selection.toggle(row)">
+                            </tr>
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+    </mat-dialog-content>
+
+
+
+    <mat-dialog-actions align="end">
+        <!-- <button mat-button mat-dialog-close>Cancel</button>
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+
+        <div class="category-footer w-100">
+            <div class="d-flex justify-content-around">
+                <div>
+                    <button (click)="closeDialog()" mat-button class="btn btn-light-primary fs12 mr-1">
+                        Cancel
+                    </button>
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+
+                    <div>
+                        <!-- <button (click)="save()" [disabled]="headerForm.invalid" mat-button
+                        class="btn btn-primary fs12">
+                        Save
+                    </button> -->
+                        <button (click)="spinnerVisible = true;save()"  mat-button [disabled]="headerForm.invalid || spinnerVisible===true"
+                            class="btn btn-primary fs12">
+                            Save
+                        </button>
+                        <div class="overlay" *ngIf="spinnerVisible">
+                            <mat-spinner></mat-spinner>
+                          </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </mat-dialog-actions>
+
+</div>
+</div>

@@ -1,0 +1,27 @@
+<div class="gallery-viewer" style="z-index: 5000;"> 
+    <div fxLayout="row">
+        <div fxFlex>
+            <div style="position:relative">
+                <div (click)="goTo(true)" class="arrow-icon arrow-icon-left">
+                    <span class="material-icons">arrow_back_ios</span>
+                </div>
+                <ngx-gallery (click)="clickGallery()" [options]="galleryOptionsViewer" [images]="galleryImagesViewer"></ngx-gallery>
+                <div (click)="goTo(false)" class="arrow-icon arrow-icon-right">
+                    <span class="material-icons">arrow_forward_ios</span>
+                </div>
+            </div>
+            </div>
+        <div fxLayout="column" fxFlex>
+            <!--descdiption-->
+            <div class="gallery-description">{{data.description}}</div>
+            <!--thumbnails-->
+            <div class="gallery-thumbnails">
+                <div fxLayout="row wrap">
+                    <ng-container *ngFor="let img of galleryImagesViewer; let i = index">
+                        <div (click)="changePreview(i)" class="img-cont" [ngClass]="{'selected-thumbnail': previewIndex == i}" style="background-image: url({{img.medium}});"></div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

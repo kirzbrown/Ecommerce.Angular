@@ -1,0 +1,55 @@
+@import "../../../assets/sass/ecommerce-global-variable.scss";
+
+.carousel-header {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #464E5F;
+    margin-bottom: 1rem;
+}
+
+.card-carousel {
+    background: white;
+    padding: 2em;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    padding-top: 2.5rem;
+}
+
+.carousel-container {
+    padding: 2.5em 0;
+
+    > {
+        border-radius: 6px;
+        
+        :nth-child(even) {
+            padding-right: 0px !important;
+        }
+
+        :nth-child(odd) {
+            padding-left: 0px !important;
+        }
+    }
+}
+
+.carousel-manager-header {
+    margin-bottom: .5em;
+
+    .category-header-title {
+        font-size: 17px;
+    }
+}
+
+.btn-add-carousel {
+    font-family: Poppins, Helvetica, "sans-serif" !important;
+    background-color: $malibu;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.paginator-container {
+    justify-content: right;
+}

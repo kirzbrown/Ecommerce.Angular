@@ -1,0 +1,180 @@
+.example-tree-node {
+    display: flex;
+    align-items: center;
+  }
+
+.full-width { width: 100%}
+
+.pdr1 {
+    background: linear-gradient(180deg, #FCFCFC 0%, #F7F7F7 100%);    
+    color: #212121;
+    padding: 2em;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pdr1-wlc {
+    margin-bottom: 10px;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+.fs37 {
+    font-size: 54px !important;
+}
+
+.Welcome-label {
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.username-label {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
+img.profile-icon-img {
+    height: 6vh;
+    border-radius: 50px;
+    margin-top: 9px;
+    margin-right: 4px;
+}
+
+.icon-btn {
+    margin-left: 8px;
+    background: #6993FF;
+    border-radius: 50%;
+    color: white;
+    height: 28px;
+    width: 28px;
+    line-height: 28px;
+    padding: 3px;
+    padding-left: 6px;
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    background: whitesmoke;
+    color: #3F66F2;
+}
+
+span.icon-btn-ico.material-icons {
+    font-size: 13px !important;
+}
+
+.p1em {padding: 1em}
+
+.btn.btn-blue {
+    background: #6993FF;
+    color: white;
+    font-size: 12px;
+}
+
+.btn.btn-blue:hover {opacity: 0.8;}
+
+.btn.btn-outlined-blue {
+    border: 1px solid #6993FF;
+    color: #6993FF;
+    font-size: 12px;
+}
+
+.btn.btn-outlined-blue:hover {
+    background-color: #6993FF;
+    color: white;
+}
+
+.body-pdr1-main {
+    height: 67vh;
+    width: 100%;
+}
+
+.footer-body-pdr1 { width: 100%}
+
+.mt4 {margin-top:10px}
+
+.pdr1-nav-list-icon{
+    color: #3f4254a8;
+    font-size: 24px;
+    margin-right: 0.5em !important;
+    padding: 8px;
+    width: 42px;
+    height: 39px;
+}
+
+.selected-pdr1-nav-list-icon{
+    color: #4D7FFF;
+    background: #E5EAEE;
+    border-radius: 5px;
+}
+
+
+
+.pdr1-nav-list-label {
+    padding: 9px 0;
+    color: #3f4254a8;
+    font-size: 14px;
+}
+
+.selected-pdr1-nav-list-label {
+    // color: black;
+    font-weight: 500;
+    color: #4D7FFF;
+    background: #E5EAEE;
+    border-radius: 5px;
+    
+}
+
+.nav-container {
+    cursor: pointer;
+}
+
+.nav-container:hover {
+    background: whitesmoke;
+    border-radius: 5px;
+}
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+    .profile-upper-mobile { flex-direction: column !important;}
+    .pdr1 {padding: 7px !important;}
+    .profile-icon-img {height: 8vh;}
+    .Welcome-label {font-size: 14px;}
+    .username-label {font-size: 13px !important;}
+    .hidden, .hidden-mobile {display: none;}
+    .pdr1-nav-list-icon {width: 100%;}
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+   
+    .profile-upper-mobile { flex-direction: column !important;}
+    .pdr1 {padding: 7px !important;}
+    .profile-icon-img {height: 8vh !important;}
+    .Welcome-label {font-size: 14px !important;}
+    .username-label {font-size: 13px !important;}
+    .hidden, .hidden-mobile {display: none;}
+    .pdr1-nav-list-icon {width: 100%;}
+}
+
+//landscape --
+
+::ng-deep {
+    
+    @media (max-height: 536px) and (orientation : landscape)  {
+        .pdr1 {padding: 7px !important;}
+        .profile-icon-img {height: 8vh !important;}
+        .Welcome-label {font-size: 14px !important;}
+        .username-label {font-size: 13px !important;}
+        .pdr1-nav-list-icon {width: 100%;}
+        .pdr1-nav-list-label {font-size: 12px !important;margin: auto;}
+        .pdr1-wlc {margin-bottom: 0;}
+    }
+
+}

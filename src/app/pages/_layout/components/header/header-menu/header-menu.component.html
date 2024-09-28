@@ -1,0 +1,258 @@
+<!-- begin::Header Nav -->
+<ul class="menu-nav" [ngClass]="ulCSSClasses">
+  <!-- begin::1 Level -->
+  <li class="menu-item menu-item-rel" routerLinkActive="menu-item-active">
+    <a class="menu-link" routerLink="/dashboard" routerLinkActive="active">
+      <span class="menu-text" translate="MENU.DASHBOARD"></span>
+      <ng-container *ngIf="rootArrowEnabled">
+        <i class="menu-arrow"></i>
+      </ng-container>
+    </a>
+  </li>
+  <!-- end::1 Level -->
+  
+  <!-- Mega submenu -->
+  <!-- begin::1 Level -->
+  <li
+    class="menu-item menu-item-submenu menu-item-rel"
+    routerLinkActive="menu-item-active"
+    [attr.data-menu-toggle]="headerMenuDesktopToggle"
+    aria-haspopup="true"
+  >
+    <a
+      class="menu-link menu-toggle"
+      routerLinkActive="active"
+      href="/ngbootstrap"
+    >
+      <span class="menu-text">NgBootstrap</span>
+      <i class="menu-arrow"></i>
+    </a>
+    <div
+      class="menu-submenu menu-submenu-fixed menu-submenu-left"
+      style="width: '1000px'"
+    >
+      <div class="menu-subnav">
+        <ul class="menu-content">
+          <li class="menu-item">
+            <h3 class="menu-heading menu-toggle">
+              <i class="menu-bullet menu-bullet-dot"><span></span></i>
+              <span class="menu-text">A ... C</span>
+              <i class="menu-arrow"></i>
+            </h3>
+            <ul class="menu-inner">
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLink="/ngbootstrap/accordion"
+                  routerLinkActive="active"
+                >
+                  <span class="menu-text">Accordion</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLinkActive="active"
+                  routerLink="/ngbootstrap/alert"
+                >
+                  <span class="menu-text">Alert</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLinkActive="active"
+                  routerLink="/ngbootstrap/buttons"
+                >
+                  <span class="menu-text">Buttons</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLink="/ngbootstrap/carousel"
+                  routerLinkActive="active"
+                >
+                  <span class="menu-text">Carousel</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+            </ul>
+          </li>
+
+          <li class="menu-item">
+            <h3 class="menu-heading menu-toggle">
+              <i class="menu-bullet menu-bullet-dot"><span></span></i>
+              <span class="menu-text">C ... M</span>
+              <i class="menu-arrow"></i>
+            </h3>
+            <ul class="menu-inner">
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLink="/ngbootstrap/collapse"
+                  routerLinkActive="active"
+                >
+                  <span class="menu-text">Collapse</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLink="/ngbootstrap/datepicker"
+                  routerLinkActive="active"
+                >
+                  <span class="menu-text">Datepicker</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLink="/ngbootstrap/dropdown"
+                  routerLinkActive="active"
+                >
+                  <span class="menu-text">Dropdown</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLink="/ngbootstrap/modal"
+                  routerLinkActive="active"
+                >
+                  <span class="menu-text">Modal</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+            </ul>
+          </li>
+
+          <li class="menu-item">
+            <h3 class="menu-heading menu-toggle">
+              <i class="menu-bullet menu-bullet-dot"><span></span></i>
+              <span class="menu-text">P ... R</span>
+              <i class="menu-arrow"></i>
+            </h3>
+            <ul class="menu-inner">
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLink="/ngbootstrap/pagination"
+                  routerLinkActive="active"
+                >
+                  <span class="menu-text">Pagination</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLink="/ngbootstrap/popover"
+                  routerLinkActive="active"
+                >
+                  <span class="menu-text">Popover</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLink="active"
+                  routerLinkActive="/ngbootstrap/progressbar"
+                >
+                  <span class="menu-text">Progressbar</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLinkActive="active"
+                  routerLink="/ngbootstrap/rating"
+                >
+                  <span class="menu-text">Rating</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+            </ul>
+          </li>
+
+          <li class="menu-item">
+            <h3 class="menu-heading menu-toggle">
+              <i class="menu-bullet menu-bullet-dot"><span></span></i>
+              <span class="menu-text">T ... Z</span>
+              <i class="menu-arrow"></i>
+            </h3>
+            <ul class="menu-inner">
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLinkActive="active"
+                  routerLink="/ngbootstrap/timepicker"
+                >
+                  <span class="menu-text">Timepicker</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLinkActive="active"
+                  routerLink="/ngbootstrap/tooltip"
+                >
+                  <span class="menu-text">Tooltips</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+
+              <!-- begin::3 Level -->
+              <li class="menu-item" routerLinkActive="menu-item-active">
+                <a
+                  class="menu-link"
+                  routerLinkActive="active"
+                  routerLink="/ngbootstrap/typehead"
+                >
+                  <span class="menu-text">Typehead</span>
+                </a>
+              </li>
+              <!-- end::3 Level -->
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+  <!-- end::1 Level -->
+
+</ul>
+<!-- end::Header Nav -->

@@ -1,0 +1,16 @@
+<div class="">
+    <mat-form-field class="search-box-" appearance="outline" >
+        <div fxFlex="100" fxLayout="row" >
+            <input matInput type="text" class="ampm-text" placeholder="Search for anything..." [(ngModel)]="searchKeyword" (keypress)="searchByEnterKey($event)">
+            <button mat-flat-button class="ampm-button" (click)="searchAnything()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+   </mat-form-field>
+</div>
+<div class="">
+<div fxFlex="100" fxLayout="row" *ngIf="ifSearchKey()">
+        <div class="search-label">Search results for "{{searchKeyword}}"</div>
+</div>
+</div>
+

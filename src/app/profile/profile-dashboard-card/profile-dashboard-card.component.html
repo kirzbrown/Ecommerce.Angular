@@ -1,0 +1,15 @@
+<section class="pd-card">
+    <!--tabular view-->
+    <ng-container *ngIf="viewType == 'Catalog'">
+        <mat-tab-group>
+                <mat-tab label="List of products"></mat-tab>
+        </mat-tab-group>
+    </ng-container>
+
+    <!--tabular view-->
+    <ng-container *ngIf="viewType == 'Users'">
+        <mat-tab-group>
+                <mat-tab label="List of users"></mat-tab>
+        </mat-tab-group>
+    </ng-container>
+</section>

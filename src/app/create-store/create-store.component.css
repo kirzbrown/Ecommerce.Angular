@@ -1,0 +1,183 @@
+.form-main-container, .full-width, .example-chip-list{ width: 100%; }
+.store-container { margin-top: 64px; height: 100%; background: white;padding: 1.5em; font-family: Poppins, Helvetica, "sans-serif";}
+
+.file-custom{
+    height: 25vh;
+}
+
+.icon-cont { 
+    background: #F7FAFF;
+    padding: 1em;
+    height: 6em;
+    width: 6em;
+    border-radius: 81px;
+    margin-bottom: 1em;
+    margin-bottom: 7px;
+}
+
+.store-icon {font-size: 4em !important; color: #005CEF}
+.img-upload {
+    background: #F7FAFF;
+    padding: 1em;
+}
+.title-header {
+    font-size: 1.5em;
+    color: #005CEF;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.description-header {
+    font-size: 11px;
+    width: 57%;
+    text-align: center;
+    color: #858585;
+}
+
+.stepper-cont {
+    padding: 12px 0px;
+}
+
+.stepper-title {
+    color: #3F4245;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+.stepper-sub-title {
+    font-size: 11px;
+    color: #858585;
+    margin-bottom: 1em;
+}
+
+.pill-item {
+    padding: 6px 16px;
+    border: 1px solid lightgray;
+    margin-right: 7px;
+    border-radius: 24px;
+    font-weight: 500;
+    font-size: 12px;
+    margin-bottom: 5px;
+    cursor: default;
+}
+
+
+.pill-item:hover, .selected-pill {
+    background-color: lightgray;
+    font-weight: 600;
+}
+
+.selected-pill {
+    background-color: #F2F7FE;
+    font-weight: 500;
+    color: #2E61F0;
+    border-color: #2E61F0;
+}
+
+.pill-stepper {
+    margin: 10px 0;
+}
+
+.info-icon{
+    font-size: 18px;
+    color: #597fbd;
+    height: 20px;
+    width: 20px;
+}
+
+.info-lbl {
+    color: #597fbd;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.info-deets {
+    margin-bottom: 10px;
+}
+
+.upload-mg {
+    margin-bottom: 10px;
+    margin-top: 21px;
+}
+
+.error-lbl {
+    color: #DC4356;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+::-webkit-file-upload-button {
+    background: #597FBD;
+    color: white;
+    padding: 0.5em 1em;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+.mt-n13{margin-top: -13px !important;}
+.mb-5{margin-top: 5px !important;}
+.mt-13{margin-top: 13px !important;}
+/* custom input ui */
+.text-label {
+    color: #5F6368;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+::ng-deep.mat-form-field-outline {
+    background-color: #EEF1F5;
+    border-color: #EEF1F5;
+    /* height: 50px !important; */
+    font-weight: 400 !important;
+    line-height: 20.42px !important;
+    border-radius: 10px !important; 
+  }
+  
+  ::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix  {
+    padding: 0.4em 0 1em 0 !important;
+  }
+  
+  ::ng-deep.mat-input-element {
+    line-height: 27px !important;
+  }
+  
+  
+  /* //input outline color */
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: #EEF1F5 !important;
+  }
+  
+  /* //mat-input focused color */
+  ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+      color: #dbdbdb !important;
+  }
+  
+  /* // mat-input carent color */
+  ::ng-deep .mat-input-element {
+      caret-color: #EEF1F5 !important;
+  }
+  
+  /* // mat-label focused style */
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+      color: #dbdbdb !important;
+  }
+  
+  /* // mat-input error outline color */
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+      color: red !important;
+      opacity: 0.8!important;
+  }
+  
+  
+  :host ::ng-deep .textarea-large .mat-form-field-outline {
+    background-color: #EEF1F5;
+    border-color: #EEF1F5;
+    height: 80px !important;
+    font-weight: 400 !important;
+    line-height: 20.42px !important;
+    border-radius: 10px !important; 
+  }
+  
+  :host ::ng-deep .select-dropdown.mat-form-field-appearance-outline .mat-form-field-infix {padding: 0.7em 0 1em 0 !important;}
+  

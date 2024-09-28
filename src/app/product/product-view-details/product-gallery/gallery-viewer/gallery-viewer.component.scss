@@ -1,0 +1,64 @@
+.gallery-description {
+    font-size: 19px;
+    margin-bottom: 4.5%;
+}
+
+.img-cont {
+    width: 107px;
+    text-align: center;
+    height: 107px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 14px;
+    margin-bottom: 14px;
+}
+
+.selected-thumbnail { 
+    border: 1px solid blue;
+}
+
+::ng-deep.ngx-gallery-active { background-color: white !important;}
+
+
+::ng-deep.gallery-viewer {
+    .ngx-gallery-image.ngx-gallery-active { z-index: 5000;}
+  }
+  
+  ::ng-deep.gallery-viewer > .ngx-gallery-image.ngx-gallery-active { z-index: 5000;}
+
+.arrow-icon {
+    position: absolute;
+    top: 50%;
+    z-index: 10000;
+    cursor: pointer;
+    color: white;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    padding: 3px 6px;
+}
+
+.arrow-icon-left { left: 0; padding-left: 8px;}
+.arrow-icon-right { right: 0}
+
+
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+::ng-deep {
+    @media (max-width: 385px) and (orientation : portrait)  {
+        .mat-dialog-container {height: 65vh !important;}
+        .gallery-viewer {zoom: 57%;}
+        
+    }
+
+    //medium screen
+    @media (max-width: 613px) and (orientation : portrait)  {
+        .mat-dialog-container {height: 65vh !important;}
+            .gallery-viewer {zoom: 57%;}
+    }
+}

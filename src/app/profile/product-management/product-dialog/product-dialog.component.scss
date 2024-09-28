@@ -1,0 +1,451 @@
+@import "../../../../assets/sass/ecommerce-global-variable.scss";
+
+.product-details-container {
+    
+    .product-header {
+        padding: 1em 1.5em;
+        background-color: $malibu;
+        color: white;
+        border-bottom: 1px solid #E5EAEE;
+    }
+    
+    .product-title {
+        font-size: 15px;
+        font-weight: 500;
+    }
+    
+    .product-stepper {
+        padding: 1em 1.5em;
+        background-color: transparent;
+        width: 75%;
+        min-width: 650px;
+        margin: auto;
+
+        .stepper-item-container {
+            cursor: pointer;
+        }
+
+        .stepper-item-container:hover {
+            filter: invert(56%) sepia(63%) saturate(469%) hue-rotate(107deg) brightness(84%) contrast(85%);
+            
+            span {
+                font-weight: 600!important;
+            }
+        }
+        
+        .stepper-link-container {
+            display: flex;
+            flex-direction: column !important;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        span {
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            color: $frenchGray;
+        }
+
+        // img{
+        //     width: 32px;
+        //     height: 32px;
+        // }
+    }
+
+    .product-container {
+        padding: 0em 4em 2em;
+        overflow: auto;
+        height: 75vh;
+
+        .node-button-header {
+            margin-bottom: 2em;
+
+            .node-btn-title {
+                margin: auto;
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
+
+        img.img-floor-plan {
+            width: 100%;
+        }
+    }
+
+    .product-footer {
+        padding: 1em;
+    }
+
+    .product-subtitle {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .product-label {
+        font-size: 11px;
+        color: #959CB6;
+        margin-bottom: 1.5em;
+    }
+
+    .btn-reset {
+        min-width: 0;
+        padding: 7px;
+        line-height: 0;
+    }
+
+}
+
+.btn-gray {background: #979797; color: white;}
+.btn-graY:hover { opacity: 0.8;}
+.pointer { cursor: pointer;}
+.btn {font-family: 'Poppins';}
+.mr-3 { margin-right: 3px;}
+.ml-3 { margin-left: 3px;}
+.mr-1 { margin-right: 1em;}
+.margin-auto { margin: auto}
+.mt-2em {margin-top: 2em}
+.full-width { width: 100%}
+.product-form-field {margin-bottom: 1em;}
+
+//---- 360 CSS
+::ng-deep.psv-panel--open {z-index: 100;}
+::ng-deep.psv-panel-resizer{display: none !important;}
+::ng-deep.psv-panel-close-button {
+    top: 0;
+    right: 22px;
+    left: auto;
+}
+::ng-deep.psv-panel.psv-panel--open {
+    background: rgba(255, 255, 255, 0.9);
+    color: black !important;
+    left: 5%;
+    height: 69%;
+    bottom: 40px;
+    width: 40%;
+    border-radius: 3% 3% 0 0;
+}
+
+::ng-deep.psv-panel-content {
+    color: black;
+}
+
+//product - css manipulation
+
+::ng-deep.psv-product {
+    background-position-y: bottom;
+    background-position-x: center;
+}
+
+::ng-deep.psv-product:hover {
+    border: 4px solid rgba(37, 183, 211, 0.5);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.nav-image { 
+    width: 12vw;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.uploading-container {
+    margin-bottom: 1em;
+}
+
+.multi-image { 
+    height: 10vh; 
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.upload-doc-label{
+    border: 1px solid lightgray;
+    margin-top: 1em;
+    margin-right: 1em;
+    border-radius: 7px;
+    padding: 5px;
+}
+
+.flex-form-container {
+    display: flex!important;
+    
+    > :first-child{
+        padding-left: 0px!important;
+        padding-right: 6.25px!important;
+    }
+    > :last-child{
+        padding-right: 0px!important;
+        padding-left: 6.25px!important;
+    }
+    > :not(:first-child):not(:last-child) {
+        padding-right: 6.25px!important;
+        padding-left: 6.25px!important;
+    }
+}
+
+.mat-tab-header {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: $riverBed;
+    padding-bottom: 1em;
+}
+
+.flex-sticker-container{
+    display: flex!important;
+    
+    > :first-child{
+        padding-left: 0px!important;
+        padding-right: 10px!important;
+    }
+    > :last-child{
+        padding-right: 0px!important;
+        padding-left: 10px!important;
+    }
+    > :not(:first-child):not(:last-child) {
+        padding-right: 10px!important;
+        padding-left: 10px!important;
+    }
+}
+
+.form-header-label{
+    font-style: normal;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: uppercase;
+    color: $malibu;
+    display: block;
+}
+
+.form-section-label{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: $mineShaft;
+    display: block;
+}
+
+:host ::ng-deep .mat-tab-labels {
+    .mat-tab-label {
+        background-color: transparent;
+        color: $waterloo!important;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 12px;
+        height: 34px!important;
+        min-width: 106px!important;
+    }
+
+    .mat-tab-label-active{
+        background-color: $malibu;
+        color: #FFFFFF!important;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 12px;
+        border-radius: 6px;
+    }
+}
+
+.btn-upload {
+    background-color: $malibu;
+    color: #FFFFFF!important;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.btn-change-sticker{
+    background-color: $mystic!important;
+    color: $riverBed;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+:host ::ng-deep .btn-delete {
+    font-weight: 500;
+    font-size: 12px;
+    color: $cherryRed;
+    background-color: transparent;
+}
+
+.thumbnail-container{
+    min-height: 257px;
+    border-radius: 12px;
+    min-height: 191px;
+    overflow-x: scroll;
+    background-color: #FBF6F0;
+    padding: 1em;
+    align-items: center;
+
+    .thumbnail-item-container {
+        display: flex;
+        flex-direction: column;
+    
+        > div {
+            position: relative;
+            align-items: center;
+
+            > img {
+                object-fit: contain;
+                min-height: 125px;
+                width: 100%;
+                border-radius: 12px;
+            }
+        }
+    }    
+}
+
+:host ::ng-deep .mat-radio-label-content {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 12px;
+    color: $mineShaft;
+    padding-left: 4px;
+}
+
+:host ::ng-deep .mat-radio-button {
+    margin-left: -0.4em;
+    padding-top: .5em;
+}
+
+.sticker-container{
+    outline: 1px solid lightgray;
+    border-radius: 6px;
+    padding: .7em 1em;
+    min-height: 280px;
+    max-height: 280px;
+    display: flex;
+    flex-direction: column;
+
+    .sticker-header {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: $riverBed;
+    }
+
+    .sticker-description {
+        font-style: italic;
+        color: #6C7293;
+        font-weight: 300;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .inside-sticker-container{
+        flex:1;
+        flex-direction: column!important;
+
+        > *{
+            margin: .25rem auto;
+        }
+    }
+}
+
+
+.feature-outer-container{
+    outline: 1px solid lightgray;
+    border-radius: 6px;
+    padding: .7em 1em 0em;
+    min-height: 275px;
+    display: flex;
+    flex-direction: column;
+
+    .sticker-header {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: $riverBed;
+    }
+
+    .sticker-description {
+        font-style: italic;
+        color: #6C7293;
+        font-weight: 300;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .feature-container{
+        display: flex; 
+        flex: 1;
+        margin: .75em -.75em;
+
+        .feature-item-container {
+            display: flex;
+            flex-direction: column;
+        
+            > :first-child {
+                position: relative;
+                align-items: center;
+                height: 125px;
+                
+                > img {
+                    object-fit: cover;
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 12px;
+                }
+            }
+        }    
+    }
+}
+
+:host ::ng-deep .jodit-ui-group_group_search{
+    display: none!important;
+}
+
+:host ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar{
+    background-color: $java;
+}
+
+:host ::ng-deep .mat-ink-bar {
+    background-color: transparent !important;
+}
+// ::ng-deep.product-form-field .mat-select-container {
+//     background-color: #EEF1F5;
+//     border-color: #EEF1F5;
+//     // height: 43px !important;
+//     font-weight: 400 !important;
+//     line-height: 20.42px !important;
+//     border-radius: 10px !important; 
+//   }
+
+//   ::ng-deep.mat-select-value {
+//     height: 43px !important;
+//   }
+
+//   ::ng-deep.mat-select-value-text {
+//     height: 43px !important;
+//   }
+
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+
+::ng-deep {
+    @media (max-width: 385px) and (orientation : portrait)  {
+        .mat-dialog-container {zoom: 63%;}
+    }
+    
+    //medium screen
+    @media (max-width: 613px) and (orientation : portrait)  {
+        .mat-dialog-container {zoom: 63%;}
+    }
+}
+
+
+//landscape --
+
+::ng-deep {
+    
+    @media (max-height: 536px) and (orientation : landscape)  {
+        .mat-dialog-container {zoom: 63%;}
+    }
+
+}

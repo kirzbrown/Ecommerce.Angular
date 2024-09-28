@@ -1,0 +1,115 @@
+@import "../../../assets/sass/ecommerce-global-variable.scss";
+
+.order-container-table {
+    background: white;
+    padding: 10px;
+    margin-bottom: 1em;
+    border-radius: 10px;
+}
+
+.issue-view-button {
+    color: #6693FF;
+    background: #E1E9FF;
+    font-weight: 600;
+  }
+  
+.order-action-button {
+    color: #F64E60;
+    background: #FFE2E5;
+    font-weight: 600;
+}
+
+.order-manager-header {
+    margin-bottom: 1.5em;
+    .category-header-title {font-size: 17px;}
+}
+
+.mat-column-action {width: 14%;}
+.mat-column-bannerImageUrl {
+    width: 50%;
+    border-radius: 5px;
+    margin-left: 11px;
+}
+th, td {
+    overflow: hidden;
+    width:auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.table-img-style { width: 50px;border-radius: 5px;}
+
+// ::ng-deep.mat-table, .sct {font-family: 'Poppins' !important;}
+// ::ng-deep.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+//     padding-bottom: 1.25em !important;
+// }
+
+.card-order {
+    background: white;
+    padding: 2em;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    padding-top: 1em;
+}
+
+// ::ng-deep.inventory-form-field-outline {
+//     background-color: #EEF1F5;
+//     border: 1px solid darkgray;
+//     /* height: 50px !important; */
+//     font-weight: 400 !important;
+//     line-height: 20.42px !important;
+//     border-radius: 5px !important; 
+//     }
+      
+// ::ng-deep {
+//     .has-value .mat-form-field-outline {
+//         background-color: white !important;
+//         border: 1px solid darkgray;
+//     }
+
+//     .has-value > .mat-form-field-appearance-outline .mat-form-field-outline {
+//         background-color: white !important;
+//         border: 1px solid darkgray;
+        
+//     }
+// }
+
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+    .card-order {
+        zoom: 71%;
+        padding: 13px !important;
+    }
+
+    .mat-column-orderDate {display: none;}
+    .mat-column-action{width: 57px !important;max-width: 57px !important;padding-right: 0 !important;}
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+    .card-order {
+        zoom: 71%;
+        padding: 13px !important;
+    }
+    .mat-column-orderDate {display: none;}
+    .mat-column-action{width: 57px !important;max-width: 57px !important;padding-right: 0 !important;}
+}
+
+//landscape --
+
+::ng-deep {
+    
+    @media (max-height: 536px) and (orientation : landscape)  {
+        .card-order {
+            zoom: 71%;
+            padding: 13px !important;
+        }
+        // .mat-column-orderDate {display: none;}
+        .mat-column-action{width: 57px !important;max-width: 57px !important;padding-right: 0 !important;}
+    }
+
+}

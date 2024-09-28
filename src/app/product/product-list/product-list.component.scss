@@ -1,0 +1,98 @@
+.product-item-container {
+    /* padding: 14px; */
+    background: white;
+    margin-right: 20px;
+    /* border-radius: 10px; */
+    border: 1px solid #D6D6E0;
+    margin-bottom: 20px;
+    /* width: 435px; */
+}
+
+.product-item-thumnail {
+    /* height: 18vh !important; */
+    /* margin-bottom: 15px !important; */
+}
+
+.product-model-lbl {
+    font-weight: 600;
+    padding: 1em;
+}
+
+.product-promo {
+    max-height: 100%; max-width: 100%;
+}
+
+
+.overlay-right-sticky {
+    /* position: absolute; */
+    /* bottom: 0;
+    right: 0; */
+    color: #464E5F;
+    width: 100%;
+    background: #F4F4F8;
+    font-size: 11px;
+    padding: 3px 10px;
+    text-align: center;
+    /* width: 79px; */
+    margin-right: -12px;
+    z-index: 1;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+/* .category-pill-height { height: 16px;} */
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+    background-color: #333231 !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #333231;
+}
+
+.catalog-list {
+    max-width: 1050px;
+    margin: auto;
+}
+
+.product-title {
+    font-size: 19px !important;
+    margin-bottom: 14px;
+    font-weight: 500;
+}
+
+.product-item-details {
+    padding: 16px;
+    padding-bottom: 7px;
+}
+
+.category-pill-height {
+    position: absolute;
+}
+
+.ribbon-color {
+    background-color: #F64E60;
+}
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+    .ribbon-img {height: 43px;}
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+    .ribbon-img {height: 43px;}
+}
+
+//landscape --
+
+//small screen
+@media (max-width: 667px) and (orientation : landscape)  {
+    .ribbon-img {height: 38px;}
+    .product-item-details {zoom: 75%;}
+}

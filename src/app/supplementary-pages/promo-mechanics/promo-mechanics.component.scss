@@ -1,0 +1,120 @@
+.promo-mechanics-container {
+    min-height: 60vh;
+    overflow: auto;
+    padding: 3em 6em;
+
+    .pp-header {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 500;
+        margin-bottom: 1.5em;
+    }
+
+    .pp-normal-label {
+        font-size: 13px;
+        margin-bottom: 1.5em;
+    }
+
+    .pp-header-label {
+        font-size: 15px;
+        margin-bottom: 1em;
+        font-weight: 600;
+    }
+
+    .pp-indented-label {
+        padding-left: 2em;
+        margin-bottom: 1em;
+        .pp-normal-label { margin-bottom: 0 !important;}
+    }
+}
+
+.mb-1p {margin-bottom: 1.5em;}
+.bold { font-weight: 600;}
+.extra-indent { margin-left: 14px;}
+
+
+.promo-mechanic-first-container {
+    width: 504px;
+    border: 11px solid #FAE2DE;
+    background: #ebf5fc;
+
+    img.pmfc-image {width: 100%;}
+
+    .pmfc-header {
+        font-size: 13px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 3%;
+    }
+
+    .pp-normal-label {
+        font-size: 10px !important;
+    }
+    
+}
+
+.promo-mechanic-second-container {
+    padding: 2% 0;
+
+    .pmsc-header {
+        font-size: 17px;
+        font-weight: 500;
+        margin-bottom: 1%;
+    }
+
+    
+    .pp-normal-label {
+        font-size: 12px !important;
+    }
+    
+}
+
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+    .promo-mechanics-container {
+        padding: 2em !important;
+        zoom: 85%;
+    }
+
+    .pp-header {
+        font-size: 21px !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+    .promo-mechanics-container {
+        padding: 2em !important;
+        zoom: 85%;
+    }
+
+    .pp-header {
+        font-size: 21px !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+//landscape --
+
+::ng-deep {
+    
+    @media (max-height: 536px) and (orientation : landscape)  {
+        .promo-mechanics-container {
+            padding: 2em !important;
+            zoom: 85%;
+        }
+
+        
+        .pp-header {
+            font-size: 21px !important;
+            margin-bottom: 15px !important;
+        }
+    }
+
+}
+

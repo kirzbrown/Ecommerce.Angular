@@ -1,0 +1,133 @@
+.branch-selector-container {
+    background-color: white;
+}
+
+.header-container {
+    padding: 3%;
+}
+
+.divider {
+    border: 1px solid #E5EAEE;
+    margin: 2% 0%;
+}
+
+.polygon-img {
+    width: 38px;
+    height: 38px;
+    margin: 1.3em 1em;
+}
+
+.mess-icon-img {
+    width: 28px;
+    height: 28px;
+}
+
+.select-delivery-area {
+    background-color: #fadab2;
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.area-locator-lbl {
+    font-weight: 500;
+    font-size: 18px;
+    color: #6693FF;
+}
+
+.body-container {
+    width: 80%;
+    margin: 6% 0%;
+}
+
+.btn-proceed {
+    background-color: #f6b566;
+    color:white;
+}
+
+.btn-find-dealer {
+    background-color: #E5EAEE;
+    color:black;
+}
+
+.text-primary-label {
+    color: #464E5F;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.text-secondary-label {
+    color: #464E5F;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.mat-radio-group-container {
+    margin-top: 1em;
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+
+// ::ng-deep.mat-dialog-container {
+//     overflow: auto !important;
+//     padding: 24px !important}
+
+// ::ng-deep.mat-form-field-outline {
+// background-color: #ffffff;
+// border: 1px solid darkgray;
+// /* height: 50px !important; */
+// // font-weight: 400 !important;
+// // line-height: 20.42px !important;
+// // border-radius: 5px !important; 
+// }
+
+// ::ng-deep.mat-select-value {
+//     height: 0px !important;
+//   }
+  
+//   ::ng-deep.mat-select-value-text {
+//     height: 0px !important;
+//   }
+  
+// ::ng-deep {
+//     .has-value .mat-form-field-outline {
+//         background-color: white !important;
+//         border: 1px solid darkgray;
+//     }
+
+//     .has-value > .mat-form-field-appearance-outline .mat-form-field-outline {
+//         background-color: white !important;
+//         border: 1px solid darkgray;
+//         color: rgba(235, 237, 243, 0.12) !important;
+//     }
+// }
+
+// ::ng-deep.mat-dialog-container {
+//     padding: 14px !important;
+// }
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+  
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+   
+}
+
+//landscape --
+
+::ng-deep {
+    
+    @media (max-height: 536px) and (orientation : landscape)  {
+        .mat-dialog-container {zoom: 68%;}
+    }
+
+}
+

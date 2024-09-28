@@ -1,0 +1,24 @@
+
+
+mat-table {
+  max-height: 800px;
+  overflow-y: auto;
+}
+
+
+mat-header-row {
+    display: none;
+}
+.mat-mdc-table {
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+  }
+  
+  .mat-column-name {
+    height: 100px;
+  }
+
+  .selected-row {
+    background-color: #f5f5f5;
+  }

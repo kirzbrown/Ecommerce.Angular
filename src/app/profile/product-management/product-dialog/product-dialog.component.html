@@ -1,0 +1,508 @@
+<div class="product-details-container">
+    <div class="product-header">
+        <div fxLayout="row">
+            <div fxFlex class="product-title">{{data.isAdd ? 'Add' : 'Edit'}} Product</div>
+            <div (click)="closeDialog()" class="header-close-icon pointer" fxLayoutAlign="center center">
+                <div class="material-icons close-icon">close</div>
+            </div>
+        </div>
+    </div>
+    <div class="product-stepper">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div class="col-lg-3 stepper-item-container" (click)="scroll(overview)" fxLayoutAlign="space-between center"
+                style="padding: 0em 2em;">
+                <div class="stepper-link-container">
+                    <img src="../../../../assets/media/svg/icons/info-icon.svg" alt="" width="32px" height="32px">
+                    <span>Overview</span>
+                </div>
+                <img src="../../../../assets/media/svg/icons/right-arrow-icon.svg" alt="" width="20px" height="20px">
+            </div>
+            <div class="col-lg-3 stepper-item-container" (click)="scroll(detailInfo)"
+                fxLayoutAlign="space-between center" style="padding: 0em 2em;">
+                <div class="stepper-link-container">
+                    <img src="../../../../assets/media/svg/icons/checklist-icon.svg" alt="" width="32px" height="32px">
+                    <span>Detail Info</span>
+                </div>
+                <img src="../../../../assets/media/svg/icons/right-arrow-icon.svg" alt="" width="20px" height="20px">
+            </div>
+            <div class="col-lg-3 stepper-item-container" (click)="scroll(thumbnail)"
+                fxLayoutAlign="space-between center" style="padding: 0em 2em;">
+                <div class="stepper-link-container">
+                    <img src="../../../../assets/media/svg/icons/thumbnail-icon.svg" width="32px" height="32px">
+                    <span>Thumbnail</span>
+                </div>
+                <img src="../../../../assets/media/svg/icons/right-arrow-icon.svg" alt="" width="20px" height="20px">
+            </div>
+            <div class="col-lg-3 stepper-item-container" (click)="scroll(stickerBanner)"
+                fxLayoutAlign="space-between center" style="padding: 0em 2em;">
+                <div class="stepper-link-container">
+                    <img src="../../../../assets/media/svg/icons/sticker-icon.svg" alt="" width="32px" height="32px">
+                    <span>Sticker Banner</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="margin: 0px;">
+    <div class="product-container">
+        <div [formGroup]="productFormGroup" class="form-cont">
+            <!--fields-->
+            <span class="form-header-label pb-5 pt-5" #overview>OVERVIEW</span>
+            <div class="product-form-field">
+                <div class="form-column-container-label">Title</div>
+                <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                    <input formControlName="title" matInput placeholder="Input">
+                </mat-form-field>
+                <mat-error *ngIf="productFormGroup.get('title').touched && 
+                                      productFormGroup.controls.title.invalid &&
+                                      productFormGroup.controls.title.hasError('required')" class="ecommerce-errror-lbl">
+                    Title is required</mat-error>
+            </div>
+            <!--fields-->
+            <div class="product-form-field">
+                <div class="form-column-container-label">Subtitle</div>
+                <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                    <input formControlName="subTitle" matInput placeholder="Input">
+                </mat-form-field>
+                <mat-error *ngIf="productFormGroup.get('subTitle').touched && 
+                                        productFormGroup.controls.subTitle.invalid &&
+                                        productFormGroup.controls.subTitle.hasError('required')"
+                    class="ecommerce-errror-lbl">
+                    Subtitle is required</mat-error>
+            </div>
+            <span class="form-section-label pb-4">Short Description Section</span>
+            <!--fields-->
+            <div class="product-form-field">
+                <div class="form-column-container-label">Description</div>
+                <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                    <input formControlName="description" matInput placeholder="Input">
+                </mat-form-field>
+                <mat-error *ngIf="productFormGroup.get('description').touched && 
+                                        productFormGroup.controls.description.invalid &&
+                                        productFormGroup.controls.description.hasError('required')"
+                    class="ecommerce-errror-lbl">
+                    Description is required</mat-error>
+            </div>
+            <div class="flex-form-container">
+                <!--fields-->
+                <div class="product-form-field col-lg-6">
+                    <div class="form-column-container-label">Model</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field p-0">
+                        <input formControlName="model" matInput placeholder="Input">
+                    </mat-form-field>
+                    <mat-error *ngIf="productFormGroup.get('model').touched && 
+                                        productFormGroup.controls.model.invalid &&
+                                        productFormGroup.controls.model.hasError('required')"
+                        class="ecommerce-errror-lbl">
+                        Model is required</mat-error>
+                </div>
+                <!--fields-->
+                <div class="product-form-field col-lg-6">
+                    <div class="form-column-container-label">Capacity</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field p-0">
+                        <input formControlName="capacity" matInput placeholder="Input">
+                    </mat-form-field>
+                    <mat-error *ngIf="productFormGroup.get('capacity').touched && 
+                                        productFormGroup.controls.capacity.invalid &&
+                                        productFormGroup.controls.capacity.hasError('required')"
+                        class="ecommerce-errror-lbl">
+                        Capacity is required</mat-error>
+                </div>
+            </div>
+            <span class="form-section-label pb-4">General Section</span>
+            <div class="flex-form-container">
+                <!--fields-->
+                <div class="product-form-field col-lg-3">
+                    <div class="form-column-container-label">Price</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="price" matInput placeholder="Input"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                    </mat-form-field>
+                    <mat-error *ngIf="productFormGroup.get('price').touched && 
+                                        productFormGroup.controls.price.invalid &&
+                                        productFormGroup.controls.price.hasError('required')"
+                        class="ecommerce-errror-lbl">
+                        Price is required</mat-error>
+                </div>
+                <!--fields-->
+                <div class="product-form-field col-lg-3">
+                    <div class="form-column-container-label">Discount</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="discount" matInput placeholder="Input"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                    </mat-form-field>
+                    <mat-error *ngIf="productFormGroup.get('discount').touched && 
+                                        productFormGroup.controls.discount.invalid &&
+                                        productFormGroup.controls.discount.hasError('required')"
+                        class="ecommerce-errror-lbl">
+                        Discount is required</mat-error>
+                </div>
+                <!--fields-->
+                <div class="product-form-field col-lg-3">
+                    <div class="form-column-container-label">Year of Warranty</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="yearsWarranty" matInput placeholder="Input"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                    </mat-form-field>
+                    <mat-error *ngIf="productFormGroup.get('yearsWarranty').touched && 
+                                        productFormGroup.controls.yearsWarranty.invalid &&
+                                        productFormGroup.controls.yearsWarranty.hasError('required')"
+                        class="ecommerce-errror-lbl">
+                        Year of Warranty is required</mat-error>
+                </div>
+                <!--fields-->
+                <div class="product-form-field col-lg-3">
+                    <div class="form-column-container-label">SKU</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="stockKeepingUnit" matInput placeholder="Input">
+                    </mat-form-field>
+                    <mat-error
+                        *ngIf="productFormGroup.get('stockKeepingUnit').touched && 
+                                                        productFormGroup.controls.stockKeepingUnit.invalid &&
+                                                        productFormGroup.controls.stockKeepingUnit.hasError('required')"
+                        class="ecommerce-errror-lbl">
+                        SKU is required</mat-error>
+                </div>
+            </div>
+            <div class="flex-form-container">
+                <div class="product-form-field col-lg-2 flex"
+                    style="display: flex;margin-top: 1em; align-items: center;">
+                    <mat-checkbox color="primary" formControlName="isLatest">Is Latest?</mat-checkbox>
+                </div>
+                <!--fields-->
+                <div class="product-form-field col-lg-5">
+                    <div class="form-column-container-label">Origin</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="origin" matInput placeholder="Input">
+                    </mat-form-field>
+                    <mat-error *ngIf="productFormGroup.get('origin').touched && 
+                                                                productFormGroup.controls.origin.invalid &&
+                                                                productFormGroup.controls.origin.hasError('required')"
+                        class="ecommerce-errror-lbl">
+                        Origin is required</mat-error>
+                </div>
+                <!--fields-->
+                <div class="product-form-field col-lg-5 p-0">
+                    <div class="form-column-container-label">Category</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <mat-select formControlName="category">
+                            <mat-option *ngFor="let category of categories" [value]="category.name">
+                                {{category.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error
+                        *ngIf="productFormGroup.get('category').touched && 
+                                                                    productFormGroup.controls.category.invalid &&
+                                                                    productFormGroup.controls.category.hasError('required')"
+                        class="ecommerce-errror-lbl">
+                        Category is required</mat-error>
+                </div>
+            </div>
+            <span class="form-header-label pb-5 pt-5" #detailInfo>Details Info</span>
+            <!--tabs-->
+            <mat-tab-group>
+                <mat-tab label="Technology">
+                    <div class="mat-tab-header">Technology</div>
+                    <jodit-editor
+                        [config]="{'toolbarAdaptive': false, 'minHeight': 300, 'disablePlugins': 'powered-by-jodit','autofocus': true}"
+                        formControlName="technologyHtmlContent"></jodit-editor>
+                </mat-tab>
+                <mat-tab label="Features">
+                    <div class="mat-tab-header">Features</div>
+                    <jodit-editor
+                        [config]="{'toolbarAdaptive': false, 'minHeight': 300, 'disablePlugins': 'powered-by-jodit','autofocus': true}"
+                        formControlName="featureHtmlContent"></jodit-editor>
+                </mat-tab>
+                <mat-tab label="Specifications">
+                    <div class="mat-tab-header">Specifications</div>
+                    <jodit-editor
+                        [config]="{'toolbarAdaptive': false, 'minHeight': 300, 'disablePlugins': 'powered-by-jodit','autofocus': true}"
+                        formControlName="specificationHtmlContent"></jodit-editor>
+                </mat-tab>
+            </mat-tab-group>
+
+            <span class="form-header-label pb-5 pt-5" #thumbnail>Product thumbnail</span>
+            <label style="display: none;">
+                <input id="thumbnail_upload" type="file" #file accept=".jpg, .jpeg, .png, .gif"
+                    (change)="onStickerUpload($event,'thumbnail')">
+            </label>
+            <button mat-button type="button" class="btn btn-upload btn-upload text-black"
+                (click)="triggerUpload('thumbnail_upload')">
+                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                    <div class="material-icons">add</div>
+                    <div fxFlex><span>Add Image</span></div>
+                </div>
+            </button>
+            <div style="display: flex; min-height: 209px!important;" class="thumbnail-container mt-3">
+                <ng-container formArrayName="productImages"
+                    *ngIf="productFormGroup.controls['productImages']['controls'].length > 0">
+                    <div *ngFor="let image of productFormGroup.controls['productImages']['controls']; let i = index"
+                        class="thumbnail-item-container col-lg-2 col-md-3" [formGroupName]="i">
+                        <div>
+                            <div class="material-icons pointer"
+                                (click)="removeProductImages(i,image['controls']['imageUrl'].value,'product-images')"
+                                style="position: absolute; right: .25em; top: .25em; background: transparent;color: #F64E60;border-radius: 50%; font-weight:bolder;">
+                                close</div>
+                            <img class="single-image" [src]="image['controls']['imageUrl'].value" width="100%"/>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <span class="form-header-label pb-5 pt-5" #stickerBanner>Sticker Banner</span>
+            <div class="flex-sticker-container pb-6">
+                <div class="col-lg-4">
+                    <div class="sticker-container">
+                        <div fxLayoutAlign="space-between center">
+                            <span class="sticker-header">Promo Sticker</span>
+                            <mat-slide-toggle [checked]="productFormGroup.get('isPromoActive').value"
+                                (change)="onSwitchToggle($event,'promo')"
+                                [disabled]="!productFormGroup.get('promoStickerImageUrl').value">
+                            </mat-slide-toggle>
+                        </div>
+                        <div fxLayoutAlign="center center" class="inside-sticker-container">
+                            <!---->
+                            <label style="display: none;">
+                                <input id="promo_upload" type="file" #file accept=".jpg, .jpeg, .png, .gif"
+                                    (change)="onStickerUpload($event,'promo')">
+                            </label>
+                            <!---->
+                            <button *ngIf="!productFormGroup.get('promoStickerImageUrl').value" mat-button type="button"
+                                class="btn btn-upload" (click)="triggerUpload('promo_upload')">
+                                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                                    <img src="../../../../assets/media/svg/logos/arrow-up.svg" alt=""
+                                        class="image-icon">
+                                    <div fxFlex><span>Upload Sticker</span></div>
+                                </div>
+                            </button>
+                            <!---->
+                            <div *ngIf="productFormGroup.get('promoStickerImageUrl').value" class="col-lg-12" fxLayoutAlign="center center">
+                                <div style="position: relative; display: flex; align-items: center;"
+                                    [ngStyle]="{'height': (productFormGroup.get('promoStickerImageUrl').value) ? '110px' : '0px'}">
+                                    <img class="single-image" [src]="productFormGroup.get('promoStickerImageUrl').value" width="100%"/>
+                                </div>
+                            </div>
+                            <!---->
+                            <button *ngIf="productFormGroup.get('promoStickerImageUrl').value" mat-button type="button"
+                                class="btn btn-change-sticker" (click)="triggerUpload('promo_upload')"
+                                [disabled]="productFormGroup.get('isPromoActive').value">
+                                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                                    <div fxFlex><span>Change Sticker</span></div>
+                                </div>
+                            </button>
+                            <!---->
+                            <span class="sticker-description">Image Dimension: 262x68px (jpg, png, gif)</span>
+                            <!---->
+                            <button *ngIf="productFormGroup.get('promoStickerImageUrl').value" mat-button type="button"
+                                class="btn btn-delete" (click)="removeSticker('promo')"
+                                [disabled]="productFormGroup.get('isPromoActive').value">
+                                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                                    <div fxFlex><span>Delete</span></div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-form-field pt-3">
+                        <div class="form-column-container-label">Promo Sticker Name</div>
+                        <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                            <input formControlName="promoStickerName" matInput placeholder="Input">
+                        </mat-form-field>
+                        <mat-error *ngIf="productFormGroup.get('promoStickerName').touched && 
+                                              productFormGroup.controls.promoStickerName.invalid &&
+                                              productFormGroup.controls.promoStickerName.hasError('required')"
+                            class="ecommerce-errror-lbl">
+                            Promo Sticker Name is required</mat-error>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="sticker-container">
+                        <div fxLayoutAlign="space-between center">
+                            <span class="sticker-header">Mini Banner Sticker</span>
+                            <mat-slide-toggle [checked]="productFormGroup.get('isMiniBannerActive').value"
+                                (change)="onSwitchToggle($event,'mini_banner')"
+                                [disabled]="!productFormGroup.get('miniBannerStickerImageUrl').value">
+                            </mat-slide-toggle>
+                        </div>
+                        <div fxLayoutAlign="center center" class="inside-sticker-container">
+                            <!---->
+                            <label style="display: none;">
+                                <input id="mini_banner_upload" type="file" #file accept=".jpg, .jpeg, .png, .gif"
+                                    (change)="onStickerUpload($event,'mini_banner')">
+                            </label>
+                            <!---->
+                            <button *ngIf="!productFormGroup.get('miniBannerStickerImageUrl').value" mat-button
+                                type="button" class="btn btn-upload" (click)="triggerUpload('mini_banner_upload')">
+                                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                                    <img src="../../../../assets/media/svg/logos/arrow-up.svg" alt=""
+                                        class="image-icon">
+                                    <div fxFlex><span>Upload Sticker</span></div>
+                                </div>
+                            </button>
+                            <!---->
+                            <div *ngIf="productFormGroup.get('miniBannerStickerImageUrl').value" class="col-lg-12"
+                                fxLayoutAlign="center center">
+                                <div style="position: relative; display: flex; align-items: center;"
+                                    [ngStyle]="{'height': (productFormGroup.get('miniBannerStickerImageUrl').value) ? '110px' : '0px'}">
+                                    <img class="single-image"
+                                        [src]="productFormGroup.get('miniBannerStickerImageUrl').value" width="100%"/>
+                                </div>
+                            </div>
+                            <!---->
+                            <button *ngIf="productFormGroup.get('miniBannerStickerImageUrl').value" mat-button
+                                type="button" class="btn btn-change-sticker"
+                                (click)="triggerUpload('mini_banner_upload')"
+                                [disabled]="productFormGroup.get('isMiniBannerActive').value">
+                                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                                    <div fxFlex><span>Change Sticker</span></div>
+                                </div>
+                            </button>
+                            <!---->
+                            <span class="sticker-description">Image Dimension: 228x58px (jpg, png, gif)</span>
+                            <!---->
+                            <button *ngIf="productFormGroup.get('miniBannerStickerImageUrl').value" mat-button
+                                type="button" class="btn btn-delete" (click)="removeSticker('mini_banner')"
+                                [disabled]="productFormGroup.get('isMiniBannerActive').value">
+                                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                                    <div fxFlex><span>Delete</span></div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-form-field pt-3">
+                        <div class="form-column-container-label">Mini Banner Name</div>
+                        <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                            <input formControlName="miniBannerName" matInput placeholder="Input">
+                        </mat-form-field>
+                        <mat-error *ngIf="productFormGroup.get('miniBannerName').touched && 
+                                              productFormGroup.controls.miniBannerName.invalid &&
+                                              productFormGroup.controls.miniBannerName.hasError('required')"
+                            class="ecommerce-errror-lbl">
+                            Mini Banner Name is required</mat-error>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="sticker-container">
+                        <div fxLayoutAlign="space-between center">
+                            <span class="sticker-header">Warranty Sticker</span>
+                            <mat-slide-toggle [checked]="productFormGroup.get('isWarrantyActive').value"
+                                (change)="onSwitchToggle($event,'warranty')"
+                                [disabled]="!productFormGroup.get('warrantyStickerImageUrl').value">
+                            </mat-slide-toggle>
+                        </div>
+                        <div fxLayoutAlign="center center" class="inside-sticker-container">
+                            <label style="display: none;">
+                                <input id="warranty_banner" type="file" #file accept=".jpg, .jpeg, .png, .gif"
+                                    (change)="onStickerUpload($event,'warranty')">
+                            </label>
+                            <!---->
+                            <button *ngIf="!productFormGroup.get('warrantyStickerImageUrl').value" mat-button
+                                type="button" class="btn btn-upload" (click)="triggerUpload('warranty_banner')">
+                                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                                    <img src="../../../../assets/media/svg/logos/arrow-up.svg" alt=""
+                                        class="image-icon">
+                                    <div fxFlex><span>Upload Sticker</span></div>
+                                </div>
+                            </button>
+                            <!---->
+                            <div *ngIf="productFormGroup.get('warrantyStickerImageUrl').value" class="col-lg-12"
+                                fxLayoutAlign="center center">
+                                <div style="position: relative; display: flex; align-items: center;"
+                                    [ngStyle]="{'height': (productFormGroup.get('warrantyStickerImageUrl').value) ? '110px' : '0px'}">
+                                    <img class="single-image"
+                                        [src]="productFormGroup.get('warrantyStickerImageUrl').value" width="100%"/>
+                                </div>
+                            </div>
+                            <!---->
+                            <button *ngIf="productFormGroup.get('warrantyStickerImageUrl').value" mat-button
+                                type="button" class="btn btn-change-sticker" (click)="triggerUpload('warranty_banner')"
+                                [disabled]="productFormGroup.get('isWarrantyActive').value">
+                                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                                    <div fxFlex><span>Change Sticker</span></div>
+                                </div>
+                            </button>
+                            <!---->
+                            <span class="sticker-description">Image Dimension: 110x110px (jpg, png, gif)</span>
+                            <!---->
+                            <button *ngIf="productFormGroup.get('warrantyStickerImageUrl').value" mat-button
+                                type="button" class="btn btn-delete" (click)="removeSticker('warranty')"
+                                [disabled]="productFormGroup.get('isWarrantyActive').value">
+                                <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                                    <div fxFlex><span>Delete</span></div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-form-field pt-3">
+                        <div class="form-column-container-label">Warranty Name</div>
+                        <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                            <input formControlName="warrantyName" matInput placeholder="Input">
+                        </mat-form-field>
+                        <mat-error *ngIf="productFormGroup.get('warrantyName').touched && 
+                                              productFormGroup.controls.warrantyName.invalid &&
+                                              productFormGroup.controls.warrantyName.hasError('required')"
+                            class="ecommerce-errror-lbl">
+                            Warranty Name is required</mat-error>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-outer-container">
+                <div fxLayoutAlign="space-between center">
+                    <span class="sticker-header">Feature Sticker</span>
+                    <mat-slide-toggle [checked]="productFormGroup.get('isFeatureActive').value"
+                        (change)="onSwitchToggle($event,'feature')"
+                        [disabled]="productFormGroup.controls['productFeatures']['controls'].length == 0">
+                    </mat-slide-toggle>
+                </div>
+                <div class="pt-3" fxLayoutAlign="start center">
+                    <label style="display: none;">
+                        <input id="feature_upload" type="file" #file accept=".jpg, .jpeg, .png, .gif"
+                            (change)="onStickerUpload($event,'feature')">
+                    </label>
+                    <button mat-button type="button" class="btn btn-upload text-black"
+                        [disabled]="productFormGroup.controls['productFeatures']['controls'].length >= 3 || productFormGroup.get('isFeatureActive').value"
+                        (click)="triggerUpload('feature_upload')">
+                        <div fxLayoutAlign="center center" fxFlex="100" fxLayout="row">
+                            <div class="material-icons">add</div>
+                            <div fxFlex><span>Add Image</span></div>
+                        </div>
+                    </button>
+                    <span class="sticker-description pl-3">Image Dimension: At least 90px in height (jpg, png,
+                        gif)</span>
+                </div>
+                <div class="feature-container">
+                    <ng-container formArrayName="productFeatures"
+                        *ngIf="productFormGroup.controls['productFeatures']['controls'].length > 0">
+                        <div *ngFor="let feature of productFormGroup.controls['productFeatures']['controls']; let i = index"
+                            class="feature-item-container col-lg-3" [formGroupName]="i">
+                            <div>
+                                <div class="material-icons pointer"
+                                    (click)="removeProductImages(i,feature['controls']['imageUrl'].value,'product-features')"
+                                    style="position: absolute; right: .25em; top: .25em; background: #F64E60;color: white;border-radius: 50%; font-weight:bolder;">
+                                    close</div>
+                                <img class="feature-image" [src]="feature['controls']['imageUrl'].value" width="100%"/>
+                            </div>
+                            <div class="product-form-field mt-3">
+                                <div class="form-column-container-label">Name</div>
+                                <mat-form-field appearance="outline" class="full-width ecommerce-custom-field p-0">
+                                    <input matInput placeholder="Input" [formControl]="feature['controls']['name']">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="margin: 0px;">
+    <div class="product-footer">
+        <div fxLayout="row">
+            <div fxFlex></div>
+            <button (click)="closeDialog()" mat-button class="btn btn-light-primary fs12 mr-1">
+                Cancel
+            </button>
+            <button (click)="onClickSave()" [disabled]="productFormGroup.invalid || !productFormGroup.dirty" mat-button
+                class="btn btn-primary fs12">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

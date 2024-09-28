@@ -1,0 +1,46 @@
+<section class="nav-container">
+
+    <section class="mb-10">
+        <div class="nav-cont-title">
+           <div fxLayout="row" fxLayoutAlign="center center">
+                <div> Sort by</div>
+                <div fxFlex></div>
+           </div>
+        </div>
+        <ng-container *ngFor="let sort of sortList">
+            <div fxLayout="column">
+                <mat-checkbox   class="fs12 font-poppins" (change)="filterByCategory(sort, 'SortBy', checkboxRef)"
+                                [checked]="filters['SortBy'] && filters['SortBy'].name && filters['SortBy'].name === sort.name"
+                                #checkboxRef>
+                    {{sort.name}}
+                </mat-checkbox>
+            </div>
+        </ng-container>
+    </section>
+
+    <section class="mb-10">
+        <div class="nav-cont-title">
+           <div fxLayout="row" fxLayoutAlign="center center">
+                <div> Prices</div>
+                <div fxFlex></div>
+           </div>
+        </div>
+        <ng-container *ngFor="let price of priceList">
+            <div fxLayout="column">
+                <mat-checkbox   class="fs12 font-poppins" 
+                                (change)="filterByCategory(price, 'Price', checkboxRef2)"  
+                                [checked]="filters['Price'] && filters['Price'].value && filters['Price'].value === price.value"
+                                #checkboxRef2>
+                    {{price.name}}
+                </mat-checkbox>
+            </div>
+        </ng-container>
+    </section>
+    
+    <button (click)="filter()"  class="btn btn-primary btn-filter">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div class="filter-icon material-icons-outlined ml-3">filter_alt</div>
+            <div class="filter-lbl">Filter</div>
+        </div>
+    </button>
+</section>

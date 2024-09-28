@@ -1,0 +1,181 @@
+<div class="order-details-container">
+    <div class="order-header">
+        <div fxLayout="row">
+            <div fxFlex class="order-title">Order Details</div>
+            <div (click)="closeDialog()" class="header-close-icon pointer">
+                <div class="material-icons close-icon">close</div>
+            </div>
+        </div>
+    </div>
+        <div class="order-container">
+            <div [formGroup]="orderFormGroup" class="form-cont">
+                <div class="order-form-field">
+                    <div class="form-column-container-label">Order Items</div>
+                    <div style="max-height: 10vh; overflow-y: scroll;">
+                        <ng-container *ngFor="let item of orderItems">
+                            <div fxLayout="row" class="order-item-container" fxLayoutAlign="start center">
+                                <div class="order-item-image-container" fxLayoutAlign="center">
+                                    <img class="order-confirmed-item-image" [src]="item.imageUrl">
+                                </div>
+                                <div fxFlex>
+                                    <div fxLayout="column">
+                                        <div class="order-confirmed-item-title">{{item.name}}</div>
+                                    </div>
+                                </div>
+                                <!---->
+                                <div fxFlex="15" class="text-center">
+                                    <div class="qty-label-container text-center">
+                                        <span class="order-item-qty">{{item.quantity}}</span>
+                                    </div>
+                                </div>
+                                <div fxFlex="15" class="order-item-price text-center">
+                                    {{(item.discountedPrice > 0 ? item.discountedPrice : item.price) | currency:"PHP ":"symbol"}}</div>
+                            </div>
+                            <div class="order-divider"></div>
+                        </ng-container>
+                    </div>
+                </div>
+                <!--fields-->
+                <div class="order-form-field">
+                    <div class="form-column-container-label">Order Number</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="orderNumber" matInput readonly> 
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="orderFormGroup.get('name').touched && 
+                                      orderFormGroup.controls.name.invalid &&
+                                      orderFormGroup.controls.name.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                     Name is required</mat-error> -->
+                </div>
+                <!--fields-->
+                <div class="order-form-field">
+                    <div class="form-column-container-label">Order Date</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="orderDate" matInput readonly> 
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="orderFormGroup.get('name').touched && 
+                                      orderFormGroup.controls.name.invalid &&
+                                      orderFormGroup.controls.name.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                     Name is required</mat-error> -->
+                </div>
+                <!--fields-->
+                <div class="order-form-field">
+                    <div class="form-column-container-label">Order Status</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="orderStatus" matInput readonly> 
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="orderFormGroup.get('name').touched && 
+                                      orderFormGroup.controls.name.invalid &&
+                                      orderFormGroup.controls.name.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                     Name is required</mat-error> -->
+                </div>
+                <!--fields-->
+                <div class="order-form-field">
+                    <div class="form-column-container-label">Total Price</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="totalPrice" matInput readonly> 
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="orderFormGroup.get('name').touched && 
+                                      orderFormGroup.controls.name.invalid &&
+                                      orderFormGroup.controls.name.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                     Name is required</mat-error> -->
+                </div>
+                <!--fields-->
+                <div class="order-form-field">
+                    <div class="form-column-container-label">Special Notes</div>
+                            <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                                <textarea formControlName="notes" matInput readonly></textarea>
+                            </mat-form-field>
+                            <!-- <mat-error *ngIf="orderFormGroup.get('description').touched && 
+                                            orderFormGroup.controls.description.invalid &&
+                                            orderFormGroup.controls.description.hasError('required')"  
+                                            class="ecommerce-errror-lbl">
+                                            Description is required</mat-error> -->
+                </div>
+                
+                <div fxLayout="row">
+                    <!--fields-->
+                    <div fxFlex class="order-form-field mr-1">
+                        <div class="form-column-container-label">ReceiverStreet/Bldg/HouseNo</div>
+                        <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                            <input formControlName="receiverStreetBlgHouseNo" matInput readonly> 
+                        </mat-form-field>
+                        <!-- <mat-error *ngIf="orderFormGroup.get('name').touched && 
+                                          orderFormGroup.controls.name.invalid &&
+                                          orderFormGroup.controls.name.hasError('required')"  
+                                          class="ecommerce-errror-lbl">
+                                         Name is required</mat-error> -->
+                    </div>
+
+                    <!--fields-->
+                    <div fxFlex class="order-form-field ml-1">
+                        <div class="form-column-container-label">Receiver Address</div>
+                        <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                            <input formControlName="receiverAddress" matInput readonly> 
+                        </mat-form-field>
+                        <!-- <mat-error *ngIf="orderFormGroup.get('name').touched && 
+                                        orderFormGroup.controls.name.invalid &&
+                                        orderFormGroup.controls.name.hasError('required')"  
+                                        class="ecommerce-errror-lbl">
+                                        Name is required</mat-error> -->
+                    </div>
+                </div>
+                
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <!--fields-->
+                <div class="order-form-field">
+                    <div class="form-column-container-label">Receiver Name</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="receiverName" matInput readonly> 
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="orderFormGroup.get('name').touched && 
+                                      orderFormGroup.controls.name.invalid &&
+                                      orderFormGroup.controls.name.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                     Name is required</mat-error> -->
+                </div>
+                <!--fields-->
+                <!--fields-->
+                <div class="order-form-field">
+                    <div class="form-column-container-label">Receiver Email</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="receiverEmail" matInput readonly> 
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="orderFormGroup.get('name').touched && 
+                                      orderFormGroup.controls.name.invalid &&
+                                      orderFormGroup.controls.name.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                     Name is required</mat-error> -->
+                </div>
+                <!--fields-->
+                <!--fields-->
+                <div class="order-form-field">
+                    <div class="form-column-container-label">Receiver Contact Number</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="receiverContactNumber" matInput readonly> 
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="orderFormGroup.get('name').touched && 
+                                      orderFormGroup.controls.name.invalid &&
+                                      orderFormGroup.controls.name.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                     Name is required</mat-error> -->
+                </div>
+                <!--fields-->
+                </div>
+            </div>
+        </div>
+        <div class="order-footer">
+            <div fxLayout="row">
+                <div fxFlex></div>
+                <button (click)="closeDialog()" mat-button class="btn btn-light-primary fs12 mr-1">
+                    Close
+                </button>
+                <!-- <button (click)="save()" [disabled]="orderFormGroup.invalid" mat-button class="btn btn-primary fs12">
+                   Save
+                </button> -->
+            </div>
+        </div>
+</div>

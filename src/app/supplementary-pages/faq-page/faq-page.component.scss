@@ -1,0 +1,102 @@
+::ng-deep.faq-container {
+    min-height: 60vh;
+    overflow: auto;
+    padding: 3em 13%;
+    .pp-header {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 500;
+        margin-bottom: 1.5em;
+        border-bottom: 3px solid #00CDFF;
+        width: fit-content;
+        padding-bottom: 5px;
+    }
+    .btn-link {
+        text-align: start;
+        width: 100%;
+        color: black !important;
+        border-radius: 4px 0px !important;
+    }
+    .btn-link:hover, .btn-link:focus {text-decoration: none !important;}
+    .card-header {background-color: transparent !important;}
+
+    .accordion[activeids]{
+        .btn-link[aria-expanded=true] { background: #0C71C3; color: white !important;}
+        .collapse.show{
+            .card-body { background: whitesmoke; color: black !important;}
+        }
+    }
+}
+
+.mb-1p {margin-bottom: 1.5em;}
+.bold { font-weight: 600;}
+.center { text-align: center;;}
+
+a { color: white; }
+a:visited {color: #d6d3d3; }
+a:hover {color: #d6d3d3; }
+
+.tech-table,
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: center;
+
+}
+.tech-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .blue-td {
+    background: #1584af;
+    color: white;
+  }
+
+  
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+    .faq-container {
+        padding: 2em !important;
+        zoom: 85%;
+    }
+
+    .pp-header {
+        font-size: 21px !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+    .faq-container {
+        padding: 2em !important;
+        zoom: 85%;
+    }
+
+    .pp-header {
+        font-size: 21px !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+//landscape --
+
+::ng-deep {
+    
+    @media (max-height: 536px) and (orientation : landscape)  {
+        .faq-container {
+            padding: 2em !important;
+            zoom: 85%;
+        }
+
+        
+        .pp-header {
+            font-size: 21px !important;
+            margin-bottom: 15px !important;
+        }
+    }
+
+}

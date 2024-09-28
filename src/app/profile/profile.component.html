@@ -1,0 +1,83 @@
+<section class="profile-dashboard-container">
+    <!---->
+    <div fxLayout="row">
+        <div class="profile-dashboard-main" fxLayoutAlign="center top">
+            <!---->
+            <div class="profile-dashboard-row-1" fxLayout="column" fxLayoutAlign="start start" fxFlex="18">
+                <!-- <div class="step1 border border-warning"> -->
+               <app-profile-dashboard-side-nav
+                class="full-width" 
+                [navlist]="navlist" 
+                [username]="username" 
+                (changeSelectedNav)="changeSelectedNav($event)">
+                </app-profile-dashboard-side-nav>
+            </div>
+            <!---->
+            <div class="profile-dashboard-row-2" fxLayout="column" fxFlex>
+
+
+                <ng-template #useRouting>                    
+                    <!-- MAINTEnaNCE HERE.....using router navigation -->
+                    
+                        <router-outlet></router-outlet>                
+                   
+                 </ng-template>  
+                                 
+                <div *ngIf="!currentNode.routerLink; else useRouting">
+                      <!--order-->
+                        <ng-container *ngIf="navType == 'Warehouse'">
+                            <app-warehouse-management></app-warehouse-management>
+                        </ng-container>
+                        
+                        <!--order-->
+                        <ng-container *ngIf="navType == 'Store'">
+                            <app-store-management></app-store-management>
+                        </ng-container>
+
+                        <!--order-->
+                        <ng-container *ngIf="navType == 'Product'">
+                            <app-product-management></app-product-management>
+                        </ng-container>
+
+                        <!--category-->
+                        <ng-container *ngIf="navType == 'Category'">
+                            <app-category-management></app-category-management>
+                        </ng-container>
+
+                        <!--category-->
+                        <ng-container *ngIf="navType == 'Inventory'">
+                            <app-inventory-management></app-inventory-management>
+                        </ng-container>
+
+                        <!--order-->
+                        <ng-container *ngIf="navType == 'Orders'">
+                            <app-order-management></app-order-management>
+                        </ng-container>
+
+                        <ng-container *ngIf="navType == 'maintenance'">
+                            <!-- <app-maintenace></app-maintenace> -->                    
+                        </ng-container>
+
+                        <!--carousel-management-->
+                        <ng-container *ngIf="navType == 'Carousel Banner'">
+                            <app-carousel-management></app-carousel-management>
+                        </ng-container>
+
+                        <!--content-management-->
+                        <ng-container *ngIf="navType == 'Content Management'">
+                            <app-content-management></app-content-management>
+                        </ng-container>
+                        <!---->
+                        <!-- <ng-container *ngIf="navType != 'Category' && navType != 'Orders'">
+                            <app-profile-dashboard-card [viewType]="navType"></app-profile-dashboard-card>
+                        </ng-container> -->
+                        <!---->
+                    </div>
+
+            </div>
+            
+        </div>
+    </div>
+    <!---->
+</section>
+<app-scroll-top>Scroll here</app-scroll-top>

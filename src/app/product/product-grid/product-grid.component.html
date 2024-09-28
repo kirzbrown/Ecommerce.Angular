@@ -1,0 +1,25 @@
+<section class="catalog-list">
+    <div *ngIf="productTitle" class="product-title">{{productTitle}}</div>        
+    <div class="" fxLayout="row wrap" fxLayoutAlign="center">
+        <!------------------------------->
+        <ng-container *ngFor="let product of productList" >
+            <div (click)="viewDetails(product)" fxLayout="column" class="product-item-container">
+                <div *ngIf="product.isPromoActive"  class="ribbon ribbon-left">
+                    <div class="ribbon-target ribbon-color" style="top: 10px; left: -2px;">{{product.promoStickerName}}</div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <div class="product-item-thumnail full-width" fxLayoutAlign="center">
+                        <app-product-item-thumbnail [viewType]="viewType" [product]="product"></app-product-item-thumbnail>
+                    </div>
+                </div>
+                <!---->
+                <div class="product-card-details"  fxLayout="column">
+                    <div fxFlex class="product-item-details">
+                        <app-product-item-details [viewType]="viewType" [product]="product"></app-product-item-details>
+                    </div>
+                </div>
+            </div>
+       </ng-container>
+        <!------------------------------->
+    </div>
+</section>

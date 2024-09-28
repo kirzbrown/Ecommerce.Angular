@@ -1,0 +1,219 @@
+<div class="category-details-container">
+    <div class="category-header">
+        <div fxLayout="row">
+            <div fxFlex class="category-title">{{fromDialog.isAdd ? 'Add' : 'Edit'}} Service Area</div>
+            <div (click)="closeDialog()" class="header-close-icon pointer">
+                <div class="material-icons close-icon">close</div>
+            </div>
+        </div>
+    </div>
+
+    <!--BODY-------------->
+    <mat-dialog-content class="mat-typography">
+
+        <!--HEADER-------------->
+        <div class="category-container">
+            
+            <div [formGroup]="modelVM.formDialog" class="form-cont">
+
+                <div formGroupName="header">
+
+              
+                <!--fields-->
+                <div class="showroom-form-field">
+                    <div class="form-column-container-label">Name</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="province" matInput placeholder="province">
+                    </mat-form-field>
+                    <mat-error *ngIf="modelVM.formHeader.get('province').touched && 
+                                modelVM.formHeader.controls.province.invalid &&
+                                modelVM.formHeader.controls.province.hasError('required')" class="ecommerce-errror-lbl">
+                        Name is required</mat-error>
+                </div>
+                <!--fields-->
+                <div class="showroom-form-field">
+
+                    <div class="d-flex flex-row justify-content-start align-items-center">
+
+                        <div class="align-middle mr-2">city/town:</div>
+
+                        <div>
+
+                            <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                                <input formControlName="city" matInput placeholder="enter city here...">
+                            </mat-form-field>
+
+                        </div>
+                        <div class="m-3 ">
+                            <button type="submit" (click)="addCity()" [disabled]="isAddCityInValid()" mat-button
+                                class="btn btn-primary fs12">
+                                Add City
+                            </button>
+                        </div>
+                        <!-- <div class="text-center">
+                                <mat-error *ngIf="isAddCityInValid()" class="ecommerce-errror-lbl">
+                                    City Name is required</mat-error>
+                            </div> -->
+
+                    </div>
+
+                </div>
+
+             
+
+            </div>
+                <div>
+                    <div                                      
+                    class="mat-elevation-z8">
+                     <!-- SEARCH --------------------------------------->
+                    <div class="d-flex align-items-center justify-content-start ">
+                        <div class="col-1 pl-3 mr-4">
+                            <div class="" matBadge="{{badgeCnt}}" #badge>Total</div>
+                        </div>
+                        <div class="search-container">
+                            <mat-form-field appearance="outline" class="full-width ecommerce-custom-field text-center">
+                              <input matInput #searchControl (keyup)="searhCity(searchControl.value)"
+                                placeholder="Search by city name.." > 
+                              <button matSuffix mat-icon-button aria-label="Clear" >
+                                <mat-icon>search</mat-icon>
+                              </button>
+                            </mat-form-field>
+                          </div>
+                    </div>
+                    <!-- CITY LIST --------------------------------------->
+                    <div>
+                  <!--TABLE--------------------------------------------------------------------------->
+                 <!-- <mat-table  #table [dataSource]="modelVM.formDto.controls">
+                    <ng-container matColumnDef="city">
+                      <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
+                      <mat-cell *matCellDef="let city; index as i">
+                  
+                      </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table> -->
+                    </div>              
+                    <ng-container formArrayName="cityList">                        
+                        <ng-container *ngFor="let cityForm of cityList.controls; let i = index">
+
+                          <div class="container" [formGroupName]="i">
+                            <hr>  
+
+                            <div *ngIf="cityForm.get('isVisible').value===true"  
+                                class=" d-flex justify-content-between p-1">
+
+                                <div class="d-flex align-items-center">
+                                    {{setNo(i)}}.
+                                </div>
+
+                                <div class="col-3 d-flex align-items-center ">                                    
+
+                                    <!-- formControlName="isEnabled"  -->
+                                 <mat-slide-toggle  color="cyan" (click)="toggleRow(cityForm,i)"
+                                
+                                 ></mat-slide-toggle>
+                                </div>
+                              
+                                <div class="col-6 d-flex align-items-center" >
+                                    <!-- [disabled]="cityForm.get('isEnabled').value" -->
+                                    <div *ngIf="cityForm.get('isEnabled').value===true" >
+                                        <mat-form-field appearance="outline">
+                                            <input matInput  
+                                           
+                                                   formControlName="city"
+                                                   placeholder="city" />                    
+                                          </mat-form-field>  
+                                    </div>
+                                    <div *ngIf="cityForm.get('isEnabled').value===false" >
+                                        {{cityForm.get('city').value}}              
+                                    </div>
+                                 
+                                 
+                                                   
+                                </div>
+                                
+
+                                <div class="col-3">
+
+                                    <button (click)="deleteCity(i)" class="btn btn-danger"
+                                         mat-mini-fab  aria-label="delete city">
+                                        <mat-icon>delete_forever</mat-icon>
+                                      </button>
+    
+                                    
+                                   </div>
+
+                            </div>
+
+                                    
+                            
+                           
+                            </div>
+
+                         
+                            
+                        </ng-container>
+                    </ng-container>
+                           
+                       
+                  </div>                     
+                 
+                   
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </mat-dialog-content>
+
+
+
+    <mat-dialog-actions align="end">
+        <!-- <button mat-button mat-dialog-close>Cancel</button>
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+
+        <div class="category-footer w-100">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <button (click)="closeDialog()" mat-button class="btn btn-light-primary fs12 mr-1">
+                        Cancel
+                    </button>
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+
+                    <div class="mt-1 mr-5">
+                        <mat-slide-toggle [(ngModel)]="IsActiveEntry" color="primary">
+                        <!-- <mat-slide-toggle formControlName ="isEnabled" color="primary"> -->
+                            {{toggleLabel}}
+                        </mat-slide-toggle>
+
+                        <!-- 
+                                    <mat-slide-toggle formControlName="isActive" 
+                                         [ngStyle]="{'--toggle-text': IsActiveEntry ? 'Enabled' : 'Disabled'}">
+                                    </mat-slide-toggle> -->
+                    </div>
+
+                    <div>
+                        <button (click)="save()" [disabled]="modelVM.formHeader.invalid" mat-button
+                            class="btn btn-primary fs12">
+                            Save
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </mat-dialog-actions>
+
+</div>

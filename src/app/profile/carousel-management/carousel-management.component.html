@@ -1,0 +1,23 @@
+<div class="carousel-header">Carousel Banner</div>
+<!---->
+<div class="card-carousel">
+    <!---->
+    <button (click)="openWizard(true)" mat-button class="btn btn-add-carousel text-black">
+        <div fxLayouAlign="center center" fxFlex="100" fxLayout="row">
+            <div class="material-icons mr-3" style="align-self: center;">add</div>
+            <div fxFlex><span>Add Banner</span></div>
+        </div>
+    </button>
+    <div class="carousel-container" fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <app-carousel-details *ngFor="let carousel of carouselList" class="col-lg-6"
+            [carousel]="carousel" (triggerGetCarouselList)="getDataByPage(false)"></app-carousel-details>
+    </div>
+
+    <div fxLayout="row" class="paginator-container">
+        <div fxLayout="column">
+            <mat-paginator class="paginator" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                [pageSizeOptions]="pageSizeOptions" [length]="dataCount" (page)="onPaginatorClicked($event)">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,318 @@
+
+/** this code can be used on declaring specific elements on buttons and other UI elements **/
+
+@mixin font($font-size) {
+    font-size: $font-size !important;
+}
+
+@mixin text-declaration($text-decoration) {
+    text-decoration: $text-decoration !important;
+}
+
+@mixin bg-color($bg, $color) {
+    background: $bg !important;
+    color: $color !important;
+}
+
+@mixin color($color) {color: $color !important;}
+
+@mixin padding($padding) { padding: $padding !important;}
+
+@mixin margin($margin) { margin: $margin !important;}
+
+@mixin auto-generate-style-element($styleName, $value) {
+    #{$styleName}: #{$value} !important;
+}
+
+
+//----- this creates a list of classes with consecutve interval of the 'offset' which is 5
+$max: 50;
+$offset: 1;
+$unit: 'px';
+
+@mixin auto-generate-mixin-class($className, $styleName) {
+    $i: 0;
+    @while $i <= $max {
+        #{$className + $i} { 
+        #{$styleName}: #{$i + $unit};
+        }
+        $i: $i + $offset;
+    }
+}
+
+
+//**********************---     variable declarations      ---**********************//
+$percent-100: 100%;
+$vh-100: 100vh;
+$hidden: hidden;
+
+//---     font style      ---//
+$semi-bold: 500;
+$bold: 600;
+
+//---     font family      ---//
+$font-poppins: 'Poppins';
+
+//---     color      ---//
+$white: white;
+$black: black;
+$primaryColor: #3699ff;
+$dangerColor: #ec4d3b;
+$warningColor: #ffbb00;
+$darkColor: #3f4254;
+$java: #1bc5bd;
+$whitesmoke: whitesmoke;
+$webOrange: #ffa800;
+$santasGray: #9397b0;
+$heliotrope: #8f59fc;
+$white: white;
+$santasGrayish: #9ca1b7;
+$mystic: #e5eaee;
+$mischkaapprox: #d8d9e4;
+$cadetBlue: #a8acc1;
+$dodgetBlue: #5484ff;
+$periwinkleapprox: #c9d8ff;
+$spunPearl: #b0b0bc;
+$heliotropeapprox: #8d56fc;
+$heliotropeapprox2: #8d56fb;
+$electricViolet: #8950fc;
+$amour: #f4e1f0;
+$mischkaapprox: #d2d2db;
+$frenchGray: #b5b5c3;
+$jungleGreen: #2ba579;
+$finn: #58244b;
+$riverBed: #464e5f;
+$catskillWhite: #f3f5f9;
+$waterloo: #80808f;
+$mineShaft: #212121;
+$malibu: #6993ff;
+$snowGalvez: #d6d6e0;
+$subGray: #727372;
+$botGray: #6c757d;
+$bottomGray: #979797;
+$cherryRed: #f64e60;
+$lightSalmon: #FEE7DD;
+$crabRed: #E05417;
+$lightJungle: #C9F7F5;
+$mysticLight: #EEF1F5;
+$alto: #DBDBDB;
+$midGray: #636472;
+$zumthor: #E1E9FF;
+$eggSour: #FFF4DE;
+$mirage: #181C32;
+$mischkaDark: #D1D3E0;
+$hummingBird: #C9F7F5;
+$pippin: #FFE2E5;
+$whiteSolid: #F3F6F9;
+$blueIntrigue: #7E8299;
+
+
+//**********************---     custom stylesheets      ---**********************//
+
+//---     custom      ---//
+.full-width { width: $percent-100 !important}
+.full-height { height: $percent-100 !important}
+.full-height-vh { height: 100vh !important}
+
+//---     background color      ---//
+.bg-black {@include bg-color($black, $white);}
+.bg-white {@include bg-color($white, $black);}
+
+//---     text color      ---//
+.txt-black {@include color($black);}
+.txt-white {@include color($white);}
+
+//---     font      ---//
+.fs12{ @include font(12px);} 
+.fs13{ @include font(13px);} 
+.fs14{ @include font(14px);} 
+.fs15{ @include font(15px);} 
+.fs16{ @include font(16px);} 
+.fs17{ @include font(17px);} 
+.fs18{ @include font(18px);} 
+.fs19{ @include font(19px);} 
+.fs20{ @include font(20px);} 
+.fs21{ @include font(21px);} 
+.fs22{ @include font(22px);} 
+.fs23{ @include font(23px);} 
+.fs24{ @include font(24px);} 
+.fs25{ @include font(25px);} 
+.fs26{ @include font(26px);} 
+.fs27{ @include font(27px);} 
+
+//--      button               ---//
+.btn-light-primary {
+color: $malibu;
+background-color: $zumthor;
+border-color: transparent;
+
+&:hover {
+color: $white;
+background-color: $malibu;
+}
+}
+
+
+.btn-light-warning {
+color: $webOrange;
+background-color: $eggSour;
+border-color: transparent;
+
+&:hover {
+color: $white;
+background-color: $eggSour;
+}
+}
+
+.btn-light-danger {
+color: $cherryRed;
+background-color: $pippin;
+border-color: transparent;
+
+&:hover {
+color: $white;
+background-color: $cherryRed;
+span { color: $white !important;}
+}
+}
+
+.btn-light-success {
+color: $java;
+background-color: $hummingBird;
+border-color: transparent;
+
+&:hover {
+color: $white;
+background-color: $java;
+}
+}
+
+.btn.btn-light {
+color: $blueIntrigue;
+background-color: $whiteSolid;
+border-color: $whiteSolid;
+}
+
+.btn-light-dark {
+color: $mirage;
+background-color: $mischkaDark;
+border-color: transparent;
+
+&:hover {
+color: $white;
+background-color: $mirage;
+}
+}
+
+.btn.btn-primary {
+color: $white;
+background-color: $malibu;
+border-color: $malibu;
+}
+
+.btn.btn-danger {
+color: $white;
+background-color: $cherryRed;
+border-color: $cherryRed;
+}
+
+.btn.btn-success {
+color: $white;
+background-color: $java;
+border-color: $java;
+}
+
+.btn.btn-warning {
+color: $white;
+background-color: $webOrange;
+border-color: $webOrange;
+}
+
+.btn.btn-info {
+color: $white;
+background-color: $electricViolet;
+border-color: $electricViolet;
+}
+
+.btn.btn-dark {
+color: $white;
+background-color: $mirage;
+border-color: $mirage;
+}
+
+.btn { font-family: 'Poppins' !important}
+
+
+//---     text decoration      ---//
+.underline { @include text-declaration(underline);}
+.uppercase { @include text-declaration(uppercase);}
+
+//---     margin and padding      ---//
+//note: the margin and padding are auto generate using the mixin
+
+// Margins
+@include auto-generate-mixin-class('.mt-', 'margin-top');
+@include auto-generate-mixin-class('.mr-', 'margin-right');
+@include auto-generate-mixin-class('.mb-', 'margin-bottom');
+@include auto-generate-mixin-class('.ml-', 'margin-left');
+@include auto-generate-mixin-class('.m-', 'margin');
+
+// Paddings
+@include auto-generate-mixin-class('.pt-', 'padding-top');
+@include auto-generate-mixin-class('.pr-', 'padding-right');
+@include auto-generate-mixin-class('.pb-', 'padding-bottom');
+@include auto-generate-mixin-class('.pl-', 'padding-left');
+@include auto-generate-mixin-class('.p-', 'padding');
+
+//---    angular style (overridden)     --//
+/* custom input ui */
+
+::ng-deep.mat-form-field-outline {
+background-color: $mysticLight;
+border-color: $mysticLight;
+height: 50px !important;
+font-weight: 400 !important;
+line-height: 20.42px !important;
+border-radius: 10px !important;
+}
+
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix  {
+padding: 0.4em 0 1em 0 !important;
+}
+
+::ng-deep.mat-input-element {
+line-height: 27px !important;
+}
+
+
+/* //input outline color */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {color: $mysticLight !important;}
+
+/* //mat-input focused color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {color: $alto !important;}
+
+/* // mat-input carent color */
+::ng-deep .mat-input-element {caret-color: $mysticLight !important;}
+
+/* // mat-label focused style */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {color: $alto !important;}
+
+/* // mat-input error outline color */
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+color: $cherryRed !important;
+opacity: 0.8 !important;
+}
+
+
+:host ::ng-deep .textarea-large .mat-form-field-outline {
+background-color: $mysticLight;
+border-color: $mysticLight;
+height: 80px !important;
+font-weight: 400 !important;
+line-height: 20.42px !important;
+border-radius: 10px !important;
+}
+
+::ng-deep.schematic-select {@include auto-generate-style-element('padding-top', 3px);}
+::ng-deep.mat-select-arrow-wrapper {@include auto-generate-style-element('padding-top', 7px);}
+::ng-deep.mat-dialog-container {padding: 0; overflow: $hidden;}

@@ -1,0 +1,43 @@
+<div class="inventory-details-container">
+    <div class="inventory-header">
+        <div fxLayout="row">
+            <div fxFlex class="inventory-title">Update Warehouse Product</div>
+            <div (click)="closeDialog()" class="header-close-icon pointer">
+                <div class="material-icons close-icon">close</div>
+            </div>
+        </div>
+    </div>
+        <div class="inventory-container">
+            <div [formGroup]="inventoryFormGroup" class="form-cont">
+                <!--fields-->
+                <div class="inventory-form-field">
+                    <div class="form-column-container-label">Stock</div>
+                    <mat-form-field appearance="outline" class="full-width ecommerce-custom-field">
+                        <input formControlName="stock" matInput placeholder="Stock" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> 
+                    </mat-form-field>
+                    <mat-error *ngIf="inventoryFormGroup.get('stock').touched && 
+                                      inventoryFormGroup.controls.stock.invalid &&
+                                      inventoryFormGroup.controls.stock.hasError('required')"  
+                                      class="ecommerce-errror-lbl">
+                                      Stock is required</mat-error>
+                </div>
+                <!--fields-->
+                <!-- <div class="inventory-form-field">
+                    <mat-checkbox formControlName="isActive">
+                        Is Active
+                    </mat-checkbox>
+                </div> -->
+            </div>
+        </div>
+        <div class="inventory-footer">
+            <div fxLayout="row">
+                <div fxFlex></div>
+                <button (click)="closeDialog()" mat-button class="btn btn-light-primary fs12 mr-1">
+                   Cancel
+                </button>
+                <button (click)="save()" [disabled]="inventoryFormGroup.invalid" mat-button class="btn btn-primary fs12">
+                   Save
+                </button>
+            </div>
+        </div>
+</div>

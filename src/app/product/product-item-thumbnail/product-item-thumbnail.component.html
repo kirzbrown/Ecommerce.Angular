@@ -1,0 +1,6 @@
+<div class="product-image-overlay-container-img">
+    <div class="overlay-container-img" [ngClass]="{'product-margin-list': viewType == 'list'}">
+        <img [src]="product.productImages[0]?.imageUrl" [ngClass]="{'product-image-url-grid':  viewType == 'grid', 'product-image-url-list': viewType == 'list'}">
+    </div>
+</div>
+

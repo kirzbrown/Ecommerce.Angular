@@ -1,0 +1,129 @@
+<section class="" #scroll>
+    <div  *ngIf="viewType =='list'"  fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex fxLayout="column">
+                <div class="price-model-mobile" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="item-deets-title">{{product?.title}}</div>
+                    <div class="new-model" *ngIf="product.isLatestModel">New Model</div>
+                </div>
+                <!-- <div class="item-title-divider" fxFlex></div> -->
+                <div class="item-deets-subtitle">{{product?.subTitle}}</div>
+                <ul *ngIf="product?.productFeatures.length && product?.isFeatureActive">
+                    <li *ngFor="let feature of product?.productFeatures">{{feature.name}}</li>
+                </ul>
+
+                <div>
+                    <div *ngIf="product?.discount" class="badge">{{product?.discount}}% Off</div>
+                    <div *ngIf="product?.isWarrantyActive" class="badge">{{product.warrantyName}}</div>
+                    <div *ngIf="product?.isMiniBannerActive" class="badge">{{product.miniBannerName}}</div>
+                </div>
+            </div>
+            <div fxLayout="column">
+                <div class="price-value-cont" *ngIf="product?.discount > 0" fxLayout="column" fxLayoutAlign="start">
+                    <div class="item-deets-price">SRP {{product?.discountedPrice | number : '1.2-2'}}</div>
+                    <div fxLayout="row">
+                        <div class="item-prev-price">SRP {{product?.price | number : '1.2-2'}}</div>
+                        <div fxFlex></div>
+                        <div class="stock-lbl">{{product?.discount}}%</div>
+                    </div>
+                </div>
+                <div class="price-value-cont" *ngIf="product?.discount == 0" fxLayout="column" fxLayoutAlign="start">
+                    <div class="item-deets-price">SRP {{product?.price | number : '1.2-2'}}</div>
+                </div>
+                <mat-form-field appearance="outline" class="mt-3" (click)="$event.stopPropagation()">
+                    <!-- <uix-mat-number-spinner increase="0.5" decrease="0.15" fix="2" type="outline" [(value)]="number1"></uix-mat-number-spinner> -->
+                      <input [(ngModel)]="quantity"  matInput min="1"  type="number" oninput="validity.valid||(value='');">
+                </mat-form-field>
+                <div fxLayout="column">
+                    <button (click)="buyNow($event)" class="btn btn-buy-now  mt-3">BUY NOW</button>
+                    <button (click)="addToCart($event)" class="btn btn-add-to-cart mt-3" [ngClass]="{'spinner spinner-white spinner-right': adding}">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div  *ngIf="viewType =='grid'" fxLayout="column">
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxFlex fxLayout="column">
+                <div class="price-model-mobile" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="item-deets-title">{{product?.title}}</div>
+                    <div class="new-model" *ngIf="product.isLatestModel">New Model</div>
+                </div>
+                <!-- <div class="item-title-divider" fxFlex></div> -->
+                <div class="item-deets-subtitle">{{product?.subTitle}}</div>
+                <ul *ngIf="product?.productFeatures && product?.isFeatureActive">
+                    <li *ngFor="let feature of product?.productFeatures">{{feature.name}}</li>
+                </ul>
+
+                <div>
+                    <div *ngIf="product?.discount" class="badge">{{product?.discount}}% Off</div>
+                    <div *ngIf="product?.isWarrantyActive" class="badge">{{product.warrantyName}}</div>
+                    <div *ngIf="product?.isMiniBannerActive" class="badge">{{product.miniBannerName}}</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div fxFlex></div>
+        <div fxLayout="column">
+                <div class="price-value-cont" *ngIf="product?.discount > 0" fxLayout="column" fxLayoutAlign="start">
+                    <div class="item-deets-price">SRP {{(product?.discountedPrice | number : '1.2-2')}}</div>
+                    <div fxLayout="row">
+                        <div class="item-prev-price">SRP {{product?.price | number : '1.2-2'}}</div>
+                        <div fxFlex></div>
+                        <div class="stock-lbl">{{product?.discount}}%</div>
+                    </div>
+                </div>
+                <div class="price-value-cont" *ngIf="product?.discount == 0" fxLayout="column" fxLayoutAlign="start">
+                    <div class="item-deets-price">SRP {{product?.price | number : '1.2-2'}}</div>
+                </div>
+                <mat-form-field appearance="outline" class="mt-3" (click)="$event.stopPropagation()">
+                    <!-- <uix-mat-number-spinner increase="0.5" decrease="0.15" fix="2" type="outline" [(value)]="number1"></uix-mat-number-spinner> -->
+                      <input [(ngModel)]="quantity"  matInput min="1"  type="number" oninput="validity.valid||(value='');">
+                </mat-form-field>
+
+            </div>
+
+            <div fxFill fxLayout="row">
+                <button fxFlex (click)="buyNow($event)" class="btn btn-buy-now mt-3">BUY NOW</button>
+                <div fxFlex="3"></div>
+                <button fxFlex (click)="addToCart($event)" class="btn btn-add-to-cart mt-3" [ngClass]="{'spinner spinner-white spinner-right': adding}">Add to Cart</button>
+            </div>
+    </div>
+
+    <!-- <div *ngIf="viewType == 'grid'" fxLayout="column">
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxFlex fxLayout="column">
+                <div class="price-model-mobile" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="item-deets-title">{{product?.title}}</div>
+                    <div class="new-model" *ngIf="product.isLatestModel">New Model</div>
+                </div>
+                <div class="item-deets-subtitle">{{product?.subTitle}}</div>
+                <ul *ngIf="product?.productFeatures">
+                    <li *ngFor="let feature of product?.productFeatures">{{feature.name}}</li>
+                </ul>
+
+                <div>
+                    <div *ngIf="product?.discount" class="badge">{{product?.discount}}% Off</div>
+                    <div *ngIf="product?.isWarrantyActive" class="badge">{{product.warrantyName}}</div>
+                    <div *ngIf="product?.isMiniBannerActive" class="badge">{{product.miniBannerName}}</div>
+                </div>
+            </div>
+            <div fxLayout="column">
+                <div class="price-value-cont" *ngIf="product?.discountedPrice" fxLayout="column" fxLayoutAlign="start">
+                    <div class="item-deets-price">SRP {{product?.discountedPrice | number}}</div>
+                    <div fxLayout="row">
+                        <div class="item-prev-price">SRP {{product?.price | number}}</div>
+                        <div fxFlex></div>
+                        <div class="stock-lbl">{{product?.discount}}%</div>
+                    </div>
+                </div>
+                <mat-form-field appearance="outline" class="mt-3" (click)="$event.stopPropagation()">
+                      <input [(ngModel)]="quantity"  matInput min="1"  type="number" oninput="validity.valid||(value='');">
+                </mat-form-field>
+                <button (click)="buyNow($event)" class="btn btn-buy-now mt-3" [ngClass]="{'grid-button': viewType == 'grid'}">BUY NOW</button>
+                <button (click)="addToCart($event)" class="btn btn-add-to-cart mt-3" [ngClass]="{'grid-button': viewType == 'grid'}">ADD TO CART</button>
+            </div>
+        </div>
+    </div> -->
+</section>

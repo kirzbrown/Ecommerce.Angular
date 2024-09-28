@@ -1,0 +1,19 @@
+<!-- <div class="img-magnifier">
+    <button (click)="zoom()" class="btn btn-enlarge btn-light" mat-button>
+        <div fxLayout="row">
+            <div *ngIf="!isEnlargeImage" class="material-icons icon-enlarge">center_focus_strong</div>
+            <div *ngIf="isEnlargeImage" class="material-icons icon-enlarge">crop_free</div>
+            <div class="text-enlarge">{{ !isEnlargeImage ? 'Enlarge' : 'Quit Enlarge'}}</div>
+        </div>
+    </button>
+</div> -->
+<!--zoom library-->
+<!-- <div class="">
+    <div fxLayout="row" fxLayout="center center">
+        <div fxFlex></div>
+        <ng-magnizoom *ngIf="isEnlargeImage" zoomMode="COVER" [imageClass]="{ 'zoom-deep-class': true }" [imageSrc]="imageUrl"></ng-magnizoom>
+        <div fxFlex></div>
+    </div>
+</div> -->
+<!-- image carousel-->
+<ngx-gallery  (previewOpen)="clickGallery($event)" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>

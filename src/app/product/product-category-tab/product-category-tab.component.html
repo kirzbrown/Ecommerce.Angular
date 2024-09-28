@@ -1,0 +1,17 @@
+<section class="category-list-container">
+    <mat-tab-group class="product-category-tab" mat-align-tabs="center" 
+     [(selectedIndex)]="selectedIndex"
+     (click)="selectedIndexChange()" 
+     (selectedTabChange)="filterByCategory($event, 'Category')">
+        <ng-container *ngFor="let category of categoryList">
+            <mat-tab class="item-category" *ngIf="!category.multiSelect">
+                <ng-template mat-tab-label>
+                    <div fxLayout="column">
+                        <div class="category-title">{{category.name | uppercase}}</div>
+                    </div>
+                </ng-template>
+            </mat-tab>
+        </ng-container>
+    </mat-tab-group>
+</section>
+

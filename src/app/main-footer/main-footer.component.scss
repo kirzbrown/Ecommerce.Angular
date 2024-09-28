@@ -1,0 +1,76 @@
+.main-footer-container {
+    padding: 3em; font-family: Poppins, Helvetica, "sans-serif" !important;
+    background: #30353A;
+    color: white;
+}
+
+.footer-logo {
+    height: 42px;
+}
+
+.fmfc-content-1{
+    margin-top: 19px;
+}
+
+.footer-content-1-label {
+    font-weight: 500;
+    color: #fff;
+    font-size: 21px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+.footer-content-1-link {
+    color: #b7b7b7;
+    margin-bottom: 6px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.footer-content-1-link:hover { text-decoration: underline;}
+
+.footer-company-deets {
+    color: #b7b7b7;
+    font-size: 21px;
+}
+
+.footer-company-deets:hover { text-decoration: underline;}
+
+.footer-title {
+    margin-bottom: 17px;
+    color: white;
+    font-size: 21px;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    margin-top: 22px;
+}
+
+
+img.connect-icons {
+    height: 53px;
+    margin-right: 2em;
+}
+
+.fmfc-content-3{margin-top: 61px;}
+
+.main-footer-container {
+    padding: 1em !important;
+    zoom: 66%;
+}
+
+
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+    .main-header-container{zoom: 66%;}
+    .mhdiv{margin-right: 15px;}
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+    .main-header-container{zoom: 66%;}
+    .mhdiv{margin-right: 15px;} 
+}
+
+    

@@ -1,0 +1,313 @@
+.cart-container{
+    background: #FFFFFF;
+    min-height: 65%;
+    
+    .cart-schematic {
+        font-family: "Poppins";
+        // padding: 0 1em;
+        background: #FFFFFF;
+        
+        max-width: 1500px;
+        max-height: 100%;
+        margin: auto;
+    
+        .cart-schematic-header {
+            padding: 1em;
+            color: black;
+            border-top: 1px solid white;
+            margin-right: 1em;
+            z-index: -1;
+    
+            .cart-schematic-header-title {
+                margin: auto;
+                font-size: 24px;
+                font-weight: 500;
+            }
+    
+            .c-sc-button {
+                background-color: white;
+                border: 1px solid darkgray;
+                margin-right: 1.5em;
+            }
+        }
+    
+        .cart-schematic-list {
+            padding: 0 1em;
+            max-height: 550px;
+            
+            overflow-y: auto;
+    
+            .c-sc-item {
+                background: white;
+                border-radius: 15px;
+                padding: 1em;
+                margin-bottom: 1.5em;
+    
+                .c-sc-item-image {
+                    height: 11vh;
+                    margin-right: 1em;
+                }
+    
+                .c-sc-item-deets-title {
+                    font-size: 16px;
+                    margin-top: 9px;
+                    margin-bottom: 10px;
+                }
+    
+                .c-sc-item-amt {
+                    color: #1E88E5;
+                    font-size: 20px;
+                    margin-top: 9px;
+                }
+    
+                .c-sc-footer-labels {
+                    margin-top: 1em;
+                    color: #80808F;
+    
+                    .c-sc-footer-icon.material-icons {
+                        font-size: 16px;
+                        margin-right: 3px;
+                    }
+    
+                    .c-sc-footer-lbl { font-size: 12px; margin-right: 1.5em; cursor: pointer;}
+                    .c-sc-footer-lbl:hover { 
+                        .hover-lbl {text-decoration: underline;}
+                    }
+                }
+            }
+        }
+    
+        .csc-card {
+            background: white;
+            margin-right: 1em;
+            padding: 1em;
+            border-radius: 10px;
+            margin-bottom: 1em;
+    
+            .csc-card-header {
+                border-bottom: 1px solid #1E1E2D;
+                margin-bottom: 10px;
+                padding-bottom: 5px;
+    
+                .ssc-card-header-title {
+                    font-weight: 500;
+                }
+    
+                .c-sc-help-icon.material-icons {
+                    font-size: 16px;
+                }
+            }
+            
+            .cont-shop {
+                font-weight: 600;
+                background: #e4e6efb8;
+            }
+            
+            .checkout-btn {
+                margin-left: 1em;
+            }
+    
+            
+    
+            .pin-icon {
+                margin-right: 1em;
+            }
+    
+            .shipping-row-title {
+                font-weight: 600;
+                margin-bottom: 2px;
+            }
+    
+            .shipping-row-label {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+    
+            .shipping-row-change {
+                font-size: 12px;
+                color: #6693FF;
+            }
+    
+            .shipping-row-change:hover{text-decoration: underline;}
+    
+            .rdo-item-label {
+                margin-left: 8px;
+                margin-right: 10px;
+            }
+    
+            .est-arrival-lbl {
+                margin-left: 4em;
+                font-size: 13px !important;
+                margin-bottom: 5px;
+            }
+    
+            .order-summary-row {
+                padding: 7px 0;
+            }
+    
+            .order-summary-line {
+                border-top: 1px solid;
+            }
+    
+            img.cart-icon {
+                height: fit-content;
+                margin: auto;
+                margin-left: 10px;
+            }
+    
+            
+            img.ticket-icon {
+                height: fit-content;
+                margin: auto;
+                margin-left: 10px;
+            }
+        }
+    
+        .pmc-shipping-address {
+           
+            .pin-icon {
+                margin-right: 1em;
+            }
+    
+            .shipping-row-title {
+                font-weight: 600;
+                margin-bottom: 2px;
+            }
+    
+            .shipping-row-label {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+    
+            .shipping-row-change {
+                font-size: 12px;
+                color: #6693FF;
+            }
+    
+            .shipping-row-change:hover{text-decoration: underline;}
+        }
+    
+        .option-item {
+            border: 1px solid #DDE3E8;
+            border-radius: 5px;
+            padding: 1em;
+            margin-bottom: 1em;
+    
+            .option-item-row-title {
+                margin-top: 0;
+                color: #788995;
+                margin-left: 44px;
+                font-size: 12px;
+            }
+    
+            img.option-item-image {
+                height: 14px;
+                margin-right: 10px;
+            }
+        }
+    
+        .c-scs-label {
+            color: #6693FF;
+            font-size: 12PX;
+            margin-right: 6px;
+            cursor: default;
+        }
+    
+        .csc-header-label {
+            color: #B5B5C3;
+            font-size: 11px;
+            font-weight: 500;
+            margin-bottom: 1em;
+        }
+    
+        .qty-label-container {
+            font-size: 19px;
+            font-size: 20px;
+            margin-top: 9px;
+        }
+    
+        .breakdown-container {
+            background: #FBF6F0;
+            padding: 2em;
+            border-radius: 1em;
+        }
+    
+        
+        .card-info-title{
+            font-size: 12px !important;
+            margin-top: 1em;
+            margin-bottom: 11px;
+        }
+    
+        .card-label-here {
+            color: #DDE2E6;
+            font-weight: 500;
+            font-size: 10px;
+            margin-bottom: 7px;    
+        }
+    
+        .mop-title {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+    
+        .mop-billing-deets {
+            color: #6C757D;
+    
+            .mop-name {font-weight: 600;}
+            .mop-address {
+                font-size: 12px;
+                margin-bottom: 9px;
+                margin-top: 5px;
+            }
+        }
+    
+        .voucher-apply-container {padding: 1em 11em;}
+        .c-sc-item-amt.amt-subtotal {color: #464E5F !important;}
+        .text-center{text-align: center !important;}
+        .c-sc-header-item {margin-top: 1em;}
+    }
+}
+
+.checkout-cart-mobile-ver {
+    .c-sc-item-image-mobile-view{
+        height: 65px;
+        margin: 0 10px;
+    }
+}
+
+.csc-card-header-mobile { width: 100vw;padding: 0 13px;}
+.cart-mobile-body {
+    padding: 1em;
+    border: 1px solid lightgray;
+    margin: 1em;
+    width: 86vw;
+    margin-bottom: 0;
+    border-radius: 11px;
+}
+
+//responsesive ------------------------------------
+//portrait --
+
+//small screen
+@media (max-width: 385px) and (orientation : portrait)  {
+    .csc-card {place-content: flex-start !important;  }
+    .csc-card {width: 100vw;}
+}
+
+//medium screen
+@media (max-width: 613px) and (orientation : portrait)  {
+    .csc-card {place-content: flex-start !important;  }
+    .csc-card {width: 100vw;}
+}
+
+//landscape --
+
+::ng-deep {
+    
+    @media (max-height: 536px) and (orientation : landscape)  {
+        
+    }
+
+}
+

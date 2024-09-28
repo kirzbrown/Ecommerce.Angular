@@ -1,0 +1,64 @@
+.success-dialog-info {padding: 7px 10px 8px 0;}
+.success-dialog-content-info{padding: 1em;}
+
+.success-dialog-container{ 
+    margin: 10px;
+    padding: 0;
+    border-radius: 10px;
+    box-shadow: none !important;
+    font-family: 'Poppins';
+}
+
+.success-dialog-header{
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 15px;
+    margin-bottom: 19px;
+    font-weight: 500;
+    font-size: 18px;
+    padding-left: 24px;
+}
+
+.success-dialog-msg{
+    margin-bottom: 21px;
+    font-size: 18px;
+}
+
+.success-dialog-footer{
+    padding: 1em !important;
+    border-top: 1px solid #E5EAEE;
+    margin: 0 !important;
+}
+
+.text-label {
+    color: #5F6368;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.sd-btn{
+    margin-bottom: 2em;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+
+::ng-deep .mat-dialog-container{
+      padding: 0 !important;
+      border-radius: 20px !important;
+      overflow-x: hidden !important;
+}
+  
+::ng-deep .mat-card-header-text{
+      display: none !important;
+}
+
+::ng-deep .mat-card-actions{
+      justify-content: flex-end !important;
+}
+
+.text-bold{font-weight: bold;}
+.mr-3{margin-right: 1rem !important;}
+.mt-n13{margin-top: -13px !important;}
+.mb-5{margin-top: 5px !important;}
+.fs12{font-size: 12px;}
+
+::ng-deep.mat-dialog-container{padding: 0 !important}

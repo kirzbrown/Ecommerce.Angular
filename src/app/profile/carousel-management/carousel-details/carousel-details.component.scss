@@ -1,0 +1,65 @@
+@import "../../../../assets/sass/ecommerce-global-variable.scss";
+
+.carousel-details-container {
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    padding-bottom: 2em;
+    flex-direction: column;
+
+    .material-icons {
+        color: $cherryRed;
+        position: absolute;
+        right: .4em;
+        top: .4em;
+        border-radius: 50%;
+        font-weight: 800;
+        font-size: 30px !important;
+        cursor: pointer;
+    }
+
+    .banner-image {
+        min-height: 360.97px;
+        object-fit: fill;
+    }
+
+    .text-container {
+        background-color: #EEF0F8;
+        border-radius: 0px 0px 6px 6px;
+
+        :first-child {
+            padding: 15px 15px 10px;
+        }
+
+        :last-child {
+            padding: 0px 15px 15px;
+        }
+
+        .header-text {
+            min-width: 90px;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 18px;
+            color: #6C7293;
+            padding: 0px;
+        }
+
+        .content-text {
+            font-style: normal;
+            font-weight: 300;
+            font-size: 13px;
+            line-height: 18px;
+            color: #6C7293;
+            padding: 0px;
+        }
+    }
+
+    .flex-1 {
+        flex: 1;
+    }
+
+    .flex {
+        display: flex !important;
+    }
+}

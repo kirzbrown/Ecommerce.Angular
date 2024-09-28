@@ -1,0 +1,27 @@
+<div class="carousel-details-container">
+    <div class="banner-container">
+        <div style="position: relative;">
+            <div *ngIf="carousel.bannerUrlImage" (click)="removeLogo(carousel.id)" style="z-index: 99;" class="material-icons mat-elevation-z8">close</div>
+            
+            <img  *ngIf="!selectedMp4" [src]="carousel.bannerUrlImage" width="100%" class="banner-image"/>
+            
+                <video controls *ngIf="selectedMp4" width="100%" height="auto">
+
+                    <source  [src]="selectedMp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                 
+                </video>
+           
+        </div>
+    </div>
+    <div class="text-container">
+        <div class="flex" fxLayoutAlign="start center">
+            <span class="header-text">Category:</span>
+            <span class="flex-1 content-text">{{carousel.category}}</span>
+        </div>
+        <div class="flex" fxLayoutAlign="start center">
+            <span class="header-text">Link:</span>
+            <span class="flex-1 content-text">{{carousel.bannerLinkUrl}}</span>
+        </div>
+    </div>
+</div>

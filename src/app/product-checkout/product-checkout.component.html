@@ -1,0 +1,793 @@
+<section class="checkout-schematic-container">
+    <!---->
+    <div class="checkout-schematic-header">
+        <div fxLayout="row">
+            <img class="logo" [src]="checkoutLogo" />
+            <div fxFlex></div>
+            <button *ngIf="checkoutState == 1" class="btn btn-dark" (click)="navigate()">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div class="material-icons mr1em">arrow_back</div>
+                    <div>Back</div>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <div class="checkout-nav">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div class="nav-spacing">
+                <div fxLayout="column" fxLayoutAlign="top center" class="highlighted-nav">
+                    <div class="material-icons mat-icon icon-mobile-compatible">shopping_cart</div>
+                    <div class="checkout-nav-title">Checkout</div>
+                </div>
+            </div>
+
+            <div class="nav-spacing">
+                <div class="highlighted-nav">
+                    <div class="material-icons mat-arrow-icon">arrow_forward</div>
+                </div>
+            </div>
+            <div class="nav-spacing">
+                <div [ngClass]="checkoutState > 1 ? 'highlighted-nav' : ''" fxLayout="column" fxLayoutAlign="top center">
+                    <div class="material-icons mat-icon icon-mobile-compatible">credit_card</div>
+                    <div class="checkout-nav-title">Payment</div>
+                </div>
+            </div>
+
+            <div class="nav-spacing">
+                <div [ngClass]="checkoutState > 1 ? 'highlighted-nav' : ''">
+                    <div class="material-icons mat-arrow-icon">arrow_forward</div>
+                </div>
+            </div>
+
+            <div class="nav-spacing">
+                <div [ngClass]="checkoutState == 3 ? 'highlighted-nav' : ''" fxLayout="column" fxLayoutAlign="top center">
+                    <div class="material-icons mat-icon icon-mobile-compatible">check_circle</div>
+                    <div class="checkout-nav-title">Confirmation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--order and shipping details-->
+    <div *ngIf="checkoutState == 1" class="checkout-schematic-shipping">
+     
+        <div fxLayout="row">
+            <!--other row-->
+            <div fxLayout="column" fxFlex>
+
+                <ng-container *ngIf="isGuestCheckOutSuccess == null || !isGuestCheckOutSuccess">
+                    <div class="login-credentials-container csc-card">
+                        <div style="align-items: center; background-color: aliceblue;" class="log-auth-mobile-view"  fxLayout="row">
+                            <div style="align-items: center" fxFlex class="login-credentials-row" fxLayout="column">
+                                <div class="ssc-card-header-title text-uppercase">New Customer</div>
+                                <div class="csc-header-label">Continue Checkout as a Guest or Register</div>
+                                <div fxLayout="row">
+                                    <button (click)="register()"  mat-button class="mt-5 btn btn-primary btn-auth-checkout">Register</button>
+                                    <div fxFlex></div>
+                                </div>
+                                <div fxLayout="row">
+                                    <button (click)="continueAsGuest()" mat-button class="mt-5 btn btn-primary btn-auth-checkout">Continue as Guest</button>
+                                    <div fxFlex></div>
+                                </div>
+                            </div>
+                            <div style="align-items: center" fxFlex class="login-credentials-row" fxLayout="column">
+                                <div style="vertical-align: top;" class="ssc-card-header-title text-uppercase">Returning Customer</div>
+                                <div class="csc-header-label">Access your acccount & saved information</div>
+                                <div fxLayout="row">
+                                    <button (click)="signIn()" mat-button class="mt-5 btn btn-primary btn-auth-checkout">Sign In</button>
+                                    <div fxFlex></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                </ng-container>
+    
+                <!--start:: card-->
+              
+                <ng-container *ngIf="!isMobileView && isGuestCheckOutSuccess">
+                    <div class="csc-card">
+                        <!---->
+                        <div class="csc-card-header">
+                            <div fxLayout="row">
+                                <div class="ssc-card-header-title text-uppercase">Your Order List</div>
+                            </div>
+                            <div class="c-sc-header-item">
+                                <!---->
+                                <div class="">
+                                    <div fxLayout="row">
+                                        <!---->
+                                        <div fxFlex class="csc-header-label">Product Description</div>
+                                        <!---->
+                                        <div fxFlex="15" class="csc-header-label text-center">Quantity</div>
+                                        <!---->
+                                        <div fxFlex="15" class="csc-header-label text-center">Unit Price</div>
+                                        <!---->
+                                        <div fxFlex="15" class="csc-header-label text-center">Sub Total</div>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                        </div>
+                        <!--list of checkout items-->
+                        <div class="checkout-schematic-list">
+                            <!--start:: item-->
+
+                            <!--end:: item-->
+                            <ng-container *ngFor="let checkoutItem of checkoutItems; let i = index">
+                                <!--start:: item-->
+                                <div class="c-sc-item">
+                                    <!---->
+                                    <div class="">
+                                        <div fxLayout="row">
+                                            <!---->
+                                            <img class="c-sc-item-image" [src]="checkoutItem.imageUrl">
+                                            <!---->
+                                            <div fxFlex class="c-sc-item-deets">
+                                                <div fxLayout="column">
+                                                    <div class="c-sc-item-deets-title">{{checkoutItem.title}}</div>
+                                                    <div class="c-sc-item-deets-sub-title" style="margin-bottom: 10px;">
+                                                        Model: {{checkoutItem.model}}</div>
+                                                    <div class="c-sc-item-deets-sub-title">
+                                                        Capacity: {{checkoutItem.capacity}} </div>
+                                                </div>
+                                            </div>
+                                            <!---->
+                                            <div fxFlex="15" class="text-center">
+                                                <div class="qty-label-container text-center">
+                                                    <span class="qty-amount">{{checkoutItem.itemQuantity}}</span>
+                                                </div>
+                                            </div>
+                                            <div fxFlex="15" class="c-sc-item-amt amt-subtotal text-center">
+                                                {{checkoutItem.price | currency:"PHP ":"symbol"}}</div>
+                                            <div fxFlex="15" class="c-sc-item-amt text-center">{{checkoutItem.price *
+                                                checkoutItem.itemQuantity | currency:"PHP ":"symbol"}}</div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                </div>
+                                <div class="c-sc-divider"></div>
+                                <!--end:: item-->
+                            </ng-container>
+
+
+                        </div>
+                    </div>
+                </ng-container>
+                <!--end:: card-->
+
+                <ng-container *ngIf="isMobileView && isGuestCheckOutSuccess">
+                    <ng-container *ngFor="let checkoutItem of checkoutItems; let i = index">
+                        <div class="checkout-cart-mobile-ver">
+                            <div class="cart-mobile-body">
+                                <div fxLayout="row">
+                                    <div fxLayout="row">
+                                        <!---->
+                                        <img class="c-sc-item-image-mobile-view" [src]="checkoutItem.imageUrl">
+                                        <!---->
+                                        <div fxFlex class="c-sc-item-deets">
+                                            <div fxLayout="column">
+                                                <div class="c-sc-item-deets-title" style="font-weight: bold;font-size: 13px;">{{checkoutItem.title}}</div>
+                                                <div class="c-sc-item-deets-sub-title" style="font-size: 11px;">Model: {{checkoutItem.model}}</div>
+                                                <div class="c-sc-item-deets-sub-title" style="font-size: 11px;margin-bottom: 1em;">Capacity: {{checkoutItem.capacity}}</div>
+                                                <div class="c-sc-item-amt" style="font-size: 11px;">Quantity: {{checkoutItem.itemQuantity}}</div>
+                                                <div class="c-sc-item-amt" style="font-size: 11px;">Unit Price:  {{checkoutItem.price | currency:"PHP ":"symbol"}}</div>
+                                                <div class="c-sc-item-amt" style="font-size: 15px;margin-top: 6px;font-weight: 500;">
+                                                    Subtotal: {{checkoutItem.price * checkoutItem.itemQuantity | currency:"PHP ":"symbol"}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+
+                <!--start:: card-->
+                <ng-container *ngIf="isGuestCheckOutSuccess">
+                <div class="shipping-mobile-view" fxLayout="row">
+                    <div fxFlex="60" class="csc-card address-container">
+                        <!---->
+                        <div class="csc-card-header">
+                            <div fxLayout="row">
+                                <div fxFlex class="ssc-card-header-title text-uppercase">Shipping Address</div>
+                            </div>
+                        </div>
+                        <!---->
+
+                        <div [formGroup]="deliveryAddressFormGroup">
+                            <div class="csc-card-body mt-5">
+                                <div class="shipping-row" style="width: 100%;">
+                                    <!-- <div class="mb-5">
+                                        <div class="card-label-here">ADDRESSES</div>
+                                        <div fxLayout="row">
+                                            <div class="input-group">
+                                                <mat-select name="addresses" id="addressses"  class="form-control" [(ngModel)]="selectedAddress">
+                                                    <mat-option *ngFor="let address of addresses" (onSelectionChange)="selectChange($event)" [value]="address">
+                                                        {{displayAddress(address)}}</mat-option>
+                                                </mat-select>
+                                                <button (click)="showAddNewAddressComponent()" class="btn btn-add-address">Add New Address</button>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="mb-5" fxLayout="row">
+                                        <div fxFlex fxLayout="column" class="mr-1">
+                                            <div class="card-label-here">PROVINCE</div>
+                                            <mat-form-field fxFlex="49" appearance="outline" [ngClass]="{'has-value': provinces.length > 0}">
+                                                <mat-select formControlName="province"  placeholder="Select Province">
+                                                    <mat-option *ngFor="let province of provinces" (onSelectionChange)="getCities($event, province.name)" [value]="province.name">
+                                                        {{province.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div fxFlex fxLayout="column" class="ml-1">
+                                           
+                                            <div class="card-label-here">CITY</div>
+                                            <mat-form-field fxFlex="49" appearance="outline" [ngClass]="{'has-value': provinces.length > 0}">
+                                                <mat-select formControlName="city" placeholder="Select City">
+                                                    <mat-option *ngFor="let city of cities" (onSelectionChange)="updateShipping($event, city)" [value]="city">
+                                                        {{city}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="mb-5" fxLayout="row">
+                                        <div fxFlex class="mr-1">
+                                            <div class="card-label-here">STREET NAME, BUILDING, HOUSE NO</div>
+                                            <div class="input-group">
+                                                <input formControlName="streetName" class="form-control full-control-width" type="text" placeholder="delivery address">
+                                                <mat-error *ngIf="deliveryAddressFormGroup.get('streetName').touched && 
+                                                    deliveryAddressFormGroup.controls.streetName.invalid &&
+                                                    deliveryAddressFormGroup.controls.streetName.hasError('required')"  
+                                                    class="ecommerce-errror-lbl">
+                                                    STREET NAME, BUILDING, HOUSE NO</mat-error>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-5" fxLayout="row">
+                                        <div fxFlex fxLayout="column" class="ml-1">
+                                            <div class="card-label-here">BARANGAY</div>
+                                            <div class="input-group">
+                                                <input formControlName="barangay"  class="form-control full-control-width" type="text" placeholder="barangay name">
+                                                <mat-error *ngIf="deliveryAddressFormGroup.get('barangay').touched && 
+                                                    deliveryAddressFormGroup.controls.barangay.invalid &&
+                                                    deliveryAddressFormGroup.controls.barangay.hasError('required')"  
+                                                    class="ecommerce-errror-lbl">
+                                                    Barangay is required</mat-error>
+                                            </div>
+                                        </div>
+
+                                        <div fxFlex class="ml-1">
+                                            <div class="card-label-here">Zip Code</div>
+                                            <div class="input-group">
+                                                <input formControlName="zipCode" class="form-control full-control-width" type="text" placeholder="your zip code">
+                                                <mat-error *ngIf="deliveryAddressFormGroup.get('zipCode').touched && 
+                                                    deliveryAddressFormGroup.controls.zipCode.invalid &&
+                                                    deliveryAddressFormGroup.controls.zipCode.hasError('required')"  
+                                                    class="ecommerce-errror-lbl">
+                                                    Zip Code is required</mat-error>
+                                            </div>
+                                        </div>
+                                        <!-- <mat-error *ngIf="deliveryAddress.hasError('required')" class="lbl-error mb-3">Address is required</mat-error> -->
+                                    </div>
+
+                                    <div class="mb-5" fxLayout="row">
+                                        <div fxFlex class="mr-1">
+                                            <div class="card-label-here">NAME</div>
+                                            <div class="input-group">
+                                                <input type="text" placeholder="First Name, Last Name, Middle Name" class="form-control full-control-width" formControlName="receiverName">
+                                                <mat-error *ngIf="deliveryAddressFormGroup.get('receiverName').touched && 
+                                                deliveryAddressFormGroup.controls.receiverName.invalid &&
+                                                deliveryAddressFormGroup.controls.receiverName.hasError('required')"  
+                                                class="ecommerce-errror-lbl">
+                                                NAME is required</mat-error>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                            <!---->
+                            <div class="">
+                                <div class="shipping-mobile-view" fxLayout="row">
+                                    <div fxFlex class="csc-card-body">
+                                        <div fxLayout="row">
+                                            <div class="shipping-row" style="margin: auto !important; width: 100%;">
+                                                <div class="mb-5 ">
+                                                    <div class="card-label-here">EMAIL</div>
+                                                    <div class="input-group" fxLayout="column">
+                                                        <input type="text" placeholder="your email address" class="form-control full-control-width" formControlName="receiverEmail">
+                                                        <ng-container *ngIf="deliveryAddressFormGroup.controls.receiverEmail.invalid && (deliveryAddressFormGroup.controls.receiverEmail.dirty || deliveryAddressFormGroup.controls.receiverEmail.touched)">
+                                                            <mat-error *ngIf="deliveryAddressFormGroup.controls.receiverEmail.errors?.required" class="error-lbl">
+                                                                EMAIL is required.
+                                                            </mat-error>
+                                                            <mat-error *ngIf="deliveryAddressFormGroup.controls.receiverEmail.errors?.pattern" class="error-lbl">
+                                                                EMAIL is invalid.
+                                                            </mat-error>
+                                                        </ng-container>
+                                                    </div>
+                                                    <!-- <mat-error *ngIf="receiverEmail.hasError('required')" class="lbl-error mb-3">Email is required</mat-error> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div fxFlex class="csc-card-body ml-1">
+                                        <div fxLayout="row">
+                                            <div class="shipping-row" style="margin: auto !important; width: 100%;">
+                                                <div class="mb-5 ">
+                                                    <div class="card-label-here">Contact Number</div>
+                                                    <div class="input-group" fxLayout="column">
+                                                        <input type="text"
+                                                            placeholder="your contact number" class="form-control full-control-width" formControlName="receiverContactInfo" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                        
+                                                            <ng-container *ngIf="deliveryAddressFormGroup.controls.receiverContactInfo.invalid && (deliveryAddressFormGroup.controls.receiverContactInfo.dirty || deliveryAddressFormGroup.controls.receiverContactInfo.touched)">
+                                                                <mat-error *ngIf="deliveryAddressFormGroup.controls.receiverContactInfo.errors?.required" class="error-lbl">
+                                                                    CONTACT NUMBER is required.
+                                                                </mat-error>
+                                                                <mat-error *ngIf="deliveryAddressFormGroup.controls.receiverContactInfo.errors?.pattern || deliveryAddressFormGroup.controls.receiverContactInfo.errors?.maxlength || deliveryAddressFormGroup.controls.receiverContactInfo.errors?.minlength" class="error-lbl">
+                                                                    CONTACT NUMBER is invalid
+                                                                </mat-error>
+                                                            </ng-container>
+                                                    </div>
+                                                    <!-- <mat-error *ngIf="receiverContactInfo.hasError('required')" class="lbl-error mb-3">Contact Number is required</mat-error> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div fxFlex class="csc-card" fxLayout="column">
+                        <!---->
+                        <div class="csc-card-body">
+                            <div class="order-summary">
+                                <div fxLayout="row" class="breakdown-container">
+                                    <div fxFlex fxLayout="column">
+                                        <!---->
+                                        <div class="order-summary-row">
+                                            <div fxLayout="row">
+                                                <div fxFlex class="order-summary-row-label">Subtotal ({{itemCount}}
+                                                    items)</div>
+                                                <div class="order-summary-row-amount semi-bold">{{subTotal | currency:"PHP ":"symbol"}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                        <div class="order-summary-row">
+                                            <div fxLayout="row">
+                                                <div fxFlex class="order-summary-row-label">Shipping Fee</div>
+                                                <div class="order-summary-row-amount">{{shippingFee && shippingFee > 0 ? (shippingFee | currency:"PHP ":"symbol") : "Free"}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="order-summary-line"></div>
+                                        <!---->
+                                        <div class="order-summary-row">
+                                            <div fxLayout="row">
+                                                <div fxFlex class="order-summary-row-label bold">Total</div>
+                                                <div class="order-summary-row-amount bold">{{setTotal() | currency:"PHP ":"symbol"}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div fxFlex fxLayout="row"> -->
+                        <div fxFlex fxLayout="column" >
+                            <div class="instructions-title">Special Instruction</div>
+                                <!---->
+                            <div fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
+                                <div fxFlex>
+                                    <textarea [(ngModel)]="notes" class="form-control txt-trans" style="resize: none; background: #EEF1F5; height: 100%;" placeholder="Write your instruction"></textarea>
+                                </div>
+                                <div class="ml-5" fxLayoutAlign="center end">
+                                    <!-- <button (click)="order()" mat-button -->
+                                    <button (click)="order()" [disabled]="deliveryAddressFormGroup.invalid" mat-button
+                                    class="btn btn-success btn-placeorder">
+                                    <div fxLayout="row">
+                                        <div fxFlex></div>
+                                        <div class="fs15">Place Order</div>
+                                        <img src="./assets/media/checkout-assets/cart.png"
+                                            class="checkout-icon">
+                                        <div fxFlex></div>
+                                    </div>
+                                </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </ng-container>
+                <!--end:: card-->
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="checkoutState == 2" class="payment-cotaniner">
+        <div class="payment-secntion-row">
+            <div fxLayout="row" class="shipping-mobile-view">
+                <!--row 1-->
+                <div class="width-100-mobile" style="margin-right: 2em" fxFlex="50" fxLayout="column">
+                    <!--row 1 - contact information-->
+                    <div class="contact-info-py-option-container">
+                        <div class="payment-option-lbl">CONTACT INFORMATION</div>
+                        <div class="contact-info-py-option-row">
+                            <div fxLayout="row">
+                                <div class="ci-label m-auto">EMAIL</div>
+                                <div class="ci-deets m-auto" fxFlex>
+                                    {{deliveryAddressFormGroup.value.receiverEmail}}
+                                </div>
+                                <div class="ci-btn">
+                                    <button (click)="checkoutState = 1" mat-button class="btn btn-primary chng-btn">CHANGE</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-info-py-option-row">
+                            <div fxLayout="row">
+                                <div class="ci-label m-auto">SHIP TO</div>
+                                <div class="ci-deets m-auto" fxFlex>
+                                    {{deliveryAddressFormGroup.value.streetName}},
+                                    {{deliveryAddressFormGroup.value.barangay}},
+                                    {{deliveryAddressFormGroup.value.city}},
+                                    {{deliveryAddressFormGroup.value.province}},
+                                    {{deliveryAddressFormGroup.value.zipCode}},
+                                </div>
+                                <div class="ci-btn">
+                                    <button (click)="checkoutState = 1" mat-button class="btn btn-primary chng-btn">CHANGE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!--row 1 - payment option-->
+                     <div class="payment-container">
+                        <div class="payment-option-lbl">PAYMENT OPTIONS</div>
+                        <mat-radio-group class="rdo-payment-group" [(ngModel)]="selectedPaymentMethod">
+                            <ng-container *ngFor="let pc of paymentChannelList">
+                                <mat-radio-button *ngIf="pc.isActive" class="rdo-main" [value]="pc" style="width: 100%;">
+                                    <div fxLayout="row"> 
+                                       <div class="rdo-label">{{pc.description == 'CREDITDEBITCARD' ? 'CREDIT/DEBIT CARD' : pc.description}}</div>
+                                       <img *ngIf="pc.imageUrl && pc.description != 'CREDITDEBITCARD'" class="rdo-logo" [src]="pc.imageUrl"/>
+                                       <ng-container *ngIf="pc.description == 'CREDITDEBITCARD'">
+                                        <img class="rdo-logo" src="https://img.icons8.com/color/48/000000/visa.png"/>
+                                        <img class="rdo-logo" src="https://img.icons8.com/color/48/000000/mastercard.png"/>
+                                       </ng-container>
+                                    </div>
+                                </mat-radio-button>
+                            </ng-container>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <!--row 1-->
+                <div class="width-100-mobile" fxFlex="50" fxLayout="column">
+                    <div class="payment-option-lbl" style="margin-bottom: 0;">YOUR ORDER </div>
+                    <div class="product-description-smaller">
+                        <!--start:: card-->
+                        <ng-container *ngIf="!isMobileView">
+                            <div class="csc-card" style="padding: 0;margin-bottom: 3%;">
+                                <!---->
+                                <div class="csc-card-header">
+                                    <div class="c-sc-header-item">
+                                        <!---->
+                                        <div class="">
+                                            <div fxLayout="row">
+                                                <!---->
+                                                <div fxFlex class="csc-header-label">Product Description</div>
+                                                <!---->
+                                                <div fxFlex="25" class="csc-header-label text-center">Quantity</div>
+                                                <!---->
+                                                <div fxFlex="25" class="csc-header-label text-center">Unit Price</div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                    </div>
+                                </div>
+                                <!--list of checkout items-->
+                                <div class="checkout-schematic-list">
+                                    <!--start:: item-->
+
+                                    <!--end:: item-->
+                                    <ng-container *ngFor="let checkoutItem of checkoutItems; let i = index">
+                                        <!--start:: item-->
+                                        <div class="c-sc-item">
+                                            <!---->
+                                            <div class="">
+                                                <div fxLayout="row">
+                                                    <!---->
+                                                    <img class="c-sc-item-image pm-img-product-deets" [src]="checkoutItem.imageUrl">
+                                                    <!---->
+                                                    <div fxFlex class="c-sc-item-deets">
+                                                        <div fxLayout="column">
+                                                            <div class="c-sc-item-deets-title">{{checkoutItem.title}}</div>
+                                                            <div class="c-sc-item-deets-sub-title" style="margin-bottom: 10px;">
+                                                                Model: {{checkoutItem.model}}</div>
+                                                            <div class="c-sc-item-deets-sub-title">
+                                                                Capacity: {{checkoutItem.capacity}} </div>
+                                                        </div>
+                                                    </div>
+                                                    <!---->
+                                                    <div fxFlex="25" class="text-center">
+                                                        <div class="qty-label-container text-center">
+                                                            <span class="qty-amount">{{checkoutItem.itemQuantity}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div fxFlex="25" class="c-sc-item-amt amt-subtotal text-center">
+                                                        {{checkoutItem.price | currency:"PHP ":"symbol"}}</div> -->
+                                                    <div fxFlex="25" class="c-sc-item-amt text-center">{{checkoutItem.price | currency:"PHP":"symbol"}}</div>
+                                                </div>
+                                            </div>
+                                            <!---->
+                                        </div>
+                                        <div class="c-sc-divider"></div>
+                                        <!--end:: item-->
+                                    </ng-container>
+
+
+                                </div>
+                            </div>
+                            <!--end:: card-->
+                        </ng-container>
+                        
+                        <ng-container *ngIf="isMobileView">
+                            <ng-container *ngFor="let checkoutItem of checkoutItems; let i = index">
+                                <div class="checkout-cart-mobile-ver">
+                                    <div class="cart-mobile-body">
+                                        <div fxLayout="row">
+                                            <div fxLayout="row">
+                                                <!---->
+                                                <img class="c-sc-item-image-mobile-view" [src]="checkoutItem.imageUrl">
+                                                <!---->
+                                                <div fxFlex class="c-sc-item-deets">
+                                                    <div fxLayout="column">
+                                                        <div class="c-sc-item-deets-title" style="font-weight: bold;font-size: 13px;">{{checkoutItem.title}}</div>
+                                                        <div class="c-sc-item-deets-sub-title" style="font-size: 11px;">Model: {{checkoutItem.model}}</div>
+                                                        <div class="c-sc-item-deets-sub-title" style="font-size: 11px;margin-bottom: 1em;">Capacity: {{checkoutItem.capacity}}</div>
+                                                        <div class="c-sc-item-amt" style="font-size: 11px;">Quantity: {{checkoutItem.itemQuantity}}</div>
+                                                        <div class="c-sc-item-amt" style="font-size: 11px;">Unit Price:  {{checkoutItem.price | currency:"PHP ":"symbol"}}</div>
+                                                        <div class="c-sc-item-amt" style="font-size: 15px;margin-top: 6px;font-weight: 500;">
+                                                            Subtotal: {{checkoutItem.price * checkoutItem.itemQuantity | currency:"PHP ":"symbol"}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+
+                    </div>
+                    <div class="product-description-shipping">
+                        <div class="product-description-shipping-row">
+                            <div fxLayout="row">
+                                <div class="pds-label">Subtotal ({{itemCount}} items)</div>
+                                <div class="pds-deets" fxFlex fxLayoutAlign="end center">
+                                    {{subTotal | currency:"PHP ":"symbol"}}
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedPaymentMethod && selectedPaymentMethod.paymentMethod.toLowerCase() == 'creditcard'" class="product-description-shipping-row">
+                            <div fxLayout="row">
+                                <div class="pds-label">Online Charge</div>
+                                <div class="pds-deets" fxFlex fxLayoutAlign="end center">
+                                   PHP 20.00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-description-shipping-row">
+                            <div fxLayout="row">
+                                <div class="pds-label">Shipping</div>
+                                <div class="pds-deets" fxFlex fxLayoutAlign="end center">{{shippingFee && shippingFee > 0 ? (shippingFee | currency:"PHP ":"symbol") : "Free"}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-description-shipping-">
+                        <div class="product-description-shipping-row">
+                            <div fxLayout="row">
+                                <div class="ttl-deets">Total Amount</div>
+                                <div class="ttl-deets" fxFlex fxLayoutAlign="end center">{{setTotal() | currency:"PHP ":"symbol"}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="payment-footer">
+            <div fxLayout="row" fxLayoutAlign="center end">
+                <button class="btn btn-light" (click)="checkoutState = 1">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <div>Back</div>
+                    </div>
+                </button>
+                <div fxFlex></div>
+                <button class="btn btn-success" (click)="pay()" [disabled]="!selectedPaymentMethod">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <div class="material-icons mr-3">payments</div>
+                        <div>Proceed to Payment</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="checkoutState == 3" class="confirmation-cotaniner">
+        <div fxFlex fxLayout="column" >
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <div  class="order-confirmed-lbl">WE HAVE RECEIVED YOUR ORDER!</div>
+                <!-- <div class="order-confirmed-divider"></div> -->
+                <div style="font-size: 14px;margin-top: 8px;color: darkgray;">We have sent you a confirmation email.</div>
+            </div>
+            <div class="csc-card mt-10" fxLayout="row" fxLayoutAlign="start center">
+                <div fxFlex fxLayout="column">
+                    <div class="order-number-lbl text-uppercase">Order No.</div>
+                    <div class="order-number-value">{{confirmedOrder?.orderNumber}}</div>
+                </div>
+                <div fxFlex fxLayout="column">
+                    <div class="order-number-lbl text-uppercase" >Order Date</div>
+                    <div class="order-number-value">{{confirmedOrder?.orderDate | date:'MMMM d, y hh:mm a'}}</div>
+                </div>
+            </div>
+            <div class="order-divider"></div>
+            <div class="csc-card">
+                <!---->
+                <div class="csc-card-header">
+                    <div fxLayout="row">
+                        <div class="ssc-card-header-title text-uppercase">Order Summary</div>
+                    </div>
+                    <ng-container *ngIf="!isMobileView">
+                        <div class="c-sc-header-item">
+                            <!---->
+                            <div class="">
+                                <div fxLayout="row">
+                                    <!---->
+                                    <div fxFlex class="csc-header-label">Product Description</div>
+                                    <!---->
+                                    <div fxFlex="15" class="csc-header-label text-center">Quantity</div>
+                                    <!---->
+                                    <div fxFlex="15" class="csc-header-label text-center">Unit Price</div>
+                                    <!---->
+                                </div>
+                            </div>
+                            <!---->
+                        </div>
+                    </ng-container>
+                </div>
+                <ng-container *ngIf="!isMobileView">
+                    <!--list of checkout items-->
+                    <div class="checkout-schematic-list">
+                        <!--start:: item-->
+
+                        <!--end:: item-->
+                        <ng-container *ngFor="let item of confirmedOrderItems; let i = index">
+                            <!--start:: item-->
+                            <div class="c-sc-item">
+                                <!---->
+                                <div class="">
+                                    <div fxLayout="row">
+                                        <!---->
+                                        <div class="order-image-container" fxLayoutAlign="center">
+                                            <img class="order-confirmed-item-image" [src]="item.imageUrl">
+                                        </div>
+                                        <!---->
+                                        <div fxFlex>
+                                            <div fxLayout="column">
+                                                <div class="order-confirmed-item-title">{{item.name}}</div>
+                                                <div class="order-confirmed-item-subtitle">
+                                                    Model: {{item.model}}</div>
+                                                <div class="order-confirmed-item-subtitle">
+                                                    Capacity: {{item.capacity}} </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                        <div fxFlex="15" class="text-center">
+                                            <div class="qty-label-container text-center">
+                                                <span class="order-item-qty">{{item.quantity}}</span>
+                                            </div>
+                                        </div>
+                                        <div fxFlex="15" class="order-item-price text-center">
+                                            {{(item.discountedPrice > 0 ? item.discountedPrice : item.Price) | currency:"PHP ":"symbol"}}</div>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                            <div class="c-sc-divider"></div>
+                            <!--end:: item-->
+                        </ng-container>
+
+
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="isMobileView">
+                    <ng-container *ngFor="let item of confirmedOrderItems; let i = index">
+                        <div class="checkout-cart-mobile-ver">
+                            <div class="cart-mobile-body">
+                                <div fxLayout="row">
+                                    <div fxLayout="row">
+                                        <!---->
+                                        <img class="c-sc-item-image-mobile-view" [src]="item.imageUrl">
+                                        <!---->
+                                        <div fxFlex class="c-sc-item-deets">
+                                            <div fxLayout="column">
+                                                <div class="c-sc-item-deets-title" style="font-weight: bold;font-size: 13px;">{{item.name}}</div>
+                                                <div class="c-sc-item-deets-sub-title" style="font-size: 11px;">Model: {{item.model}}</div>
+                                                <div class="c-sc-item-deets-sub-title" style="font-size: 11px;margin-bottom: 1em;">Capacity:  {{item.capacity}}</div>
+                                                <div class="c-sc-item-amt" style="font-size: 11px;">Quantity: {{item.quantity}}</div>
+                                                <div class="c-sc-item-amt" style="font-size: 15px;margin-top: 6px;font-weight: 500;">
+                                                    Price: {{(item.discountedPrice > 0 ? item.discountedPrice : item.Price) | currency:"PHP ":"symbol"}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+
+            </div>
+            <div class="order-divider"></div>
+            <div class="csc-card" fxLayout="row">
+                <div fxFlex class="csc-card-header">
+                    <div fxLayout="row">
+                        <div class="ssc-card-header-title text-uppercase">Shipping Address</div>
+                    </div>
+                    <div fxLayout="column">
+                        <div fxFlex class="order-shipping-header-label">Receiver Name
+                        </div>
+                        <div fxFlex class="">{{confirmedAddress?.receiverName}}</div>
+                        <div fxFlex class="order-shipping-header-label">Receiver Email
+                        </div>
+                        <div fxFlex class="">{{confirmedAddress?.receiverEmail}}</div>
+                        <div fxFlex class="order-shipping-header-label">Receiver Contact Info
+                        </div>
+                        <div fxFlex class="">{{confirmedAddress?.receiverContactNumber}}</div>
+                        <div fxFlex class="order-shipping-header-label">Street Name, Building, House No.
+                        </div>
+                        <div fxFlex class="">{{confirmedAddress?.streetBldgHouseNo}}</div>
+                        <div fxFlex class="order-shipping-header-label">Address
+                        </div>
+                        <div fxFlex class="">{{confirmedAddress?.province}}, {{confirmedAddress?.city}}, {{confirmedAddress?.barangay}}</div>
+                        <div fxFlex class="order-shipping-header-label">Zip Code
+                        </div>
+                        <div fxFlex class="">{{confirmedAddress?.zipCode}}</div>
+                    </div>
+                </div>
+                <div fxFlex class="csc-card-header">
+                    <div fxLayout="row">
+                        <div class="ssc-card-header-title text-uppercase">Payment Details</div>
+                    </div>
+                    <div fxLayout="column">
+                        <div fxFlex class="order-shipping-header-label">Shipping Fee
+                        </div>
+                        <div fxFlex class="">{{confirmedOrder?.shippingFee ? confirmedOrder?.shippingFee : 'N/A'}}</div>
+                        <div fxFlex class="order-shipping-header-label">SubTotal
+                        </div>
+                        <div fxFlex class="">{{confirmedOrder?.subTotalPrice | currency:"PHP ":"symbol"}}</div>
+                        <div fxFlex class="order-shipping-header-label">Total
+                        </div>
+                        <div fxFlex class="">{{confirmedOrder?.totalPrice | currency:"PHP ":"symbol"}}</div>
+                        <div fxFlex class="order-shipping-header-label mt-5">Special Instruction
+                        </div>
+                        <div fxFlex class="">{{confirmedOrder?.notes ? confirmedOrder?.notes : 'N/A'}}</div>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center end" class="mr-8" style="padding-bottom: 3%;">
+                <button class="btn btn-dark">
+                    <div fxLayout="row" fxLayoutAlign="start center" (click)="continueShopping()">
+                        <div>Continue shopping</div>
+                        <div class="material-icons ml-3">arrow_forward</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
